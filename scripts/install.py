@@ -15,7 +15,7 @@ def merge(defaults,current):
     return {k:merge(v,current[k]) if k in current else v for k,v in defaults.items()}|{k:v for k,v in current.items() if k not in defaults}
 def unit(module,app,config,home,uid,user,node):
     meta=MANIFEST[module];portal=module=='portal'
-    environment=f'Environment=XDG_RUNTIME_DIR=/run/user/{uid}\nEnvironment=WAYLAND_DISPLAY=wayland-0\nEnvironment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/{uid}/bus\nEnvironment=ARTWALL_CONFIG_DIR={config}\nEnvironment=PATH=/usr/local/bin:/usr/bin:/bin\n'
+    environment=f'Environment=XDG_RUNTIME_DIR=/run/user/{uid}\nEnvironment=WAYLAND_DISPLAY=wayland-0\nEnvironment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/{uid}/bus\nEnvironment=ARTWALL_CONFIG_DIR={config}\nEnvironment=PATH=/usr/local/bin:/usr/bin:/bin\nEnvironment=XCURSOR_THEME=ArtwallHidden\nEnvironment=XCURSOR_SIZE=24\n'
     extra=f'User={user}\nGroup={pwd.getpwuid(uid).pw_gid}\nEnvironment=HOME={home}\nAmbientCapabilities=CAP_NET_BIND_SERVICE\nCapabilityBoundingSet=CAP_NET_BIND_SERVICE\n' if portal else f'ExecStartPre={app}/scripts/wait-display.sh\n'
     return f'''[Unit]
 Description=Artwall {meta['name']}
@@ -62,6 +62,9 @@ def main():
         save(config/'registry.json',registry)
         if 'portal' in selected and (config/'photoframe.json').exists():
             frame=load(config/'photoframe.json',{});frame['portalPort']=None;save(config/'photoframe.json',frame)
+        if not any(m!='portal' for m in registry['modules']):
+            if (units/'artwall-display.service').exists():
+                run('systemctl','--user','disable','--now','artwall-display.service');(units/'artwall-display.service').unlink()
         run('systemctl','--user','daemon-reload');run('sudo','systemctl','daemon-reload');return
     run('sudo','-v')
     if not args.no_deps:
@@ -110,12 +113,19 @@ def main():
     bindir=home/'.local/bin';bindir.mkdir(parents=True,exist_ok=True);link=bindir/'artwall'
     if link.is_symlink():link.unlink()
     if not link.exists():link.symlink_to(app/'bin/artwall')
+    display_installed=any(m!='portal' for m in registry['modules'])
+    if display_installed:
+        save(config/'display.json',merge({'idleTimeoutSeconds':60,'output':'HDMI-A-1'},load(config/'display.json',{})))
+        shared=unit('photoframe',app,config,home,uid,user,node).replace('Artwall PhotoFrame','Artwall blank-screen power management').replace(f'{app}/modules/photoframe/server.js {config}/photoframe.json',f'{app}/common/display-idle.js')
+        (units/'artwall-display.service').write_text(shared)
+        run('python3',app/'scripts/setup-cursor.py')
     run('sudo','loginctl','enable-linger',user)
     if args.setup_display:
         run('bash',app/'scripts/setup-display.sh')
     run('systemctl','--user','daemon-reload');run('sudo','systemctl','daemon-reload')
     for module in selected:
         run(*(['sudo','systemctl'] if module=='portal' else ['systemctl','--user']),'enable','--now',f'artwall-{module}.service')
+    if display_installed:run('systemctl','--user','enable','--now','artwall-display.service')
     print('Installed. Local CLI:',link)
     print('Configuration:',config,'; media:',data/'photos')
 if __name__=='__main__':main()

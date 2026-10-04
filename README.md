@@ -36,7 +36,7 @@ Install only the modules you want:
 
 AirPlay builds pinned UxPlay **1.73.7** from its upstream source. Other modules do not install it. SplitFlap alone installs its npm dependencies; PhotoFrame and Portal use Node's built-in libraries. A full repository checkout contains all source, but only selected modules' dependencies and services are installed.
 
-The CLI is installed at `~/.local/bin/artwall`; add `~/.local/bin` to your shell's `PATH` if necessary. Services start automatically at boot. Display services wait for Wayland; they start idle, ready for an activation command. AirPlay advertises automatically.
+The CLI is installed at `~/.local/bin/artwall`; add `~/.local/bin` to your shell's `PATH` if necessary. Services start automatically at boot. Display services wait for Wayland; they start idle, ready for an activation command. AirPlay advertises automatically. A shared display service switches HDMI off after 60 seconds with no active display module. Active slideshows (including paused images), SplitFlap and AirPlay prevent this timeout. Starting a display wakes the screen. The appliance uses a transparent cursor theme to hide its pointer.
 
 ## Control locally
 
@@ -74,6 +74,7 @@ PhotoFrame commands: `start`, `stop`, `next`, `previous`, `pause`, `resume`. Eve
 
 - Application: `~/.local/lib/artwall/`
 - Configuration: `~/.config/artwall/{photoframe,splitflap,airplay,portal}.json`
+- Shared display settings: `~/.config/artwall/display.json` (`idleTimeoutSeconds`, `output`)
 - Installed-module registry: `~/.config/artwall/registry.json`
 - Photos and playlist: `~/.local/share/artwall/photos/`
 - Configuration backups: `~/.local/share/artwall/backups/`
@@ -84,7 +85,7 @@ Update your source checkout with `git pull --ff-only`, then rerun `./install.sh 
 ./install.sh --uninstall splitflap,airplay
 ```
 
-Removal disables the selected services and removes their Portal entries. It retains configuration, media, shared runtime packages and the graphical session. Reinstalling restores the saved settings. To change advanced JSON settings, restart that module afterward:
+Removal disables the selected services and removes their Portal entries. It retains configuration, media, shared runtime packages and the graphical session. The shared idle service is removed when the last display module is uninstalled. Reinstalling restores the saved settings. To change advanced JSON settings, restart that module afterward:
 
 ```sh
 systemctl --user restart artwall-photoframe

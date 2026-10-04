@@ -11,7 +11,7 @@ if test -f "$HOME/.config/labwc/autostart"; then cp "$HOME/.config/labwc/autosta
 if ! grep -q 'Artwall session environment' "$HOME/.config/labwc/autostart" 2>/dev/null; then
  cat >> "$HOME/.config/labwc/autostart" <<'SESSION'
 # Artwall session environment
-systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP
+systemctl --user import-environment WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XCURSOR_THEME XCURSOR_SIZE
 systemctl --user start pipewire.service pipewire-pulse.service wireplumber.service
 SESSION
 fi

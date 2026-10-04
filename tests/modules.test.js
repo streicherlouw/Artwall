@@ -31,3 +31,9 @@ test('AirPlay settings permit safe receiver options and reject executable or inv
  assert.equal(validate({receiverName:'Living room',fps:30},{uxplayPath:'/usr/local/bin/uxplay'}).uxplayPath,'/usr/local/bin/uxplay');
  for(const input of [{uxplayPath:'/tmp/other'},{fps:100},{receiverName:'\n'},{manageDisplayPower:'yes'},null])assert.throws(()=>validate(input,{}));
 });
+test('portal saves blank-screen timeout while preserving output and rejects unsafe writes',async()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'artwall-idle-config-'));const file=path.join(root,'portal.json');fs.writeFileSync(file,JSON.stringify({registry:'registry.json'}));fs.writeFileSync(path.join(root,'display.json'),JSON.stringify({idleTimeoutSeconds:60,output:'HDMI-A-2'}));
+ const server=createServer(file);await listen(server);const url=`http://127.0.0.1:${server.address().port}/api/display/config`;
+ const post=(data,extra={})=>fetch(url,{method:'POST',headers:{'Content-Type':'application/json',...extra},body:JSON.stringify(data)});
+ try{assert.equal((await post({idleTimeoutSeconds:120})).status,200);assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root,'display.json'))),{idleTimeoutSeconds:120,output:'HDMI-A-2'});assert.equal((await post({idleTimeoutSeconds:1})).status,400);assert.equal((await post({idleTimeoutSeconds:0},{Origin:'https://example.com'})).status,403);assert.equal((await post({output:'OTHER'})).status,400)}finally{await close(server);fs.rmSync(root,{recursive:true,force:true})}
+});
