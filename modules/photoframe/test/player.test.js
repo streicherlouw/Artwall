@@ -15,7 +15,7 @@ function element(){
 function player({missing=[],deferred=[]}={}){
  const slides=Array.from({length:3},(_,i)=>({src:`${i}.png`,name:`Slide ${i+1}`,location:i===2?null:{latitude:35,longitude:139},map:i===2?null:{country:i===0?'Japan':'Vietnam',path:'M10,10L20,10L20,20Z',pinX:20,pinY:20,nearby:false}}));
  const elements=new Map(),layers=[element(),element()],events={},timers=new Map(),pending=new Map();let nextID=1;
- const document={title:'Player',hidden:false,body:element(),documentElement:element(),querySelectorAll:()=>layers,
+ const document={title:'Player',hidden:false,body:element(),documentElement:element(),querySelectorAll:()=>layers,querySelector:()=>document.getElementById('controls'),
   getElementById(id){if(!elements.has(id))elements.set(id,element());return elements.get(id)},addEventListener(k,f){events[k]=f}};
  document.getElementById('slides').textContent=JSON.stringify(slides);
  class Image {set src(src){this._src=src;const finish=()=>queueMicrotask(()=>missing.includes(src)?this.onerror():this.onload());if(deferred.includes(src))pending.set(src,finish);else finish()}get src(){return this._src}decode(){return Promise.resolve()}}
@@ -56,4 +56,14 @@ test('remote status waits for a decoded slide before publishing a frame',async()
  vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../web/remote.js'),'utf8'),context);
  for(let i=0;i<10;i++)await Promise.resolve();assert.equal(posted.length,0);
  context.current=0;await nextPoll();assert.equal(posted[0].index,1);assert.equal(posted[0].name,'Ready');
+});
+
+test('controls start hidden, ignore automatic pauses, and follow mouse activity only',async()=>{
+ const p=player();await p.flush();assert.equal(p.document.body.classList.contains('idle'),true);
+ p.read('togglePause()');assert.equal(p.document.body.classList.contains('idle'),true);
+ await p.key('ArrowRight');assert.equal(p.document.body.classList.contains('idle'),true);
+ p.events.pointermove({pointerType:'mouse',movementX:0,movementY:0});assert.equal(p.document.body.classList.contains('idle'),true);
+ p.events.pointermove({pointerType:'mouse',movementX:5,movementY:0});assert.equal(p.document.body.classList.contains('idle'),false);assert.equal(p.elements.get('controls').inert,false);
+ await p.tick(2500);assert.equal(p.document.body.classList.contains('idle'),true);assert.equal(p.elements.get('controls').inert,true);
+ p.events.pointerdown({pointerType:'mouse'});assert.equal(p.document.body.classList.contains('idle'),false);
 });

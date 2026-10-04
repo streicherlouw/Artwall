@@ -70,7 +70,7 @@ def main():
     if not args.no_deps:
         packages=['git','rsync','nodejs','npm','python3','dbus-user-session']
         if any(x!='portal' for x in selected):packages+=['wlr-randr','pipewire','pipewire-pulse','wireplumber']
-        if 'photoframe' in selected:packages+=['chromium','python3-pil']
+        if 'photoframe' in selected:packages+=['chromium','python3-pil','adwaita-icon-theme']
         if 'splitflap' in selected:packages+=['python3-pygame','fonts-dejavu-core']
         if args.setup_display:packages+=['labwc','greetd']
         run('sudo','apt-get','update');run('sudo','env','DEBIAN_FRONTEND=noninteractive','apt-get','install','-y',*sorted(set(packages)))

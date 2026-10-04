@@ -33,3 +33,5 @@ Turning a switch on selects that album and starts PhotoFrame, replacing SplitFla
 The plugin uses `GET /api/status` for discovery/state and `POST /api/slideshow/album` with `{"album":"Holiday Japan","on":true}` for serialized album activation. Set `on` to false to stop that album. If the existing Homebridge bridge is already paired with HomeKit, new switches are added to that bridge automatically.
 
 `POST /api/homekit/rebuild` with `{}` performs the same rebuild as the admin button. Concurrent requests share one scan; failures are reported without claiming success.
+
+Playback controls and the mouse cursor start hidden. Moving or clicking a mouse reveals them; both hide after 2.5 seconds without mouse activity. Keyboard and remote playback commands do not reveal the controls. PhotoFrame draws a visible arrow cursor over its controls and uses Adwaita as its browser cursor theme; the appliance desktop retains its hidden cursor.

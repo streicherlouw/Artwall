@@ -32,7 +32,7 @@ class Display {
    if(this.config.wakeDisplay){const {stdout}=await exec('/usr/bin/wlr-randr',[],{timeout:6000});const block=stdout.split(/\n(?=\S)/).find(s=>s.startsWith(this.config.displayOutput+' '));if(!block)throw Error('Configured display output was not found');this.restoreOff=/Enabled:\s*no/.test(block);this.save();if(this.restoreOff)await this.power(true)}
    if(this.owner())throw Error(`${this.owner()} took the display`);
    const port=this.config.port;const url=`http://127.0.0.1:${port}/player?display=1`;
-   const child=spawn(this.config.chromiumPath||'/usr/bin/chromium',['--kiosk','--no-first-run','--noerrdialogs','--disable-session-crashed-bubble','--ozone-platform=wayland',`--user-data-dir=${path.join(this.runtime,'collage-chromium')}`,url],{stdio:['ignore','ignore','pipe'],detached:true});
+   const child=spawn(this.config.chromiumPath||'/usr/bin/chromium',['--kiosk','--no-first-run','--noerrdialogs','--disable-session-crashed-bubble','--ozone-platform=wayland',`--user-data-dir=${path.join(this.runtime,'collage-chromium')}`,url],{env:{...process.env,XCURSOR_THEME:'Adwaita',XCURSOR_SIZE:'24'},stdio:['ignore','ignore','pipe'],detached:true});
    this.child=child;child.stderr.on('data',chunk=>console.log('[Chromium]',chunk.toString().slice(0,500)));
    await new Promise((resolve,reject)=>{child.once('spawn',resolve);child.once('error',reject)});
    child.once('exit',()=>{if(this.child===child){this.child=null;this.enqueue(()=>this.stop()).catch(e=>this.error=e.message)}});
