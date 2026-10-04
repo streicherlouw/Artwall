@@ -1,0 +1,46 @@
+{
+  "columns": 27,
+  "rows": 10,
+  "fps": 60,
+  "animate": true,
+  "flipDuration": 45,
+  "pageDuration": 10000,
+  "rotationInterval": 30000,
+  "welcomeMessage": "WELCOME HOME.",
+  "waylandDisplay": "wayland-0",
+  "websocket": {
+    "host": "127.0.0.1",
+    "port": 8765,
+    "tokenEnv": "SPLITFLAP_TOKEN"
+  },
+  "sources": [
+    {
+      "type": "news",
+      "url": "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "label": "BBC WORLD",
+      "limit": 8
+    },
+    {
+      "type": "quote"
+    },
+    {
+      "type": "history",
+      "language": "en",
+      "limit": 5
+    }
+  ],
+  "cadence": 50,
+  "displayPower": {
+    "enabled": true,
+    "output": "HDMI-A-1",
+    "command": "/usr/bin/wlr-randr"
+  },
+  "web": {
+    "host": "0.0.0.0",
+    "port": 8766,
+    "tokenEnv": "SPLITFLAP_WEB_TOKEN",
+    "authRequired": false
+  },
+  "audioSink": "alsa_output.platform-fef00700.hdmi.hdmi-stereo",
+  "airplayStatusFile": "/run/user/1000/airplay-receiver-status.json"
+}

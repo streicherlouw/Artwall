@@ -1,0 +1,14 @@
+{
+  "host": "0.0.0.0",
+  "port": 8767,
+  "contentRoot": "content",
+  "intervalMs": 5000,
+  "fadeMs": 850,
+  "showMap": true,
+  "mapSize": 11,
+  "shuffle": false,
+  "album": "all",
+  "wakeDisplay": true,
+  "runtimeDirectory": "/run/user/1000",
+  "displayOutput": "HDMI-A-1"
+}

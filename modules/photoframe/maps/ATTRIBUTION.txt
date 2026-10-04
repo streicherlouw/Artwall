@@ -1,0 +1,7 @@
+Country geometry: Natural Earth, Admin 0 – Countries, 1:50m, public domain.
+https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/
+https://www.naturalearthdata.com/about/terms-of-use/
+Source GeoJSON (retrieved 2026-10-03):
+https://github.com/nvkelso/natural-earth-vector/blob/master/geojson/ne_50m_admin_0_countries.geojson
+countries.json retains NAME_EN and polygon geometry only.
+These generalized boundaries are for a small orientation map, not precise border determination.

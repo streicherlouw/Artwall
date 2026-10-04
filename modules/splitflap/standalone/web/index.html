@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SplitFlap · Send a message</title><link rel="stylesheet" href="/style.css"><script src="/board.js" defer></script><script src="/designer.js" defer></script><script src="/app.js" defer></script></head>
+<body><main>
+<header><span class="mark" aria-hidden="true">▰</span><span>SPLITFLAP</span><span id="state" class="badge">Not connected</span></header>
+<h1>Make it yours.</h1><p class="intro">Compose your message, then fine-tune any tile. What you see is what you send.</p>
+<form id="message-form">
+<div id="authentication" hidden><label for="key">Display access key</label><input id="key" type="password" autocomplete="off" placeholder="Enter your access key"><p class="hint">Kept only in this page while it’s open.</p></div>
+<div class="label-row"><label for="message">Your message</label><span id="count">0 / 4000</span></div>
+<textarea id="message" maxlength="4000" rows="5" placeholder="DINNER IS READY." required></textarea>
+<label class="check"><input id="beautify" type="checkbox" checked> Beautify — centre text and add colour accents</label>
+<label class="check"><input id="sound" type="checkbox" checked> Play split-flap sound on the display</label>
+<div class="actions"><button id="send" type="submit" disabled>Send Message <span aria-hidden="true">↗</span></button><button id="end" type="button">End display</button></div>
+<p id="result" role="status" aria-live="polite">Ready when you are.</p>
+<section class="design" aria-label="Message designer">
+<div class="board-toolbar"><span id="dimensions">Loading display…</span><span><button type="button" id="previous" aria-label="Previous page">←</button> <span id="page-number"></span> <button type="button" id="next" aria-label="Next page">→</button></span></div>
+<div id="board" role="group" aria-label="Editable split-flap preview"></div>
+<p class="hint">Click a tile to type or paste. Drag or Shift+arrow to select; Command/Ctrl+A selects the board. Use Command/Ctrl+C, X and V to copy, cut and paste. Arrow keys move the cursor. Enter splits the row. Space inserts a blank; Backspace removes the previous tile; Delete removes the current tile. Edits shift this row only. Edit the message above to wrap and centre text automatically.</p>
+</section>
+<div id="palette" aria-label="Insert a coloured square"></div>
+<label for="curl">Your curl command</label><div class="command"><textarea id="curl" readonly rows="4" spellcheck="false"></textarea><button type="button" id="copy">Copy command</button></div><p id="copy-result" role="status" class="hint"></p>
+
+
+<section class="alert-option"><div class="power-controls"><label class="check"><input id="timed" type="checkbox" checked> Turn off again if this message wakes the screen</label><button type="button" id="power-off">Turn screen off now</button></div><div class="duration"><input id="seconds" type="number" value="60" min="1" max="86400" step="1" required aria-label="Seconds after animation"> <span>seconds after the first page finishes flipping</span></div><p class="hint">An off screen wakes to empty tiles for six seconds before the message begins. A screen that was already on stays on.</p></section>
+
+</form><footer>Long messages wrap and move across multiple boards. Allow enough alert time to read them.</footer>
+</main></body></html>

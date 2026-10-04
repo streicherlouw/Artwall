@@ -1,0 +1,13 @@
+{
+  "name": "artwall-photoframe",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "description": "Standalone offline photo frame"
+}

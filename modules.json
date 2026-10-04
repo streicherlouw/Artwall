@@ -1,0 +1,6 @@
+{
+ "photoframe":{"name":"PhotoFrame","description":"Photo collages, albums and country maps","port":8767,"entry":"server.js","config":"config.json","status":"/api/status"},
+ "splitflap":{"name":"SplitFlap","description":"Animated messages, board designer and sounds","port":8766,"entry":"standalone/daemon.js","config":"standalone/config.json","status":"/api/status"},
+ "airplay":{"name":"AirPlayReceiver","description":"Mirror Apple devices and control receiver settings","port":8768,"entry":"server.js","config":"receiver-daemon.config.json","status":"/api/status"},
+ "portal":{"name":"Artwall Portal","description":"Configuration pages for installed modules","port":80,"entry":"server.js","config":"config.json","status":"/api/status"}
+}

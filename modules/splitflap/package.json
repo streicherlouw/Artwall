@@ -1,0 +1,22 @@
+{
+  "name": "artwall-splitflap",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Standalone native split-flap display",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node standalone/daemon.js",
+    "test": "node --test test/*.test.js",
+    "check": "node --check standalone/daemon.js"
+  },
+  "dependencies": {
+    "rss-parser": "^3.13.0",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "jsdom": "^26.0.0"
+  }
+}
