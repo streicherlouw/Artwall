@@ -1,0 +1,29 @@
+--- a/renderers/audio_renderer.c
++++ b/renderers/audio_renderer.c
+@@ -311,10 +311,21 @@
+ void audio_renderer_render_buffer(unsigned char* data, int *data_len, unsigned short *seqnum, uint64_t *ntp_time) {
+     GstBuffer *buffer = NULL;
+ 
++    if (!renderer || !data_len || *data_len <= 0) return;
+     if (!render_audio) return;    /* do nothing unless render_audio == TRUE */
+ 
+     GstClockTime pts = (GstClockTime) *ntp_time ;    /* now in nsecs */
+     //GstClockTimeDiff latency = GST_CLOCK_DIFF(gst_element_get_current_clock_time (renderer->appsrc), pts);
++    if (sync && renderer->ct == 8) {
++        /* A provisional RTP/NTP mapping can be hours wrong until the first
++         * real sync packet arrives. Never enqueue these frames: the sink
++         * would wait on them and obstruct subsequently corrected audio.
++         * Normal mirror lead is ~180 ms; allow a generous five seconds. */
++        GstClockTime now = gst_element_get_current_clock_time(renderer->appsrc);
++        if (GST_CLOCK_TIME_IS_VALID(now) && pts > now && pts - now > 5 * GST_SECOND) {
++            return;
++        }
++    }
+     if (sync) {
+         if (pts >= gst_audio_pipeline_base_time) {
+             pts -= gst_audio_pipeline_base_time;
+--- a/uxplay.cpp
++++ b/uxplay.cpp
+@@ -76 +76 @@
+-#define VERSION "1.73.7-artwall-volume1"
++#define VERSION "1.73.7-artwall-audio2"

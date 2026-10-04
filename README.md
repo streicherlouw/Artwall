@@ -41,7 +41,7 @@ Install only the modules you want:
 ./install.sh --dry-run --modules portal
 ```
 
-AirPlay builds pinned UxPlay **1.73.7** from its upstream source with the [Artwall volume fix](patches/README.md). The build identifies itself as `1.73.7-artwall-volume1`; installation upgrades unpatched builds. Other modules do not install it. SplitFlap alone installs its npm dependencies; PhotoFrame and Portal use Node's built-in libraries. A full repository checkout contains all source, but only selected modules' dependencies and services are installed.
+AirPlay builds pinned UxPlay **1.73.7** from its upstream source with the [Artwall volume fix](patches/README.md). The build identifies itself as `1.73.7-artwall-audio2`; installation upgrades unpatched builds. Other modules do not install it. SplitFlap alone installs its npm dependencies; PhotoFrame and Portal use Node's built-in libraries. A full repository checkout contains all source, but only selected modules' dependencies and services are installed.
 
 The CLI is installed at `~/.local/bin/artwall`; add `~/.local/bin` to your shell's `PATH` if necessary. Services start automatically at boot. Display services wait for Wayland; they start idle, ready for an activation command. AirPlay advertises automatically. A shared display service switches HDMI off after 60 seconds with no active display module. Active slideshows (including paused images), SplitFlap and AirPlay prevent this timeout. Starting a display wakes the screen. The appliance uses a transparent cursor theme to hide its pointer.
 

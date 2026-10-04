@@ -45,6 +45,8 @@ trap 'rm -rf "$build_dir"' EXIT
 
 git clone --depth 1 --branch "$UXPLAY_VERSION" https://github.com/FDH2/UxPlay.git "$build_dir/UxPlay"
 patch -d "$build_dir/UxPlay" -p1 < "$(dirname "$0")/../patches/uxplay-audio-volume.patch"
+patch -d "$build_dir/UxPlay" -p1 < "$(dirname "$0")/../patches/uxplay-audio-timestamps.patch"
+python3 "$(dirname "$0")/test-uxplay-timestamps.py" "$build_dir/UxPlay"
 python3 "$(dirname "$0")/test-uxplay-volume.py" "$build_dir/UxPlay"
 cmake -S "$build_dir/UxPlay" -B "$build_dir/UxPlay/build" -DCMAKE_BUILD_TYPE=Release
 cmake --build "$build_dir/UxPlay/build" --parallel "$(nproc)"
