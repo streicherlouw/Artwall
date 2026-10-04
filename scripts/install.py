@@ -76,7 +76,7 @@ def main():
         run('sudo','apt-get','update');run('sudo','env','DEBIAN_FRONTEND=noninteractive','apt-get','install','-y',*sorted(set(packages)))
         if 'airplay' in selected:
             ux=shutil.which('uxplay');version=subprocess.run([ux,'-v'],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True).stdout if ux else ''
-            if '1.73.7' not in version:run('bash',SOURCE/'scripts/install-uxplay.sh')
+            if '1.73.7-artwall-volume1' not in version:run('bash',SOURCE/'scripts/install-uxplay.sh')
     node=shutil.which('node')
     if not node:raise RuntimeError('Node.js is required')
     major=int(subprocess.check_output([node,'-p','process.versions.node.split(".")[0]'],text=True))
