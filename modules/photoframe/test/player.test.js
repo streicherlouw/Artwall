@@ -52,7 +52,7 @@ test('missing images are skipped and all-missing inputs terminate clearly',async
 });
 test('remote status waits for a decoded slide before publishing a frame',async()=>{
  const posted=[];let nextPoll;
- const context=vm.createContext({window:{portalSequence:0,portalRevision:1},current:-1,slides:[{name:'Ready'}],paused:false,console,location:{reload(){}},fetch:async(url,options)=>{if(url==='/api/slideshow/frame')posted.push(JSON.parse(options.body));return{ok:true,json:async()=>({revision:1,commands:[]})}},setTimeout:fn=>nextPoll=fn});
+ const context=vm.createContext({document:{documentElement:{style:{}},body:{style:{}}},window:{portalSequence:0,portalRevision:1},current:-1,slides:[{name:'Ready'}],paused:false,console,location:{reload(){}},fetch:async(url,options)=>{if(url==='/api/slideshow/frame')posted.push(JSON.parse(options.body));return{ok:true,json:async()=>({revision:1,commands:[]})}},setTimeout:fn=>nextPoll=fn});
  vm.runInContext(fs.readFileSync(require('node:path').join(__dirname,'../web/remote.js'),'utf8'),context);
  for(let i=0;i<10;i++)await Promise.resolve();assert.equal(posted.length,0);
  context.current=0;await nextPoll();assert.equal(posted[0].index,1);assert.equal(posted[0].name,'Ready');

@@ -1,10 +1,13 @@
 'use strict';
 let after=window.portalSequence;
 let interruptionPaused=null;
+document.documentElement.style.background='#000';
+document.body.style.transition='opacity 900ms ease-in-out';
 async function poll(){
  try{
   const r=await fetch(`/api/slideshow/commands?after=${after}`,{cache:'no-store'});if(!r.ok)throw Error('Control unavailable');const data=await r.json();
   if(data.revision!==window.portalRevision){if(data.album!==undefined&&data.album!==window.portalAlbum)location.replace(location.pathname+location.search);else location.reload();return}
+  document.body.style.opacity=data.suspended?'0':'1';
   if(data.suspended&&interruptionPaused===null)interruptionPaused=paused;
   if(!data.suspended&&interruptionPaused!==null){if(paused!==interruptionPaused)togglePause();interruptionPaused=null}
   for(const command of data.commands){after=command.sequence;if(interruptionPaused!==null){if(command.action==='pause')interruptionPaused=true;if(command.action==='resume')interruptionPaused=false;}if(command.action==='next')navigate(1);if(command.action==='previous')navigate(-1);if(command.action==='pause'&&!paused)togglePause();if(command.action==='resume'&&paused)togglePause()}

@@ -69,7 +69,16 @@ const io = {
   waitForScreen: () => delay(6000),
   blankDisplay: () => io.show("", true),
   // Hooks allow coordinated handoffs without requiring a background display process.
-  async prepareHandoff() {},
+  async prepareHandoff() {
+    // Allow PhotoFrame's ownership/control polls and 900 ms fade to finish
+    // before mapping the opaque native window over it.
+    if (temporary) {
+      try {
+        const photo = JSON.parse(fs.readFileSync(path.join(runtime, 'artwall-photoframe-state.json'), 'utf8'));
+        if (['active', 'suspended'].includes(photo.phase)) await delay(2200);
+      } catch (error) { if (error.code !== 'ENOENT') throw error; }
+    }
+  },
   async acquireDisplay() {},
   async releaseDisplay() {},
   async openRenderer() {

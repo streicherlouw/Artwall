@@ -115,6 +115,11 @@ def main():
         tex.draw(srcrect=source, dstrect=destination)
         tex.color = (255, 255, 255)
 
+    fade_seconds = 0.9
+    opened_at = time.monotonic()
+    closing_at = None
+    was_fading = True
+
     def draw(now):
         nonlocal frames, repaint_all
         draw_start = time.monotonic()
@@ -149,6 +154,12 @@ def main():
             for rect in destinations:
                 moving_face.draw(dstrect=rect)
         renderer.target = None
+        brightness = min(1.0, max(0.0, (now - opened_at) / fade_seconds))
+        if closing_at is not None:
+            brightness *= max(0.0, 1.0 - (now - closing_at) / fade_seconds)
+        brightness = brightness * brightness * (3.0 - 2.0 * brightness)
+        level = round(255 * brightness)
+        canvas.color = (level, level, level)
         canvas.draw()
         if snapshot and not motion.plans:
             pygame.image.save(renderer.to_surface(), snapshot)
@@ -169,7 +180,8 @@ def main():
         while not commands.empty():
             command = commands.get_nowait()
             if command.get('type') == 'quit':
-                running = False
+                if closing_at is None:
+                    closing_at = time.monotonic()
             elif command.get('type') == 'show':
                 pages = command.get('pages', [])
                 if pages and all(isinstance(p, list) and len(p) == len(motion.values) for p in pages):
@@ -184,15 +196,19 @@ def main():
             set_page(page_list[page_index])
             next_page = time.monotonic() + page_seconds + max((len(p[1]) for p in motion.plans.values()), default=0) * motion.cadence
         audio.update(motion, tick)
-        if dirty or motion.plans:
+        fading = tick < opened_at + fade_seconds or closing_at is not None
+        if dirty or motion.plans or fading or was_fading:
             draw(tick)
             dirty = False
-            if not motion.plans:
+            if not motion.plans and not fading:
                 print(json.dumps({'event': 'settled', 'id': message_id, 'page': page_index, 'frames': frames,
                                   'maxDrawMs': round(max(render_ms), 2),
                                   'meanDrawMs': round(sum(render_ms) / len(render_ms), 2)}), flush=True)
                 render_ms.clear()
-        time.sleep(max(0.001, (1 / fps if motion.plans else .1) - (time.monotonic() - tick)))
+        was_fading = fading
+        if closing_at is not None and tick >= closing_at + fade_seconds:
+            running = False
+        time.sleep(max(0.001, (1 / fps if motion.plans or fading else .1) - (time.monotonic() - tick)))
     print(json.dumps({'event': 'closed', 'frames': frames, 'seconds': round(time.monotonic() - start_time, 2)}), flush=True)
     audio.stop()
     cache.clear()
