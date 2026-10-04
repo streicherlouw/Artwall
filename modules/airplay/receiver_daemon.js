@@ -147,7 +147,7 @@ function handleReceiverLine(line) {
 
   const event = classifyDaemonLine(text);
   if (event) {
-    log(text);
+    log(`[${new Date().toISOString()}] ${text}`);
     if (event.type === "video-stopping") {
       void videoHandoff.beginStopping();
       return;
@@ -188,10 +188,15 @@ function handleReceiverLine(line) {
     return;
   }
 
+  if (/^(?:start audio connection|changed audio connection|ct=|volume:\s*-?[0-9])|GStreamer: End-Of-Stream \(audio\)/i.test(text)) {
+    log(`[UxPlay audio ${new Date().toISOString()}] ${text}`);
+    return;
+  }
+
   if (
     /begin video stream\s+wxh|raop_rtp_mirror width_source|Received unencrypted codec packet|This packet indicates video stream is stopping|video_pipeline state change|GStreamer h26[45] bus message .* (?:warning|error|new-clock)$/i.test(text)
   ) {
-    log(`[UxPlay format] ${text}`);
+    log(`[UxPlay format ${new Date().toISOString()}] ${text}`);
     return;
   }
 
