@@ -1,0 +1,63 @@
+--- a/lib/raop_buffer.c
++++ b/lib/raop_buffer.c
+@@ -226,7 +226,7 @@
+ }
+ 
+ void *
+-raop_buffer_dequeue(raop_buffer_t *raop_buffer, unsigned int *length, uint32_t *rtp_timestamp, unsigned short *seqnum, int no_resend) {
++raop_buffer_dequeue(raop_buffer_t *raop_buffer, unsigned int *length, uint32_t *rtp_timestamp, unsigned short *seqnum, int no_resend, unsigned int max_wait_packets) {
+     assert(raop_buffer);
+ 
+     /* Calculate number of entries in the current buffer */
+@@ -239,6 +239,18 @@
+ 
+     /* Get the first buffer entry for inspection */
+     raop_buffer_entry_t *entry = &raop_buffer->entries[raop_buffer->first_seqnum % RAOP_BUFFER_LENGTH];
++    /* A missing mirror packet must not hold seconds of usable audio.
++     * Keep a short resend window, then skip the missing run and drain
++     * already received audio in this call (including sequence wrap). */
++    if (!no_resend && max_wait_packets < RAOP_BUFFER_LENGTH &&
++        entry_count >= max_wait_packets && !entry->filled) {
++        while (!entry->filled && entry_count > 0) {
++            raop_buffer->first_seqnum++;
++            entry_count--;
++            entry = &raop_buffer->entries[raop_buffer->first_seqnum % RAOP_BUFFER_LENGTH];
++        }
++        if (entry_count <= 0) return NULL;
++    }
+     if (no_resend) {
+         /* If we do no resends, always return the first entry */
+     } else if (!entry->filled) {
+--- a/lib/raop_buffer.h
++++ b/lib/raop_buffer.h
+@@ -29,7 +29,7 @@
+                                 const unsigned char *aeskey,
+                                 const unsigned char *aesiv);
+ int raop_buffer_enqueue(raop_buffer_t *raop_buffer, unsigned char *data, unsigned short datalen, int use_seqnum);
+-void *raop_buffer_dequeue(raop_buffer_t *raop_buffer, unsigned int *length, uint32_t *rtp_timestamp, unsigned short *seqnum, int no_resend);
++void *raop_buffer_dequeue(raop_buffer_t *raop_buffer, unsigned int *length, uint32_t *rtp_timestamp, unsigned short *seqnum, int no_resend, unsigned int max_wait_packets);
+ void raop_buffer_handle_resends(raop_buffer_t *raop_buffer, raop_resend_cb_t resend_cb, void *opaque);
+ void raop_buffer_flush(raop_buffer_t *raop_buffer, int next_seq);
+ 
+--- a/lib/raop_rtp.c
++++ b/lib/raop_rtp.c
+@@ -609,7 +609,7 @@
+                 unsigned short seqnum = 0;
+                 uint32_t rtp_timestamp = 0;
+ 
+-                while ((payload = raop_buffer_dequeue(raop_rtp->buffer, &payload_size, &rtp_timestamp, &seqnum, no_resend))) {
++                while ((payload = raop_buffer_dequeue(raop_rtp->buffer, &payload_size, &rtp_timestamp, &seqnum, no_resend, raop_rtp->ct == 8 ? 12 : 256))) {
+                     audio_decode_struct audio_data; 
+                     audio_data.rtp_time = rtp_timestamp;
+                     audio_data.seqnum = seqnum;
+--- a/uxplay.cpp
++++ b/uxplay.cpp
+@@ -73,7 +73,7 @@
+ #endif
+ 
+ 
+-#define VERSION "1.73.7-artwall-audio2"
++#define VERSION "1.73.7-artwall-audio3"
+ 
+ #define SECOND_IN_USECS 1000000
+ #define SECOND_IN_NSECS 1000000000UL

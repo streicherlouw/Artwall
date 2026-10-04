@@ -19,3 +19,11 @@ The temporary diagnostic deployment uses the user service drop-in `~/.config/sys
 `uxplay-audio-timestamps.patch` rejects synchronized AAC mirror frames scheduled more than five seconds ahead of the playback clock. During the October 4 test, provisional timestamps were approximately 15,443 seconds ahead for two seconds before correcting to roughly 180 ms. Queuing such frames can obstruct playback. The guard allows normal mirror timing, preserves ALAC and unsynchronized behavior, and resumes as soon as sane timestamps arrive. It does not manufacture missing startup audio or claim to fix the original rotation fade. The normal installer includes this patch and identifies the combined build as `1.73.7-artwall-audio2`.
 
 The temporary level/packet instrumentation was removed from the Pi after YouTube malfunctioned during that test. The captured evidence cannot establish whether instrumentation contributed to that malfunction. The deployed timestamp guard contains no level instrumentation.
+
+## Bounded resend wait for mirrored audio
+
+`uxplay-mirror-resend.patch` limits AAC mirror retransmission waiting to a backlog of 12 packet positions (about 130 ms at 480 samples/44.1 kHz). Upstream waits until the 256-slot buffer is full, which can block roughly 2.8 seconds of later audio behind a lost packet. Once the short window fills, the patch skips the missing run and drains available packets immediately. Timely retransmissions and sequence-number wrap are covered by the regression harness. ALAC/audio-only retains the 256-slot policy.
+
+This trades recovery of very late mirror packets for continuity. It cannot fill gaps where no later packets arrive. The October 4 rotation trace showed multi-second delivery gaps followed by bursts, consistent with this buffer behavior; the live rotation result still requires user confirmation. The combined build is `1.73.7-artwall-audio3`.
+
+The affected `lib/raop_buffer` and RTP sources retain their upstream license notices (including LGPL-2.1-or-later where stated); the UxPlay executable retains its upstream GPL license. The normal installer applies all three fixes and runs their regression harnesses.
