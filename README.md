@@ -108,3 +108,7 @@ python3 -m unittest discover -s modules/splitflap/test -p 'test_*.py'
 ```
 
 The repository uses MIT-licensed application code. Retained module licenses and the DejaVu font license accompany their files. Natural Earth country outlines are public domain; attribution is in `modules/photoframe/maps/ATTRIBUTION.txt`. UxPlay and system packages retain their upstream licenses and are installed separately.
+
+## Optional Homebridge integration
+
+PhotoFrame includes the standalone `homebridge-artwall-photoframe` plugin for an existing Homebridge installation. It creates HomeKit switches from root album folders and tracks folder changes automatically. See [plugin installation and configuration](modules/photoframe/homebridge/README.md). PhotoFrame itself also indexes added/removed folders and images while running.

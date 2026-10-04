@@ -23,3 +23,13 @@ test('portal serves player, persists settings, dispatches commands and blocks cr
   assert.equal((await fetch(base+'/media/test.png')).status,200);
  }finally{await new Promise(resolve=>server.close(resolve));fs.rmSync(root,{recursive:true,force:true})}
 });
+test('album switches serialize selection, ignore stale off commands, and respect AirPlay rejection',async()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'artwall-albums-'));const file=path.join(root,'config.json');fs.mkdirSync(path.join(root,'content'));fs.writeFileSync(file,JSON.stringify({port:0,contentRoot:'content',intervalMs:5000,fadeMs:1700,album:'all'}));fs.writeFileSync(path.join(root,'content/playlist.json'),JSON.stringify(['Japan','Vietnam'].map(album=>({album,src:'/media/'+album+'.png',name:album}))));fs.writeFileSync(path.join(root,'content/albums.json'),JSON.stringify(['Japan','Vietnam','Empty']));let phase='idle',blocked=false,tail=Promise.resolve();
+ const display={status:()=>({phase}),enqueue:fn=>{const job=tail.then(fn);tail=job.catch(()=>{});return job},start:async()=>{if(blocked)throw Error('AirPlay owns the display');phase='active'},stop:async()=>{phase='idle'}};
+ const {server}=createPortal(file,{display});await new Promise(r=>server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${server.address().port}`;
+ const set=(album,on)=>fetch(base+'/api/slideshow/album',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({album,on})});
+ try{await set('Japan',true);await set('Vietnam',true);const stale=await(await set('Japan',false)).json();assert.equal(stale.phase,'active');assert.equal(stale.settings.album,'Vietnam');
+ assert.equal((await set('Empty',true)).status,400);blocked=true;assert.equal((await set('Japan',true)).status,400);assert.equal(JSON.parse(fs.readFileSync(file)).album,'Vietnam');
+ await set('Vietnam',false);assert.equal(phase,'idle');
+ }finally{await new Promise(r=>server.close(r));fs.rmSync(root,{recursive:true,force:true})}
+});
