@@ -7,3 +7,9 @@ The patch addresses lost or stale volume; it has not been established as a fix f
 `scripts/install-uxplay.sh` downloads the pinned source, applies the patch, runs `scripts/test-uxplay-volume.py` and builds/installs it. Re-running the normal Artwall installer upgrades an unpatched receiver unless `--no-deps` is selected. An explicit custom `uxplayPath` in receiver settings still takes precedence.
 
 UxPlay and this derivative patch retain the upstream GPL-3.0-or-later license. See [upstream license](https://github.com/FDH2/UxPlay/blob/v1.73.7/LICENSE). Artwall's MIT license does not relicense UxPlay.
+
+## Optional audio-gap diagnostics
+
+`uxplay-audio-trace.patch` applies after the volume patch. It is not part of the normal installer. When built in and `ARTWALL_AUDIO_TRACE=1` is set, it reports packet inter-arrival gaps, timestamp lead relative to the playback clock, and decoded levels before volume adjustment at 100 ms intervals. It does not save audio samples or change synchronization. These observations distinguish missing packets, decoded silence, and downstream output problems; they do not themselves fix those problems. Artwall timestamps the `ARTWALL_AUDIO` lines alongside video-format changes.
+
+The temporary diagnostic deployment uses the user service drop-in `~/.config/systemd/user/artwall-airplay.service.d/audio-trace.conf`. Remove that file, reload the user systemd manager and restart `artwall-airplay` to disable measurement. The trace patch also retains UxPlay's GPL-3.0-or-later license.

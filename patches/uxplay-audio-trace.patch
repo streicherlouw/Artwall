@@ -1,0 +1,48 @@
+--- a/renderers/audio_renderer.c
++++ b/renderers/audio_renderer.c
+@@ -163,6 +163,8 @@
+         }
+         g_string_append (launch, "audioconvert ! ");
+         g_string_append (launch, "audioresample quality=10 ! ");    /* maximum resampling quality for 44.1kHz -> 48kHz audio */
++        if (g_getenv("ARTWALL_AUDIO_TRACE"))
++            g_string_append(launch, "level name=artwall_input interval=100000000 ! ");
+         g_string_append (launch, "volume name=volume ! ");
+ 
+         if (!audio_rtp) {
+@@ -310,6 +312,21 @@
+ 
+ void audio_renderer_render_buffer(unsigned char* data, int *data_len, unsigned short *seqnum, uint64_t *ntp_time) {
+     GstBuffer *buffer = NULL;
++    if (g_getenv("ARTWALL_AUDIO_TRACE")) {
++        static gint64 previous = 0, report = 0;
++        static unsigned int packets = 0;
++        gint64 now = g_get_monotonic_time();
++        packets++;
++        if (!previous || now - previous > 100000 || now - report >= 100000) {
++            logger_log(logger, LOGGER_INFO,
++                "ARTWALL_AUDIO packets=%u gap_ms=%.1f seq=%u pts_ahead_ms=%.1f",
++                packets, previous ? (now - previous) / 1000.0 : 0.0, *seqnum,
++                renderer ? ((double)*ntp_time - (double)gst_element_get_current_clock_time(renderer->appsrc)) / 1000000.0 : 0.0);
++            report = now;
++            packets = 0;
++        }
++        previous = now;
++    }
+ 
+     if (!render_audio) return;    /* do nothing unless render_audio == TRUE */
+ 
+@@ -421,7 +438,13 @@
+         logger_log(logger, LOGGER_INFO, "GStreamer: End-Of-Stream (audio)");
+         break;
+     case GST_MESSAGE_ELEMENT:
+-      // many "level" messages may be sent
++        if (g_getenv("ARTWALL_AUDIO_TRACE") &&
++            g_strcmp0(GST_MESSAGE_SRC_NAME(message), "artwall_input") == 0) {
++            const GstStructure *s = gst_message_get_structure(message);
++            gchar *description = gst_structure_to_string(s);
++            logger_log(logger, LOGGER_INFO, "ARTWALL_AUDIO decoded %s", description);
++            g_free(description);
++        }
+         break;
+     default:
+         /* unhandled message */

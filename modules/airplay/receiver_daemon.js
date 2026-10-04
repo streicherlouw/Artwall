@@ -188,7 +188,7 @@ function handleReceiverLine(line) {
     return;
   }
 
-  if (/^(?:start audio connection|changed audio connection|ct=|volume:\s*-?[0-9])|GStreamer: End-Of-Stream \(audio\)/i.test(text)) {
+  if (/^(?:ARTWALL_AUDIO |start audio connection|changed audio connection|ct=|volume:\s*-?[0-9])|GStreamer: End-Of-Stream \(audio\)/i.test(text)) {
     log(`[UxPlay audio ${new Date().toISOString()}] ${text}`);
     return;
   }
