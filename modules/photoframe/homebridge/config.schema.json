@@ -1,1 +1,28 @@
-{"pluginAlias":"ArtwallPhotoFrame","pluginType":"platform","singular":true,"headerDisplay":"Creates one HomeKit switch per PhotoFrame root album folder. Turning an album on starts its slideshow; only the playing album is on.","schema":{"type":"object","properties":{"name":{"title":"Name","type":"string","default":"Artwall PhotoFrame"},"baseUrl":{"title":"PhotoFrame URL","type":"string","default":"http://127.0.0.1:8767"},"pollInterval":{"title":"Status polling interval (seconds)","type":"integer","minimum":2,"default":5}}}}
+{
+  "pluginAlias": "ArtwallPhotoFrame",
+  "pluginType": "platform",
+  "singular": true,
+  "headerDisplay": "Creates one HomeKit switch per PhotoFrame root album folder. Turning an album on starts its slideshow; only the playing album is on.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "Artwall PhotoFrame"
+      },
+      "baseUrl": {
+        "title": "PhotoFrame URL",
+        "type": "string",
+        "default": "http://127.0.0.1:8767"
+      },
+      "pollInterval": {
+        "title": "Status polling interval (seconds)",
+        "type": "integer",
+        "minimum": 2,
+        "default": 5
+      }
+    }
+  },
+  "customUi": true
+}

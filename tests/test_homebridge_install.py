@@ -25,6 +25,7 @@ class InstallerTests(unittest.TestCase):
             self.assertEqual(config.stat().st_mode & 0o777, 0o600)
             target = root / 'node_modules' / installer.NAME
             self.assertTrue((target / 'index.js').is_file())
+            self.assertTrue((target / 'homebridge-ui/public/index.html').is_file())
             self.assertFalse(target.is_symlink())
             self.assertEqual(len(list((root / 'backups').iterdir())), 2)
 

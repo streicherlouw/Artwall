@@ -53,6 +53,12 @@ Use `http://artwall.local:8767` when Homebridge runs on another machine. Restart
 
 PhotoFrame must run the version with automatic folder indexing and the album activation API. It scans at startup and when **Rebuild HomeKit Switches** is clicked; there is no live folder watcher. Homebridge polls the indexed album list every five seconds by default, so switches update shortly after a rebuild completes.
 
+## Album list in Homebridge settings
+
+Open **Plugins → Artwall PhotoFrame → Settings** to see every registered album and its HomeKit switch name above the usual configuration fields. **Refresh album list** reloads Homebridge’s accessory cache. After adding or removing folders, first use **Rebuild HomeKit Switches** in PhotoFrame; allow a polling interval for Homebridge to update, then refresh the list. Cached switches remain listed during PhotoFrame outages. Empty and failed loads show an explanatory message.
+
+The settings panel uses Homebridge’s [custom plugin UI and cached-accessory API](https://github.com/homebridge/plugin-ui-utils#user-interface-api), with no extra runtime dependency.
+
 ## Behaviour
 
 - Switch on **Holiday Japan** to select that album and start its slideshow.

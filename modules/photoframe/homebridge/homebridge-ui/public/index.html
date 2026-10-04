@@ -1,0 +1,49 @@
+<section class="mb-4" aria-labelledby="albums-title">
+  <h3 id="albums-title">Album switches</h3>
+  <p>Albums registered with Homebridge are listed below. After changing photo folders, use <strong>Rebuild HomeKit Switches</strong> in PhotoFrame, then refresh this list.</p>
+  <button id="refresh-albums" class="btn btn-primary mb-3" type="button">Refresh album list</button>
+  <p id="album-status" role="status" aria-live="polite">Loading album switches…</p>
+  <table class="table" id="album-table" hidden>
+    <thead><tr><th scope="col">Album</th><th scope="col">HomeKit switch</th></tr></thead>
+    <tbody id="album-rows"></tbody>
+  </table>
+  <p class="text-muted">This list shows Homebridge’s registered accessory cache, including retained switches when PhotoFrame is offline. Refreshing does not scan folders or change switches.</p>
+</section>
+<script>
+(() => {
+  const button = document.getElementById('refresh-albums');
+  const status = document.getElementById('album-status');
+  const rows = document.getElementById('album-rows');
+  const table = document.getElementById('album-table');
+  async function refresh() {
+    button.disabled = true;
+    try {
+      const accessories = await homebridge.getCachedAccessories();
+      const albums = accessories.filter(a => typeof a.context?.album === 'string')
+        .sort((a, b) => a.context.album.localeCompare(b.context.album));
+      rows.replaceChildren();
+      for (const accessory of albums) {
+        const row = document.createElement('tr');
+        for (const value of [accessory.context.album, accessory.displayName || accessory.context.album]) {
+          const cell = document.createElement('td');
+          cell.textContent = value;
+          row.appendChild(cell);
+        }
+        rows.appendChild(row);
+      }
+      table.hidden = albums.length === 0;
+      status.textContent = albums.length
+        ? `${albums.length} album switch${albums.length === 1 ? '' : 'es'} registered with Homebridge.`
+        : 'No album switches registered yet. Check the PhotoFrame URL below, save and restart Homebridge if this is a new installation, then rebuild the switches in PhotoFrame.';
+    } catch (error) {
+      status.textContent = `Could not refresh album switches: ${error.message || error}. Any displayed list is from the previous refresh.`;
+    } finally {
+      button.disabled = false;
+      homebridge.fixScrollHeight();
+    }
+  }
+  button.addEventListener('click', refresh);
+  homebridge.showSchemaForm();
+  refresh();
+})();
+</script>

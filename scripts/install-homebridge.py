@@ -40,12 +40,13 @@ def install(storage, url):
     try:
         for name in ('index.js', 'package.json', 'config.schema.json', 'README.md', 'LICENSE'):
             shutil.copy2(source / name, stage / name)
+        shutil.copytree(source / 'homebridge-ui', stage / 'homebridge-ui')
         stage.chmod(0o755)
         temp = backup / 'new-config.json'
         temp.write_text(json.dumps(data, indent=2) + '\n')
         temp.chmod(stat.st_mode & 0o777)
         if os.geteuid() == 0:
-            for file in (backup, backup / 'config.json', temp, stage, *stage.iterdir()):
+            for file in (backup, backup / 'config.json', temp, stage, *stage.rglob('*')):
                 os.chown(file, stat.st_uid, stat.st_gid)
         if target.exists() or target.is_symlink():
             target.rename(backup / 'plugin')

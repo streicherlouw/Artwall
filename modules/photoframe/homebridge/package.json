@@ -1,1 +1,20 @@
-{"name":"homebridge-artwall-photoframe","version":"0.1.0","description":"HomeKit album switches for Artwall PhotoFrame","main":"index.js","license":"MIT","keywords":["homebridge-plugin","supports-hap"],"engines":{"node":">=20","homebridge":">=1.8.0"},"repository":{"type":"git","url":"https://github.com/streicherlouw/Artwall.git","directory":"modules/photoframe/homebridge"}}
+{
+  "name": "homebridge-artwall-photoframe",
+  "version": "0.1.1",
+  "description": "HomeKit album switches for Artwall PhotoFrame",
+  "main": "index.js",
+  "license": "MIT",
+  "keywords": [
+    "homebridge-plugin",
+    "supports-hap"
+  ],
+  "engines": {
+    "node": ">=20",
+    "homebridge": ">=1.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/streicherlouw/Artwall.git",
+    "directory": "modules/photoframe/homebridge"
+  }
+}
