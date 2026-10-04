@@ -111,4 +111,33 @@ The repository uses MIT-licensed application code. Retained module licenses and 
 
 ## Optional Homebridge integration
 
-PhotoFrame includes the standalone `homebridge-artwall-photoframe` plugin for an existing Homebridge installation. Run `./install-homebridge.sh --storage /var/lib/homebridge --url http://artwall.local:8767` on the Homebridge host, then restart Homebridge from its admin UI. It creates HomeKit switches from the indexed root album folders. Use **Rebuild HomeKit Switches** on the PhotoFrame admin page after changing folders. See [plugin installation and configuration](modules/photoframe/homebridge/README.md). PhotoFrame scans at startup and when explicitly rebuilt; it does not run a live folder watcher.
+PhotoFrame includes a standalone Homebridge plugin that creates one HomeKit switch per indexed root album folder.
+
+Paste this entire block into the Raspberry Pi terminal on the machine running Homebridge. It installs prerequisites, downloads the latest Artwall code, installs the PhotoFrame plugin, and restarts Homebridge. Enter your Pi’s sudo password if prompted. Because this repository is private, the first run may show a GitHub device code and URL: complete that sign-in using an account with access to `streicherlouw/Artwall`, then let the command continue. No token needs to be pasted into the command.
+
+```sh
+(
+  set -eu
+  sudo apt-get update
+  sudo apt-get install -y git gh python3 ca-certificates
+
+  # Artwall is private: sign in to a GitHub account with repository access.
+  gh auth status --hostname github.com >/dev/null 2>&1 || \
+    gh auth login --hostname github.com --git-protocol https --web
+  gh auth setup-git --hostname github.com
+
+  artwall_install_dir=$(mktemp -d)
+  trap 'rm -rf "$artwall_install_dir"' EXIT
+  gh repo clone streicherlouw/Artwall "$artwall_install_dir/Artwall" -- --depth 1
+
+  sudo sh "$artwall_install_dir/Artwall/install-homebridge.sh" \
+    --storage /var/lib/homebridge \
+    --url http://artwall.local:8767 \
+    --restart
+  sudo systemctl is-active homebridge
+)
+```
+
+This assumes an existing systemd Homebridge installation with storage at `/var/lib/homebridge`, and PhotoFrame running at `http://artwall.local:8767`. Change those arguments if your addresses differ. The installer backs up the configuration and previous plugin, preserves existing accessories and platform settings, and can be run again to update the plugin. An existing PhotoFrame platform’s URL is preserved; edit it in Homebridge’s plugin settings if needed. A successful restart ends with `active`.
+
+After installation, use **Rebuild HomeKit Switches** on the [PhotoFrame admin page](http://artwall.local:8767/) after changing folders. PhotoFrame also scans on startup; it does not run a live folder watcher. See [plugin installation and configuration](modules/photoframe/homebridge/README.md) for other Homebridge layouts.

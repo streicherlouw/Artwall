@@ -4,21 +4,32 @@ A standalone dynamic-platform plugin for an existing Homebridge installation. It
 
 ## Install with the script (Raspberry Pi / Linux)
 
-On the machine running your existing Homebridge, clone Artwall and run:
+Paste this entire block into the Raspberry Pi terminal on the machine running Homebridge. It installs prerequisites, downloads the latest Artwall code, installs the PhotoFrame plugin, and restarts Homebridge. Enter your Pi’s sudo password if prompted. Because this repository is private, the first run may show a GitHub device code and URL: complete that sign-in using an account with access to `streicherlouw/Artwall`, then let the command continue. No token needs to be pasted into the command.
 
 ```sh
-git clone https://github.com/streicherlouw/Artwall.git
-cd Artwall
-./install-homebridge.sh --storage /var/lib/homebridge --url http://artwall.local:8767
+(
+  set -eu
+  sudo apt-get update
+  sudo apt-get install -y git gh python3 ca-certificates
+
+  # Artwall is private: sign in to a GitHub account with repository access.
+  gh auth status --hostname github.com >/dev/null 2>&1 || \
+    gh auth login --hostname github.com --git-protocol https --web
+  gh auth setup-git --hostname github.com
+
+  artwall_install_dir=$(mktemp -d)
+  trap 'rm -rf "$artwall_install_dir"' EXIT
+  gh repo clone streicherlouw/Artwall "$artwall_install_dir/Artwall" -- --depth 1
+
+  sudo sh "$artwall_install_dir/Artwall/install-homebridge.sh" \
+    --storage /var/lib/homebridge \
+    --url http://artwall.local:8767 \
+    --restart
+  sudo systemctl is-active homebridge
+)
 ```
 
-For an existing checkout, run the last command from its directory. This repository is private, so Git needs your existing GitHub access. Python 3 is required. Run as the account owning Homebridge’s storage; use `sudo` if that directory requires it. The script copies the plugin into `node_modules`, backs up configuration and any previous plugin under `backups/artwall-*`, and adds the platform only if absent. Existing platform settings, accessories and other plugins are preserved. It can be rerun to update the plugin, and the checkout can be removed afterward.
-
-Restart Homebridge once from its admin UI. Alternatively, on a systemd installation:
-
-```sh
-sudo ./install-homebridge.sh --storage /var/lib/homebridge --url http://artwall.local:8767 --restart
-```
+Requires an existing systemd Homebridge installation at `/var/lib/homebridge`. Change `--storage` and `--url` if needed. The installer backs up the configuration and previous plugin under `backups/artwall-*`, installs a self-contained copy, and preserves existing accessories and platform settings. Repeating the block updates the plugin without duplicating its platform. A successful restart ends with `active`.
 
 `--restart` restarts the system service named `homebridge`. If Homebridge uses another service manager or runs in a container, omit that option and restart using its normal controls. For container installations, run installation inside the container using its storage path. This script targets storage-local plugins; use the package installation below for a global npm setup. The URL is used only for a new platform entry; change an existing URL in Homebridge’s plugin settings.
 
