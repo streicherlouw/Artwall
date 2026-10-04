@@ -22,7 +22,7 @@ test('AirPlay release does not turn output off; failures retain recovery ownersh
 });
 test('message web server protects commands and rejects invalid origin and payload',async t=>{
  process.env.SF_TEST_WEB_KEY='test-web-key-long-enough';
- const seen=[];const server=createWebServer({port:0,tokenEnv:'SF_TEST_WEB_KEY'},async message=>{seen.push(message);return{ok:true,state:'active'};});
+ const seen=[];const server=createWebServer({host:'127.0.0.1',port:0,authRequired:true,tokenEnv:'SF_TEST_WEB_KEY'},async message=>{seen.push(message);return{ok:true,state:'active'};});
  t.after(async()=>{delete process.env.SF_TEST_WEB_KEY;await new Promise(r=>server.close(r));});
  await once(server,'listening');const base=`http://127.0.0.1:${server.address().port}`;
  assert.equal((await fetch(base)).status,200);
@@ -37,6 +37,6 @@ test('message web server protects commands and rejects invalid origin and payloa
  assert.equal((await post(JSON.stringify(message))).status,200);assert.deepEqual(seen,[message]);
  assert.equal((await fetch(base+'/api/status',{headers})).status,200);
 });
-test('web listener refuses LAN binding without a key',()=>{
- assert.throws(()=>createWebServer({host:'0.0.0.0',tokenEnv:'MISSING_SF_TEST_KEY'},()=>{}),/access key/);
+test('authenticated web listener refuses startup without a key',()=>{
+ assert.throws(()=>createWebServer({host:'0.0.0.0',authRequired:true,tokenEnv:'MISSING_SF_TEST_KEY'},()=>{}),/access key/);
 });

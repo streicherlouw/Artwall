@@ -98,9 +98,12 @@ Portal alone runs as a system service, under the installing user's identity with
 ## Development and licenses
 
 ```sh
+npm ci --ignore-scripts --prefix modules/splitflap
+python3 -m pip install Pillow
 npm test
 npm run check
 python3 -m unittest discover -s tests -p 'test_*.py'
+python3 -m unittest discover -s modules/splitflap/test -p 'test_*.py'
 ```
 
 The repository uses MIT-licensed application code. Retained module licenses and the DejaVu font license accompany their files. Natural Earth country outlines are public domain; attribution is in `modules/photoframe/maps/ATTRIBUTION.txt`. UxPlay and system packages retain their upstream licenses and are installed separately.

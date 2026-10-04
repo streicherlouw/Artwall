@@ -7,7 +7,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node --test tests/*.test.js modules/photoframe/test/*.test.js modules/airplay/test/*.test.js modules/splitflap/test/standalone.test.js",
+    "test": "node --test tests/*.test.js modules/photoframe/test/*.test.js modules/airplay/test/*.test.js modules/splitflap/test/*.test.js",
     "check": "node scripts/check.js"
   },
   "type": "commonjs"

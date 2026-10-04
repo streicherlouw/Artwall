@@ -1,7 +1,5 @@
 'use strict';
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
-const {execFile}=require('node:child_process'),{promisify}=require('node:util');
-const exec=promisify(execFile);
 const {validateSettings,publicSettings,writeJSON}=require('./settings');
 const {Display}=require('./display');
 function createPortal(configFile,{display:injected}={}){
@@ -26,7 +24,7 @@ function createPortal(configFile,{display:injected}={}){
    }
    const body=async()=>{let bytes=0,chunks=[];for await(const chunk of req){bytes+=chunk.length;if(bytes>16384)throw Error('Request too large');chunks.push(chunk)}const value=JSON.parse(Buffer.concat(chunks).toString()||'{}');if(!value||typeof value!=='object'||Array.isArray(value))throw Error('Expected object');return value};
    if(route==='/api/status')return json(200,status());
-   if(route==='/api/portal')return json(200,{port:config.portalPort??null});
+   if(route==='/api/portal')return json(200,{port:jsonFile(configFile).portalPort??null});
    if(route==='/api/slideshow/config'){
     if(req.method==='POST'){config=validateSettings(await body(),config,albums());writeJSON(configFile,config);display.config=config;revision++;}
     return json(200,{settings:publicSettings(config),albums:albums()});

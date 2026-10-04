@@ -8,9 +8,9 @@ from motion import WHEEL, WheelMotion, route, pose
 class MotionTests(unittest.TestCase):
     def test_forward_wheel_and_wrap(self):
         self.assertEqual(route('A', 'D'), ('B', 'C', 'D'))
-        self.assertEqual(route('🟪', 'A'), (' ', 'A'))
+        self.assertEqual(route('🟪', 'A'), ('A',))
         self.assertEqual(route('A', 'A'), ())
-        self.assertEqual(route(' ', '🟪'), WHEEL[1:])
+        self.assertEqual(route('°', '⬜'), (' ', '⬜'))
 
     def test_all_destinations_stop_exactly_at_target(self):
         for old in WHEEL:
@@ -22,20 +22,22 @@ class MotionTests(unittest.TestCase):
 
     def test_tiles_share_clock_and_stop_independently(self):
         motion = WheelMotion(2)
-        motion.begin(['A', 'D'], 10)
-        self.assertEqual(motion.sample(0, 10.057)[:2], (' ', 'A'))
-        self.assertEqual(motion.sample(1, 10.057)[:2], (' ', 'A'))
-        self.assertEqual(motion.sample(0, 10.083), ('A', 'A', 1))
-        self.assertEqual(motion.sample(1, 10.083)[:2], ('A', 'B'))
-        self.assertEqual(motion.sample(1, 10.233), ('D', 'D', 1))
+        motion.values = ['A', 'A']
+        motion.begin(['B', 'E'], 10)
+        self.assertEqual(motion.sample(0, 10.057)[:2], ('A', 'B'))
+        self.assertEqual(motion.sample(1, 10.057)[:2], ('A', 'B'))
+        self.assertEqual(motion.sample(0, 10.083), ('B', 'B', 1))
+        self.assertEqual(motion.sample(1, 10.083)[:2], ('B', 'C'))
+        self.assertEqual(motion.sample(1, 10.233), ('E', 'E', 1))
         self.assertEqual(motion.plans, {})
 
     def test_retarget_uses_landed_face_not_abandoned_target(self):
         motion = WheelMotion(1)
+        motion.values = ['A']
         motion.begin(['Z'], 0)
-        motion.begin(['C'], .11)  # A landed; B is still falling.
-        self.assertEqual(motion.values, ['A'])
-        self.assertEqual(motion.plans[0], ('A', ('B', 'C')))
+        motion.begin(['D'], .11)  # B landed; C is still falling.
+        self.assertEqual(motion.values, ['B'])
+        self.assertEqual(motion.plans[0], ('B', ('C', 'D')))
 
     def test_pose_accelerates_and_bounces(self):
         self.assertEqual(pose(0), (0, 0))
