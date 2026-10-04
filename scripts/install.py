@@ -125,7 +125,8 @@ def main():
     run('systemctl','--user','daemon-reload');run('sudo','systemctl','daemon-reload')
     for module in selected:
         run(*(['sudo','systemctl'] if module=='portal' else ['systemctl','--user']),'enable','--now',f'artwall-{module}.service')
-    if display_installed:run('systemctl','--user','enable','--now','artwall-display.service')
+    if display_installed:
+        run('systemctl','--user','enable','artwall-display.service');run('systemctl','--user','restart','artwall-display.service')
     print('Installed. Local CLI:',link)
     print('Configuration:',config,'; media:',data/'photos')
 if __name__=='__main__':main()
