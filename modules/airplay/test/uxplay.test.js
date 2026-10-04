@@ -171,6 +171,9 @@ test("Art Wall daemon uses portable software decoding and native Wayland fullscr
   assert.match(daemonConfig.videoSink, /(?:^| )sync=true(?: |$)/);
   assert.match(daemonConfig.audioSink, /(?:^| )sync=true(?: |$)/);
   assert.match(daemonConfig.videoSink, /fullscreen=true/);
+  assert.match(daemonConfig.videoSink, /max-lateness=100000000/);
+  assert.doesNotMatch(daemonConfig.videoSink, /processing-deadline=0/);
+  assert.doesNotMatch(daemonConfig.audioSink, /buffer-time=20000/);
   assert.ok(!args.includes("-fs"));
   assert.ok(!args.includes("-avdec"));
 });

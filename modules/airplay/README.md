@@ -9,3 +9,5 @@ The installer builds upstream UxPlay 1.73.7. The default decoder is `avdec_h264`
 The receiver uses its own application directory and has no MagicMirror or PM2 integration. UxPlay is a separately installed upstream dependency with its own license. Actual streaming and audio quality depend on the sending device, network and attached display; test with your Apple device after installation.
 
 Mirroring defaults to 1080p at 30 fps with timestamp-based audio/video synchronization (`-vsync 0` and synchronized sinks). This prioritizes lip-sync over minimum latency.
+
+The synchronized Wayland sink allows frames up to 100 ms late, rather than its strict 5 ms default. Audio uses normal PulseAudio buffering. Avoid restoring the earlier `processing-deadline=0` and 20 ms audio-buffer tuning with synchronized playback; test real mirroring motion and lip-sync after changing pipeline timing.
