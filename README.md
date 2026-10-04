@@ -111,4 +111,4 @@ The repository uses MIT-licensed application code. Retained module licenses and 
 
 ## Optional Homebridge integration
 
-PhotoFrame includes the standalone `homebridge-artwall-photoframe` plugin for an existing Homebridge installation. It creates HomeKit switches from the indexed root album folders. Use **Rebuild HomeKit Switches** on the PhotoFrame admin page after changing folders. See [plugin installation and configuration](modules/photoframe/homebridge/README.md). PhotoFrame scans at startup and when explicitly rebuilt; it does not run a live folder watcher.
+PhotoFrame includes the standalone `homebridge-artwall-photoframe` plugin for an existing Homebridge installation. Run `./install-homebridge.sh --storage /var/lib/homebridge --url http://artwall.local:8767` on the Homebridge host, then restart Homebridge from its admin UI. It creates HomeKit switches from the indexed root album folders. Use **Rebuild HomeKit Switches** on the PhotoFrame admin page after changing folders. See [plugin installation and configuration](modules/photoframe/homebridge/README.md). PhotoFrame scans at startup and when explicitly rebuilt; it does not run a live folder watcher.

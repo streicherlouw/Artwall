@@ -23,10 +23,10 @@ The optional Homebridge plugin creates one standard Switch accessory per root fo
 Install into an existing Homebridge installation, under an account that can write its storage directory:
 
 ```sh
-python3 scripts/install-homebridge.py --storage /var/lib/homebridge
+./install-homebridge.sh --storage /var/lib/homebridge
 ```
 
-Restart Homebridge once after initial installation. The installer backs up its configuration, preserves other accessories/platforms and links the plugin from this checkout. Keep the checkout in place, or run the installer from `~/.local/lib/artwall` for the managed installed copy. The platform is `ArtwallPhotoFrame`; its `baseUrl` defaults to `http://127.0.0.1:8767` and can point to another Pi. Homebridge's plugin settings page exposes the URL and polling interval.
+Restart Homebridge once after initial installation. The installer backs up its configuration and previous plugin, preserves other accessories/platforms, and installs a self-contained copy. Add `--restart` when running with permission to restart the system Homebridge service, or restart from Homebridge’s admin UI. The platform is `ArtwallPhotoFrame`; its `baseUrl` defaults to `http://127.0.0.1:8767` and can point to another Pi. Homebridge's plugin settings page exposes the URL and polling interval.
 
 Turning a switch on selects that album and starts PhotoFrame, replacing SplitFlap if necessary. AirPlay retains priority. Only the currently active album's switch is on, including when playback is paused. Turning off an inactive album does not stop a different album. Changes through web controls and CLI are reflected in HomeKit. Removing the playing album stops playback.
 
