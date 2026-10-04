@@ -52,7 +52,7 @@ function updateMap(layer,slide){
   layer.querySelector('.country').textContent=map.country;
   layer.querySelector('title').textContent=`${map.country}: ${slide.location.latitude.toFixed(5)}, ${slide.location.longitude.toFixed(5)}`;
 }
-async function show(index){
+async function show(index,instant=false){
   clearTimeout(timer);requested=wrap(index);const target=requested,version=++revision;
   try{
     const image=await load(target);
@@ -64,11 +64,11 @@ async function show(index){
     if(current>=0)previous.style.zIndex='1';
     layer.querySelector('.photo').src=image.src;layer.querySelector('.photo').alt=slides[target].name;
     updateMap(layer,slides[target]);layer.setAttribute('aria-hidden','false');
-    void layer.offsetWidth;layer.style.transition='';layer.classList.add('visible');
+    void layer.offsetWidth;layer.style.transition=instant?'none':'';layer.classList.add('visible');
     current=target;active=next;counter.textContent=`${current+1} / ${slides.length}`;
     document.title=`${current+1} / ${slides.length} · ${baseTitle}`;
     message.textContent='';
-    if(previous!==layer){previous.setAttribute('aria-hidden','true');setTimeout(()=>{if(revision===version){previous.style.transition='none';previous.classList.remove('visible')}},900)}
+    if(previous!==layer){previous.setAttribute('aria-hidden','true');if(instant){previous.style.transition='none';previous.classList.remove('visible')}else setTimeout(()=>{if(revision===version){previous.style.transition='none';previous.classList.remove('visible')}},900)}
     try{history.replaceState(null,'',`#slide=${current+1}`)}catch{}
     schedule();
     const keep=new Set([current,wrap(current+1),wrap(current-1)]);
@@ -79,16 +79,16 @@ async function show(index){
     failed.add(target);cache.delete(target);
     message.textContent=`Could not load ${slides[target].name}. Skipping…`;
     if(failed.size===slides.length){message.textContent='No images could be loaded. Keep this HTML file and its image folders together.';return}
-    let next=wrap(target+1);while(failed.has(next))next=wrap(next+1);show(next);
+    let next=wrap(target+1);while(failed.has(next))next=wrap(next+1);show(next,instant);
   }
 }
-function navigate(delta){if(slides.length)show(requested+delta)}
+function navigate(delta,instant=false){if(slides.length)show(requested+delta,instant)}
 function togglePause(){paused=!paused;const button=document.getElementById('pause');button.textContent=paused?'▶':'Ⅱ';button.setAttribute('aria-label',paused?'Resume slideshow':'Pause slideshow');button.title=paused?'Resume (Space)':'Pause (Space)';schedule()}
 async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else message.textContent='Use your browser’s fullscreen command.'}catch{message.textContent='Use your browser’s fullscreen command.'}}
-document.getElementById('previous').onclick=()=>{navigate(-1)};
-document.getElementById('next').onclick=()=>{navigate(1)};
+document.getElementById('previous').onclick=()=>{navigate(-1,true)};
+document.getElementById('next').onclick=()=>{navigate(1,true)};
 document.getElementById('pause').onclick=togglePause;document.getElementById('fullscreen').onclick=fullscreen;
-document.addEventListener('keydown',event=>{if(event.altKey||event.ctrlKey||event.metaKey)return;if(event.key==='ArrowRight'){event.preventDefault();navigate(1)}else if(event.key==='ArrowLeft'){event.preventDefault();navigate(-1)}else if(event.code==='Space'){event.preventDefault();togglePause()}else if(event.key.toLowerCase()==='f'){event.preventDefault();fullscreen()}else return;});
+document.addEventListener('keydown',event=>{if(event.altKey||event.ctrlKey||event.metaKey)return;if(event.key==='ArrowRight'){event.preventDefault();navigate(1,true)}else if(event.key==='ArrowLeft'){event.preventDefault();navigate(-1,true)}else if(event.code==='Space'){event.preventDefault();togglePause()}else if(event.key.toLowerCase()==='f'){event.preventDefault();fullscreen()}else return;});
 document.addEventListener('pointermove',event=>{if(event.pointerType==='mouse'&&(event.movementX||event.movementY))wake()});document.addEventListener('pointerdown',event=>{if(event.pointerType==='mouse')wake()});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)clearTimeout(timer);else schedule()});
 document.addEventListener('fullscreenchange',()=>document.getElementById('fullscreen').setAttribute('aria-label',document.fullscreenElement?'Exit fullscreen':'Enter fullscreen'));

@@ -67,3 +67,14 @@ test('controls start hidden, ignore automatic pauses, and follow mouse activity 
  await p.tick(2500);assert.equal(p.document.body.classList.contains('idle'),true);assert.equal(p.elements.get('controls').inert,true);
  p.events.pointerdown({pointerType:'mouse'});assert.equal(p.document.body.classList.contains('idle'),false);
 });
+
+test('manual navigation cuts immediately during a fade; automatic playback still fades',async()=>{
+ const p=player();await p.flush();await p.tick(5000);
+ assert.equal(p.layers[p.read('active')].style.transition,'');
+ p.elements.get('next').onclick();await p.flush();
+ assert.equal(p.read('current'),2);assert.equal(p.layers[p.read('active')].style.transition,'none');
+ assert.equal(p.layers[1-p.read('active')].classList.contains('visible'),false);
+ await p.tick(900);assert.equal(p.layers[p.read('active')].classList.contains('visible'),true);
+ p.elements.get('previous').onclick();await p.flush();assert.equal(p.read('current'),1);
+ await p.tick(5000);assert.equal(p.layers[p.read('active')].style.transition,'');
+});
