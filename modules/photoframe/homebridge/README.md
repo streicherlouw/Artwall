@@ -4,22 +4,17 @@ A standalone dynamic-platform plugin for an existing Homebridge installation. It
 
 ## Install with the script (Raspberry Pi / Linux)
 
-Paste this entire block into the Raspberry Pi terminal on the machine running Homebridge. It installs prerequisites, downloads the latest Artwall code, installs the PhotoFrame plugin, and restarts Homebridge. Enter your Pi’s sudo password if prompted. Because this repository is private, the first run may show a GitHub device code and URL: complete that sign-in using an account with access to `streicherlouw/Artwall`, then let the command continue. No token needs to be pasted into the command.
+Paste this entire block into the Raspberry Pi terminal on the machine running Homebridge. It installs prerequisites, downloads the latest Artwall code, installs the PhotoFrame plugin, and restarts Homebridge. Enter your Pi’s sudo password if prompted. Artwall is public: no GitHub account, sign-in, token or GitHub CLI is required.
 
 ```sh
 (
   set -eu
   sudo apt-get update
-  sudo apt-get install -y git gh python3 ca-certificates
-
-  # Artwall is private: sign in to a GitHub account with repository access.
-  gh auth status --hostname github.com >/dev/null 2>&1 || \
-    gh auth login --hostname github.com --git-protocol https --web
-  gh auth setup-git --hostname github.com
+  sudo apt-get install -y git python3 ca-certificates
 
   artwall_install_dir=$(mktemp -d)
   trap 'rm -rf "$artwall_install_dir"' EXIT
-  gh repo clone streicherlouw/Artwall "$artwall_install_dir/Artwall" -- --depth 1
+  git clone --depth 1 https://github.com/streicherlouw/Artwall.git "$artwall_install_dir/Artwall"
 
   sudo sh "$artwall_install_dir/Artwall/install-homebridge.sh" \
     --storage /var/lib/homebridge \

@@ -16,12 +16,19 @@ Replace `artwall.local` with your Pi's hostname. Each module has its own service
 Use 64-bit Raspberry Pi OS (Debian 13 recommended), a connected HDMI display, a regular user with sudo privileges and network access. The installer supports Node.js 20 or newer and installs Debian runtime packages. Tested deployment target: Raspberry Pi 4, 8 GB RAM.
 
 ```sh
-git clone https://github.com/streicherlouw/Artwall.git
-cd Artwall
-./install.sh --setup-display
+(
+  set -eu
+  sudo apt-get update
+  sudo apt-get install -y git python3 ca-certificates
+  git clone --depth 1 https://github.com/streicherlouw/Artwall.git
+  cd Artwall
+  ./install.sh --setup-display
+)
 ```
 
-For a private repository, authenticate your GitHub client first (`gh auth login`, then `gh repo clone streicherlouw/Artwall`). Never put an access token in the clone URL. Alternatively, download the source archive from GitHub and extract it on the Pi.
+For a fresh installation, paste the block above from a directory without an existing `Artwall` folder. To update an existing Git checkout, run `git -C Artwall pull --ff-only`, then rerun `./install.sh` from that checkout with your desired options.
+
+Artwall is a public repository; no GitHub account or token is required. Alternatively, download the [source archive](https://github.com/streicherlouw/Artwall/archive/refs/heads/main.tar.gz) and extract it on the Pi.
 
 `--setup-display` configures a dedicated labwc Wayland session with greetd automatic login and sets `graphical.target` as the boot default so the display manager starts automatically. Use it for initial appliance setup. Existing display configuration is backed up before changing it. Omit this option when a suitable Wayland session already runs under the installing user. Portal alone needs no graphical session.
 
@@ -113,22 +120,17 @@ The repository uses MIT-licensed application code. Retained module licenses and 
 
 PhotoFrame includes a standalone Homebridge plugin that creates one HomeKit switch per indexed root album folder.
 
-Paste this entire block into the Raspberry Pi terminal on the machine running Homebridge. It installs prerequisites, downloads the latest Artwall code, installs the PhotoFrame plugin, and restarts Homebridge. Enter your Pi’s sudo password if prompted. Because this repository is private, the first run may show a GitHub device code and URL: complete that sign-in using an account with access to `streicherlouw/Artwall`, then let the command continue. No token needs to be pasted into the command.
+Paste this entire block into the Raspberry Pi terminal on the machine running Homebridge. It installs prerequisites, downloads the latest Artwall code, installs the PhotoFrame plugin, and restarts Homebridge. Enter your Pi’s sudo password if prompted. Artwall is public: no GitHub account, sign-in, token or GitHub CLI is required.
 
 ```sh
 (
   set -eu
   sudo apt-get update
-  sudo apt-get install -y git gh python3 ca-certificates
-
-  # Artwall is private: sign in to a GitHub account with repository access.
-  gh auth status --hostname github.com >/dev/null 2>&1 || \
-    gh auth login --hostname github.com --git-protocol https --web
-  gh auth setup-git --hostname github.com
+  sudo apt-get install -y git python3 ca-certificates
 
   artwall_install_dir=$(mktemp -d)
   trap 'rm -rf "$artwall_install_dir"' EXIT
-  gh repo clone streicherlouw/Artwall "$artwall_install_dir/Artwall" -- --depth 1
+  git clone --depth 1 https://github.com/streicherlouw/Artwall.git "$artwall_install_dir/Artwall"
 
   sudo sh "$artwall_install_dir/Artwall/install-homebridge.sh" \
     --storage /var/lib/homebridge \
