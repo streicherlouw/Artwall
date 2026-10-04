@@ -11,10 +11,10 @@ const {
 const { classifyDaemonLine, StreamLifecycle } = require("../lib/daemon-events");
 const daemonConfig = require("../receiver-daemon.config.json");
 
-test("builds low-latency defaults without mandatory PIN pairing", () => {
+test("builds synchronized defaults without mandatory PIN pairing", () => {
   assert.deepEqual(buildUxplayArgs({ receiverName: "Art Wall" }), [
     "-n", "Art Wall", "-nh", "-p", "7000", "-fs",
-    "-nofreeze", "-vsync", "no", "-fps", "30"
+    "-nofreeze", "-vsync", "0", "-fps", "30"
   ]);
 });
 
@@ -157,18 +157,19 @@ test("Art Wall daemon uses portable software decoding and native Wayland fullscr
   assert.ok(args.includes("videoconvert"));
   assert.ok(args.includes("-srgb"));
   assert.ok(args.includes("-bt709"));
-  assert.ok(args.includes("1920x1080@60"));
-  assert.deepEqual(args.slice(args.indexOf("-vsync"), args.indexOf("-vsync") + 2), ["-vsync", "no"]);
+  assert.ok(args.includes("1920x1080@30"));
+  assert.deepEqual(args.slice(args.indexOf("-vsync"), args.indexOf("-vsync") + 2), ["-vsync", "0"]);
   assert.ok(args.includes("-FPSdata"));
   assert.deepEqual(args.slice(args.indexOf("-db"), args.indexOf("-db") + 3), ["-db", "-50:0", "-taper"]);
   assert.deepEqual(args.slice(args.indexOf("-nc"), args.indexOf("-nc") + 2), ["-nc", "no"]);
-  assert.equal(daemonConfig.fps, 60);
+  assert.equal(daemonConfig.fps, 30);
   assert.equal(daemonConfig.manageSystemVolume, true);
   assert.equal(daemonConfig.systemVolumeLimitPercent, 100);
   assert.equal(daemonConfig.manageDisplayPower, true);
   assert.equal(daemonConfig.displayOutput, "HDMI-A-1");
   assert.equal(daemonConfig.manageBlackFrameGuard, true);
-  assert.match(daemonConfig.videoSink, /sync=false/);
+  assert.match(daemonConfig.videoSink, /(?:^| )sync=true(?: |$)/);
+  assert.match(daemonConfig.audioSink, /(?:^| )sync=true(?: |$)/);
   assert.match(daemonConfig.videoSink, /fullscreen=true/);
   assert.ok(!args.includes("-fs"));
   assert.ok(!args.includes("-avdec"));

@@ -14,7 +14,7 @@ const DEFAULTS = Object.freeze({
   port: 7000,
   resolution: null,
   fps: 30,
-  lowLatency: true,
+  lowLatency: false,
   noFreeze: true,
   inhibitScreensaver: false,
   appendHostname: false,
@@ -126,7 +126,7 @@ function buildUxplayArgs(configInput) {
   }
   if (config.noFreeze) args.push("-nofreeze");
   if (config.inhibitScreensaver) args.push("-scrsv", "1");
-  if (config.lowLatency) args.push("-vsync", "no");
+  args.push("-vsync", config.lowLatency ? "no" : "0");
   if (config.fps !== null) args.push("-fps", String(config.fps));
   if (config.videoSink) args.push("-vs", config.videoSink);
   if (config.audioSink) args.push("-as", config.audioSink);
