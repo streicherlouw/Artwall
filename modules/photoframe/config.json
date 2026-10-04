@@ -3,7 +3,7 @@
   "port": 8767,
   "contentRoot": "content",
   "intervalMs": 5000,
-  "fadeMs": 850,
+  "fadeMs": 1700,
   "showMap": true,
   "mapSize": 11,
   "shuffle": false,
