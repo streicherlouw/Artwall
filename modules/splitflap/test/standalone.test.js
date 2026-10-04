@@ -85,13 +85,13 @@ test("wake waits with blank frame and expires only after settling", async t => {
   t.mock.timers.tick(1); await control.tail;
   assert.equal(control.state,"idle"); assert.ok(events.includes("off"));
 });
-test("already-on display ignores alert expiry; a replacement cancels a wake alert", async t => {
+test("already-on display expires timed announcements; a replacement cancels expiry", async t => {
   t.mock.timers.enable({ apis: ["setTimeout", "Date"] });
   let owns=false;
   const {control}=setup({prepareDisplay:async()=>false,ownsDisplay:()=>owns});
   await control.dispatch({type:"message",text:"ON",powerOffAfterMs:1000});
-  assert.equal(control.powerOffAt,null);
-  t.mock.timers.tick(2000); assert.equal(control.state,"active");
+  assert.ok(control.powerOffAt);
+  t.mock.timers.tick(2000); await control.tail; assert.equal(control.state,"idle");
   owns=true;
   await control.dispatch({type:"message",text:"TIMED",powerOffAfterMs:1000});
   await control.dispatch({type:"message",text:"PERSISTENT"});

@@ -12,7 +12,7 @@ artwall splitflap stop
 
 `--beautify` centres the message and adds colour accents. It can be used on its own or together with `--sound`; it is off by default.
 
-`POST /api/message` accepts JSON with `text`, optional `sound`, `align: "center"`, `beautify`, and `powerOffAfterMs` (1,000–86,400,000). Expiry applies to wake-up alerts when the display was initially off, and starts after the message finishes animating. Use `{"type":"activate","mode":"auto"}` for automatic content. `POST /api/end` ends the session. `GET /api/status` reports state. A loopback WebSocket interface remains available on port 8765.
+`POST /api/message` accepts JSON with `text`, optional `sound`, `align: "center"`, `beautify`, and `powerOffAfterMs` (1,000–86,400,000). The timeout starts after the message finishes animating, including when the screen is already on. If PhotoFrame is running, a timed announcement pauses it and returns to the same album, photo and previous pause state on expiry. An untimed replacement or AirPlay takeover cancels that return. A screen woken from off is restored to off when appropriate. Use `{"type":"activate","mode":"auto"}` for automatic content. `POST /api/end` ends the session. `GET /api/status` reports state. A loopback WebSocket interface remains available on port 8765.
 
 AirPlay prevents activation and preempts an active display. PhotoFrame is dismissed when SplitFlap takes the screen. No browser renderer, MagicMirror or PM2 is required. The native renderer opens only during an active session. The service preserves unrelated applications and the screen's previous power state.
 

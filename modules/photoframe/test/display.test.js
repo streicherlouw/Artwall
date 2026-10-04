@@ -24,3 +24,12 @@ test('AirPlay taking over during the handoff still prevents PhotoFrame activatio
 test('a failed SplitFlap stop does not allow PhotoFrame to take the screen',async()=>{
  const d=sample();d.owner=()=>'SplitFlap';d.stopSplitFlap=async()=>{throw Error('Stop failed')};await assert.rejects(d.claimDisplay(),/Stop failed/);
 });
+
+test('timed SplitFlap suspends the existing browser and restores it after expiry',async()=>{
+ const d=sample();let owner='SplitFlap';const browser={};d.child=browser;d.phase='active';d.owner=()=>owner;d.read=()=>({temporary:true});
+ await d.checkOwner();assert.equal(d.phase,'suspended');assert.equal(d.child,browser);
+ owner=null;await d.checkOwner();assert.equal(d.phase,'active');assert.equal(d.child,browser);
+});
+test('AirPlay and an untimed replacement cancel suspended PhotoFrame',async()=>{
+ for(const owner of ['AirPlay','SplitFlap']){const d=sample();d.child={};d.phase='suspended';d.owner=()=>owner;d.read=()=>({temporary:false});let stopped=false;d.stop=async()=>{stopped=true;d.child=null};await d.checkOwner();assert.equal(stopped,true)}
+});

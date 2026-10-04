@@ -43,7 +43,7 @@ function createPortal(configFile,{display:injected,indexer:injectedIndexer}={}){
      if(changed){lastFrame=null;revision++}else record('resume');
     });return json(200,status());
    }
-   if(route==='/api/slideshow/commands')return json(200,{revision,sequence,album:config.album,commands:commands.filter(c=>c.sequence>Number(url.searchParams.get('after')||0))});
+   if(route==='/api/slideshow/commands')return json(200,{revision,sequence,suspended:display.phase==='suspended',album:config.album,commands:commands.filter(c=>c.sequence>Number(url.searchParams.get('after')||0))});
    if(route==='/api/slideshow/frame'&&req.method==='POST'){const b=await body();lastFrame={index:b.index,name:String(b.name||'').slice(0,200),paused:!!b.paused,updatedAt:new Date().toISOString()};return json(200,{ok:true})}
    if(route==='/api/slideshow/command'&&req.method==='POST'){
     const b=await body();if(!['start','stop','next','previous','pause','resume'].includes(b.action))throw Error('Unknown command');

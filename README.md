@@ -9,7 +9,7 @@ A modular display appliance for Raspberry Pi. Choose any combination of four sta
 | AirPlayReceiver | `http://artwall.local:8768/` | UxPlay receiver with name, frame-rate, volume and display-power settings |
 | Portal | `http://artwall.local/` | Links to the configuration pages of installed modules |
 
-Replace `artwall.local` with your Pi's hostname. Each module has its own service and configuration file. Portal is optional; the other modules remain directly accessible without it. PhotoFrame and SplitFlap replace each other when started. AirPlay takes priority over both; neither can replace an active AirPlay session. Restart either module to return to it after AirPlay ends.
+Replace `artwall.local` with your Pi's hostname. Each module has its own service and configuration file. Portal is optional; the other modules remain directly accessible without it. Timed SplitFlap announcements pause PhotoFrame and return to the same slideshow when they expire. Untimed SplitFlap sessions replace PhotoFrame. AirPlay takes priority over both; neither can replace an active AirPlay session. Restart either module to return to it after AirPlay ends.
 
 ## Install
 

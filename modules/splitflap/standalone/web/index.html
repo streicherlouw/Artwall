@@ -21,7 +21,7 @@
 <label for="curl">Your curl command</label><div class="command"><textarea id="curl" readonly rows="4" spellcheck="false"></textarea><button type="button" id="copy">Copy command</button></div><p id="copy-result" role="status" class="hint"></p>
 
 
-<section class="alert-option"><div class="power-controls"><label class="check"><input id="timed" type="checkbox" checked> Turn off again if this message wakes the screen</label><button type="button" id="power-off">Turn screen off now</button></div><div class="duration"><input id="seconds" type="number" value="60" min="1" max="86400" step="1" required aria-label="Seconds after animation"> <span>seconds after the first page finishes flipping</span></div><p class="hint">An off screen wakes to empty tiles for six seconds before the message begins. A screen that was already on stays on.</p></section>
+<section class="alert-option"><div class="power-controls"><label class="check"><input id="timed" type="checkbox" checked> End announcement after timeout</label><button type="button" id="power-off">Turn screen off now</button></div><div class="duration"><input id="seconds" type="number" value="60" min="1" max="86400" step="1" required aria-label="Seconds after animation"> <span>seconds after the first page finishes flipping</span></div><p class="hint">An off screen wakes to empty tiles for six seconds before the message begins. A running slideshow pauses and returns when the announcement ends. A screen woken from off turns off again.</p></section>
 
 </form><footer>Long messages wrap and move across multiple boards. Allow enough alert time to read them.</footer>
 </main></body></html>

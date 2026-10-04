@@ -54,6 +54,7 @@ class Controller {
     if (duration !== undefined && mode !== "manual") throw new Error("powerOffAfterMs requires manual mode");
     if (await this.io.airplayActive()) throw new Error("AirPlay owns the display; try after streaming ends");
     this.cancelExpiry();
+    this.io.setTemporary?.(duration !== undefined);
     try {
       let woke;
       if (this.state === "idle") {
@@ -84,7 +85,7 @@ class Controller {
       if (await this.io.airplayActive()) throw new Error("AirPlay took the display during animation");
       this.state = "active";
       await this.io.writeState("active");
-      if (duration !== undefined && this.io.ownsDisplay?.()) {
+      if (duration !== undefined) {
         const generation = this.generation;
         this.powerOffAt = new Date(Date.now() + duration).toISOString();
         this.timer = setTimeout(() => { void this.dispatch({ type: "expire", generation }).catch(error => this.io.report?.(error)); }, duration);

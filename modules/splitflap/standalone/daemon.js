@@ -26,12 +26,13 @@ function airplayActive() {
 
 let sequence = Date.now();
 let phase = "idle";
+let temporary = false;
 const power = new DisplayPower(config.displayPower, (command, args) => exec(command, args, {
   env: { ...process.env, XDG_RUNTIME_DIR: runtime, WAYLAND_DISPLAY: config.waylandDisplay || "wayland-0" }, timeout: 5000
 }), () => writeState(phase));
 function writeState(nextPhase) {
   phase = nextPhase;
-  const state = { phase, sequence: ++sequence, restoreDisplayOff: power.restoreOff, updatedAt: new Date().toISOString() };
+  const state = { phase, temporary, sequence: ++sequence, restoreDisplayOff: power.restoreOff, updatedAt: new Date().toISOString() };
   fs.writeFileSync(stateFile + ".tmp", JSON.stringify(state), { mode: 0o600 });
   fs.renameSync(stateFile + ".tmp", stateFile);
   log(`State: ${phase}`);
@@ -56,6 +57,7 @@ const settlements = new Map();
 function failSettlements() { for (const fail of settlements.values()) fail(new Error("Renderer exited before settling")); settlements.clear(); }
 const io = {
   writeState,
+  setTemporary(value) { temporary = value; writeState(phase); },
   airplayActive,
   report: error => log(error.message),
   ownsDisplay: () => power.restoreOff,
