@@ -33,3 +33,11 @@ test('album switches serialize selection, ignore stale off commands, and respect
  await set('Vietnam',false);assert.equal(phase,'idle');
  }finally{await new Promise(r=>server.close(r));fs.rmSync(root,{recursive:true,force:true})}
 });
+test('HomeKit rebuild is explicit, refreshes albums, and reports scan failures',async()=>{
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'artwall-rebuild-'));const file=path.join(root,'config.json');fs.mkdirSync(path.join(root,'content'));fs.writeFileSync(file,JSON.stringify({port:0,contentRoot:'content',intervalMs:5000,fadeMs:1700,album:'all'}));let scans=0,fail=false;
+ const indexer={rebuild:async()=>{scans++;if(fail)throw Error('scan failed');fs.writeFileSync(path.join(root,'content/albums.json'),JSON.stringify(['Holiday Japan']));return {albums:1}}};
+ const display={status:()=>({phase:'idle'}),enqueue:fn=>fn()};const {server}=createPortal(file,{display,indexer});await new Promise(r=>server.listen(0,'127.0.0.1',r));const base=`http://127.0.0.1:${server.address().port}`;
+ const rebuild=(headers={})=>fetch(base+'/api/homekit/rebuild',{method:'POST',headers:{'Content-Type':'application/json',...headers},body:'{}'});
+ try{await fetch(base+'/api/status');assert.equal(scans,0);assert.equal((await rebuild({Origin:'https://example.com'})).status,403);assert.equal(scans,0);const result=await(await rebuild()).json();assert.equal(result.ok,true);assert.deepEqual(result.albums,['Holiday Japan']);assert.equal(scans,1);fail=true;assert.equal((await rebuild()).status,400);assert.deepEqual((await(await fetch(base+'/api/status')).json()).albums,['Holiday Japan']);
+ }finally{await new Promise(r=>server.close(r));fs.rmSync(root,{recursive:true,force:true})}
+});

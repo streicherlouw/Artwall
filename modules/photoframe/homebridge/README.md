@@ -1,6 +1,6 @@
 # homebridge-artwall-photoframe
 
-A standalone dynamic-platform plugin for an existing Homebridge installation. It exposes every Artwall PhotoFrame root album folder as a HomeKit **Switch**. Discovery continues while Homebridge runs: adding or deleting an album automatically adds or removes its switch.
+A standalone dynamic-platform plugin for an existing Homebridge installation. It exposes every Artwall PhotoFrame root album folder as a HomeKit **Switch**. Homebridge synchronizes switches with PhotoFrame’s indexed album list. After adding or deleting folders, click **Rebuild HomeKit Switches** in the PhotoFrame admin page.
 
 ## Install
 
@@ -25,7 +25,7 @@ Add this entry to your existing `platforms` array, preserving its other entries:
 
 Use `http://artwall.local:8767` when Homebridge runs on another machine. Restart Homebridge once. Its configuration UI also supports these plugin settings. If the bridge is already paired, the album switches join that existing HomeKit bridge.
 
-PhotoFrame must run the version with automatic folder indexing and the album activation API. It scans on startup and checks for changes every five seconds. Homebridge polls the API every five seconds by default. Allow roughly 10 seconds plus indexing time for a folder change to appear.
+PhotoFrame must run the version with automatic folder indexing and the album activation API. It scans at startup and when **Rebuild HomeKit Switches** is clicked; there is no live folder watcher. Homebridge polls the indexed album list every five seconds by default, so switches update shortly after a rebuild completes.
 
 ## Behaviour
 

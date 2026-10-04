@@ -16,9 +16,9 @@ Starting without imported images is rejected. Starting while AirPlay owns the sc
 
 ## HomeKit album switches
 
-PhotoFrame scans its `contentRoot` on startup and checks it every five seconds. Each immediate child folder is an album; supported images within that folder and its subfolders are indexed in natural filename order. New images get GPS country maps; existing map metadata is preserved. Hidden folders, symlinks, previews and contact sheets are excluded. Files are indexed in place, without copying or changing originals.
+PhotoFrame scans its `contentRoot` on startup. After changing folders or images, click **Rebuild HomeKit Switches** on the PhotoFrame admin page to rescan. There is no live folder watcher. Each immediate child folder is an album; supported images within that folder and its subfolders are indexed in natural filename order. New images get GPS country maps; existing map metadata is preserved. Hidden folders, symlinks, previews and contact sheets are excluded. Files are indexed in place, without copying or changing originals.
 
-The optional Homebridge plugin creates one standard Switch accessory per root folder. Add or remove a folder and its HomeKit switch appears or disappears automatically, normally within 10 seconds plus image-indexing time. No restart is required. Empty albums appear too, but cannot be switched on until they contain a supported image.
+The optional Homebridge plugin creates one standard Switch accessory per root folder. After adding or removing folders, click **Rebuild HomeKit Switches**. Once indexing completes, Homebridge adds or removes the corresponding switches on its next poll (normally within five seconds). No restart is required. Empty albums appear too, but cannot be switched on until they contain a supported image.
 
 Install into an existing Homebridge installation, under an account that can write its storage directory:
 
@@ -31,3 +31,5 @@ Restart Homebridge once after initial installation. The installer backs up its c
 Turning a switch on selects that album and starts PhotoFrame, replacing SplitFlap if necessary. AirPlay retains priority. Only the currently active album's switch is on, including when playback is paused. Turning off an inactive album does not stop a different album. Changes through web controls and CLI are reflected in HomeKit. Removing the playing album stops playback.
 
 The plugin uses `GET /api/status` for discovery/state and `POST /api/slideshow/album` with `{"album":"Holiday Japan","on":true}` for serialized album activation. Set `on` to false to stop that album. If the existing Homebridge bridge is already paired with HomeKit, new switches are added to that bridge automatically.
+
+`POST /api/homekit/rebuild` with `{}` performs the same rebuild as the admin button. Concurrent requests share one scan; failures are reported without claiming success.

@@ -2,11 +2,12 @@
 const http=require('node:http'),fs=require('node:fs'),path=require('node:path');
 const {validateSettings,publicSettings,writeJSON}=require('./settings');
 const {Display}=require('./display');
-const {LibraryWatcher}=require('./library');
-function createPortal(configFile,{display:injected}={}){
+const {LibraryIndexer}=require('./library');
+function createPortal(configFile,{display:injected,indexer:injectedIndexer}={}){
  let config=JSON.parse(fs.readFileSync(configFile)),revision=Date.now(),sequence=0,commands=[],lastFrame=null;
  const root=path.resolve(path.dirname(configFile),config.contentRoot),web=path.join(__dirname,'web');
  const display=injected||new Display(config);
+ const indexer=injectedIndexer||new LibraryIndexer(configFile,{onChange:libraryChanged});
  const jsonFile=file=>JSON.parse(fs.readFileSync(file,'utf8'));
  const library=()=>{const file=path.join(root,'playlist.json');return fs.existsSync(file)?jsonFile(file):[]};
  const albums=()=>[...new Set([...(fs.existsSync(path.join(root,'albums.json'))?jsonFile(path.join(root,'albums.json')):[]),...library().map(s=>s.album)])];
@@ -24,6 +25,7 @@ function createPortal(configFile,{display:injected}={}){
     if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))return json(415,{error:'Use application/json'});
    }
    const body=async()=>{let bytes=0,chunks=[];for await(const chunk of req){bytes+=chunk.length;if(bytes>16384)throw Error('Request too large');chunks.push(chunk)}const value=JSON.parse(Buffer.concat(chunks).toString()||'{}');if(!value||typeof value!=='object'||Array.isArray(value))throw Error('Expected object');return value};
+   if(route==='/api/homekit/rebuild'&&req.method==='POST'){await body();const scan=await indexer.rebuild();return json(200,{ok:true,scan,albums:albums()})}
    if(route==='/api/status')return json(200,status());
    if(route==='/api/portal')return json(200,{port:jsonFile(configFile).portalPort??null});
    if(route==='/api/slideshow/config'){
@@ -75,12 +77,11 @@ function createPortal(configFile,{display:injected}={}){
    revision++;
   });
  }
- return {server,display,config,libraryChanged};
+ return {server,display,config,libraryChanged,indexer};
 }
 if(require.main===module){
- const configFile=path.resolve(process.argv[2]||path.join(__dirname,'config.json'));let portal;
- const watcher=new LibraryWatcher(configFile,{onChange:()=>portal.libraryChanged()});
- watcher.start().then(()=>{portal=createPortal(configFile);return portal.display.recover()}).then(()=>portal.server.listen(portal.config.port,portal.config.host,()=>console.log(`PhotoFrame listening on ${portal.config.port}`))).catch(e=>{console.error(e);process.exit(1)});
- for(const signal of ['SIGINT','SIGTERM'])process.on(signal,async()=>{watcher.close();if(portal){portal.server.close();await portal.display.close();}process.exit(0)});
+ const configFile=path.resolve(process.argv[2]||path.join(__dirname,'config.json'));const portal=createPortal(configFile);
+ portal.indexer.rebuild(false).then(()=>portal.display.recover()).then(()=>portal.server.listen(portal.config.port,portal.config.host,()=>console.log(`PhotoFrame listening on ${portal.config.port}`))).catch(e=>{console.error(e);process.exit(1)});
+ for(const signal of ['SIGINT','SIGTERM'])process.on(signal,async()=>{portal.server.close();await portal.display.close();process.exit(0)});
 }
 module.exports={createPortal};

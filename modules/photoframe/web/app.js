@@ -18,3 +18,11 @@ async function setup(){
  if(page!=='airplay'){await refresh();setInterval(refresh,3000)}
 }
 setup().catch(e=>tell(e.message,true));
+
+const rebuild=document.getElementById('rebuild-homekit');
+if(rebuild)rebuild.onclick=async()=>{
+ const status=document.getElementById('rebuild-status');rebuild.disabled=true;status.textContent='Scanning album folders…';
+ try{const result=await api('/api/homekit/rebuild',{});const select=document.getElementById('albums'),selected=select.value;select.replaceChildren(new Option('All collages','all'));for(const album of result.albums)select.add(new Option(album,album));select.value=result.albums.includes(selected)?selected:'all';status.textContent=`Rebuilt ${result.albums.length} album${result.albums.length===1?'':'s'}. Homebridge will update the switches shortly.`;await refresh()}
+ catch(e){status.textContent='Rebuild failed: '+e.message}
+ finally{rebuild.disabled=false}
+};

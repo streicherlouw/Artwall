@@ -111,4 +111,4 @@ The repository uses MIT-licensed application code. Retained module licenses and 
 
 ## Optional Homebridge integration
 
-PhotoFrame includes the standalone `homebridge-artwall-photoframe` plugin for an existing Homebridge installation. It creates HomeKit switches from root album folders and tracks folder changes automatically. See [plugin installation and configuration](modules/photoframe/homebridge/README.md). PhotoFrame itself also indexes added/removed folders and images while running.
+PhotoFrame includes the standalone `homebridge-artwall-photoframe` plugin for an existing Homebridge installation. It creates HomeKit switches from the indexed root album folders. Use **Rebuild HomeKit Switches** on the PhotoFrame admin page after changing folders. See [plugin installation and configuration](modules/photoframe/homebridge/README.md). PhotoFrame scans at startup and when explicitly rebuilt; it does not run a live folder watcher.
