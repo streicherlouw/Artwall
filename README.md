@@ -143,3 +143,16 @@ Paste this entire block into the Raspberry Pi terminal on the machine running Ho
 This assumes an existing systemd Homebridge installation with storage at `/var/lib/homebridge`, and PhotoFrame running at `http://artwall.local:8767`. Change those arguments if your addresses differ. The installer backs up the configuration and previous plugin, preserves existing accessories and platform settings, and can be run again to update the plugin. An existing PhotoFrame platform’s URL is preserved; edit it in Homebridge’s plugin settings if needed. A successful restart ends with `active`.
 
 After installation, use **Rebuild HomeKit Switches** on the [PhotoFrame admin page](http://artwall.local:8767/) after changing folders. PhotoFrame also scans on startup; it does not run a live folder watcher. See [plugin installation and configuration](modules/photoframe/homebridge/README.md) for other Homebridge layouts.
+
+## HDMI audio
+
+If sound goes to the Pi’s headphone jack instead of the monitor, select HDMI and pin both audio modules to that output:
+
+```sh
+python3 scripts/setup-audio.py
+systemctl --user restart artwall-airplay artwall-splitflap
+```
+
+Run as the Artwall user with PipeWire running and the HDMI screen connected and on. The script backs up module settings, selects the available HDMI sink by its stable name, unmutes it without increasing its volume, and saves it as the default output. With multiple HDMI audio outputs, supply `--sink NODE_NAME` (find the name with `wpctl inspect ID`). Restart only services you have installed. The saved routing survives service restarts and reboots.
+
+SplitFlap sound is opt-in per announcement: check **Sound** in the composer or use `artwall splitflap show "HELLO" --sound`. AirPlay uses the sender’s audio and volume controls. The monitor’s own speaker mute/volume must also allow sound.
