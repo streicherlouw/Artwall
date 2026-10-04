@@ -5,10 +5,12 @@ A native pygame/SDL2 flap display with a Node.js HTTP controller. Install with `
 Open port 8766 for the message composer and board designer. Text, tile colours, preview layout, optional flap sound and wake-alert expiry are supported. The default board has 27 columns and 10 rows. Advanced board dimensions, cadence, audio sink, screen connector and automatic content sources are configured in JSON. Restart the service after changing that file.
 
 ```sh
-artwall splitflap show 'WELCOME HOME' --sound
+artwall splitflap show 'WELCOME HOME' --sound --beautify
 artwall splitflap start
 artwall splitflap stop
 ```
+
+`--beautify` centres the message and adds colour accents. It can be used on its own or together with `--sound`; it is off by default.
 
 `POST /api/message` accepts JSON with `text`, optional `sound`, `align: "center"`, `beautify`, and `powerOffAfterMs` (1,000–86,400,000). Expiry applies to wake-up alerts when the display was initially off, and starts after the message finishes animating. Use `{"type":"activate","mode":"auto"}` for automatic content. `POST /api/end` ends the session. `GET /api/status` reports state. A loopback WebSocket interface remains available on port 8765.
 

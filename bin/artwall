@@ -7,7 +7,7 @@ const help=`Artwall commands:
   artwall status
   artwall photoframe start|stop|next|previous|pause|resume|status
   artwall photoframe import FOLDER [--album NAME]
-  artwall splitflap show "YOUR MESSAGE" [--sound]
+  artwall splitflap show "YOUR MESSAGE" [--sound] [--beautify]
   artwall splitflap start|stop|status
   artwall airplay status
   artwall portal status
@@ -20,7 +20,7 @@ async function request(id,route,body){const c=readJSON(configPath(id)),port=id==
  if(moduleId==='photoframe'&&action==='import'){if(!rest[0])throw Error('Provide an image folder');const result=spawnSync('/usr/bin/python3',[path.join(__dirname,'../modules/photoframe/import.py'),'--config',configPath(moduleId),...rest],{stdio:'inherit'});process.exitCode=result.status??1;return}
  let route='/api/status',body;
  if(moduleId==='photoframe'&&['start','stop','next','previous','pause','resume'].includes(action)){route='/api/slideshow/command';body={action}}
- else if(moduleId==='splitflap'&&action==='show'){const words=rest.filter(x=>x!=='--sound');if(!words.length)throw Error('Provide a message');route='/api/message';body={text:words.join(' '),sound:rest.includes('--sound')}}
+ else if(moduleId==='splitflap'&&action==='show'){const words=rest.filter(x=>!['--sound','--beautify'].includes(x));if(!words.length)throw Error('Provide a message');route='/api/message';body={text:words.join(' '),sound:rest.includes('--sound'),beautify:rest.includes('--beautify')}}
  else if(moduleId==='splitflap'&&action==='start'){route='/api/message';body={type:'activate',mode:'auto'}}
  else if(moduleId==='splitflap'&&action==='stop'){route='/api/end';body={}}
  else if(!['photoframe','splitflap','airplay','portal'].includes(moduleId)||action!=='status')throw Error(help);

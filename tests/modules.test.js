@@ -23,8 +23,8 @@ test('CLI dispatches local commands through the public HTTP interface',async()=>
  for(const id of ['photoframe','splitflap'])fs.writeFileSync(path.join(root,id+'.json'),JSON.stringify({port:server.address().port,web:{port:server.address().port}}));
  const command=args=>new Promise((resolve,reject)=>{const child=spawn(process.execPath,[path.resolve(__dirname,'../bin/artwall'),...args],{env:{...process.env,ARTWALL_CONFIG_DIR:root}});let err='';child.stderr.on('data',d=>err+=d);child.on('error',reject);child.on('exit',code=>code===0?resolve():reject(Error(err)))});
  try{
-  await command(['photoframe','start']);await command(['photoframe','next']);await command(['splitflap','show','HELLO','WORLD','--sound']);await command(['splitflap','stop']);
-  assert.deepEqual(received,[{url:'/api/slideshow/command',body:{action:'start'}},{url:'/api/slideshow/command',body:{action:'next'}},{url:'/api/message',body:{text:'HELLO WORLD',sound:true}},{url:'/api/end',body:{}}]);
+  await command(['photoframe','start']);await command(['photoframe','next']);await command(['splitflap','show','HELLO','WORLD','--sound']);await command(['splitflap','show','--beautify','WELCOME HOME']);await command(['splitflap','show','HELLO','--sound','--beautify']);await command(['splitflap','stop']);
+  assert.deepEqual(received,[{url:'/api/slideshow/command',body:{action:'start'}},{url:'/api/slideshow/command',body:{action:'next'}},{url:'/api/message',body:{text:'HELLO WORLD',sound:true,beautify:false}},{url:'/api/message',body:{text:'WELCOME HOME',sound:false,beautify:true}},{url:'/api/message',body:{text:'HELLO',sound:true,beautify:true}},{url:'/api/end',body:{}}]);
  }finally{await close(server);fs.rmSync(root,{recursive:true,force:true})}
 });
 test('AirPlay settings permit safe receiver options and reject executable or invalid inputs',()=>{

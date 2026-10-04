@@ -48,7 +48,7 @@ artwall photoframe pause
 artwall photoframe next
 artwall photoframe resume
 artwall photoframe stop
-artwall splitflap show 'WELCOME HOME' --sound
+artwall splitflap show 'WELCOME HOME' --sound --beautify
 artwall splitflap start                 # automatic content
 artwall splitflap stop
 artwall airplay status
