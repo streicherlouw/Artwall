@@ -23,7 +23,7 @@ cd Artwall
 
 For a private repository, authenticate your GitHub client first (`gh auth login`, then `gh repo clone streicherlouw/Artwall`). Never put an access token in the clone URL. Alternatively, download the source archive from GitHub and extract it on the Pi.
 
-`--setup-display` configures a dedicated labwc Wayland session with greetd automatic login. Use it for initial appliance setup. Existing display configuration is backed up before changing it. Omit this option when a suitable Wayland session already runs under the installing user. Portal alone needs no graphical session.
+`--setup-display` configures a dedicated labwc Wayland session with greetd automatic login and sets `graphical.target` as the boot default so the display manager starts automatically. Use it for initial appliance setup. Existing display configuration is backed up before changing it. Omit this option when a suitable Wayland session already runs under the installing user. Portal alone needs no graphical session.
 
 Install only the modules you want:
 

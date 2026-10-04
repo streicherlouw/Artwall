@@ -6,6 +6,7 @@ artwall_home=$HOME
 backup="$HOME/.local/share/artwall/backups/display-$(date +%Y%m%d-%H%M%S)"
 mkdir -p "$backup" "$HOME/.config/labwc"
 chmod 700 "$backup"
+systemctl get-default > "$backup/default-target.txt"
 if test -f /etc/greetd/config.toml; then sudo cp /etc/greetd/config.toml "$backup/greetd-config.toml"; fi
 if test -f "$HOME/.config/labwc/autostart"; then cp "$HOME/.config/labwc/autostart" "$backup/labwc-autostart"; fi
 if ! grep -q 'Artwall session environment' "$HOME/.config/labwc/autostart" 2>/dev/null; then
@@ -28,4 +29,6 @@ user = "$artwall_user"
 CONFIG
 sudo install -m 644 "$backup/new-greetd.toml" /etc/greetd/config.toml
 sudo systemctl enable greetd.service
+# greetd is the display-manager alias, which graphical.target pulls in at boot.
+sudo systemctl set-default graphical.target
 sudo systemctl restart greetd.service
