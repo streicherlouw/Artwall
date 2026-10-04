@@ -4,3 +4,5 @@
 #board{user-select:none}#board button.selected{background:linear-gradient(#484137 50%,#51483c 50%);outline:1px solid #a98561;outline-offset:-1px}#board button.cursor{outline:2px solid #e7ab79;outline-offset:-2px}
 
 .power-controls{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:12px}.power-controls .check{margin:0}#power-off{background:#252b25;color:#eee;border:1px solid #495249;border-radius:6px;padding:10px 14px;cursor:pointer}
+
+nav{margin-bottom:24px}#portal-link{color:#d9b899;text-decoration:none;font-size:14px;display:inline-block;padding:8px 0}#portal-link:hover{text-decoration:underline}#portal-link:focus-visible{outline:2px solid #e7ab79;outline-offset:4px;border-radius:2px}

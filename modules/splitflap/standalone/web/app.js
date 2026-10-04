@@ -199,3 +199,6 @@ void fetch('/api/config').then(response => response.json()).then(settings => {
   $('authentication').hidden = !config.authRequired;
   return request();
 }).catch(error => { $('state').textContent = error.message; });
+
+// Resolve the optional portal on this host, including custom portal ports.
+fetch('/api/portal',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Portal unavailable');return r.json()}).then(portal=>{const back=document.getElementById('portal-link');if(portal.port==null)return;const url=new URL('/',location.origin);url.port=portal.port;back.href=url.href;back.hidden=false}).catch(()=>{});

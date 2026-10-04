@@ -1,4 +1,5 @@
 "use strict";
+const { portalInfo } = require("../../../common/config");
 const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
@@ -18,6 +19,7 @@ function createWebServer(settings = {}, dispatch, log = () => {}) {
       const [file, type] = assets[req.url]; res.writeHead(200, { "Content-Type": type });
       res.end(fs.readFileSync(path.join(__dirname, "web", file))); return;
     }
+    if (req.method === "GET" && req.url === "/api/portal") return json(200, portalInfo());
     if (req.method === "GET" && req.url === "/api/config") return json(200, { authRequired: Boolean(config.authRequired), ...gridOptions(config), align: config.align || "center" });
     if (!['/api/status','/api/message','/api/end'].includes(req.url)) return json(404, { ok: false, error: "Not found" });
     const supplied = Buffer.from(req.headers.authorization || "");

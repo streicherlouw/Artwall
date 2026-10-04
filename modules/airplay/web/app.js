@@ -17,3 +17,6 @@ async function setup(){
  if(page!=='airplay'){await refresh();setInterval(refresh,3000)}
 }
 setup().catch(e=>tell(e.message,true));
+
+// Resolve the optional portal on this host, including custom portal ports.
+fetch('/api/portal',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Portal unavailable');return r.json()}).then(portal=>{const back=document.getElementById('portal-link');if(portal.port==null)return;const url=new URL('/',location.origin);url.port=portal.port;back.href=url.href;back.hidden=false}).catch(()=>{});
