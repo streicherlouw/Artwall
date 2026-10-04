@@ -117,6 +117,7 @@ def main():
 
     fade_seconds = 0.9
     opened_at = time.monotonic()
+    suspended_at = None
     closing_at = None
     was_fading = True
 
@@ -179,7 +180,25 @@ def main():
                 dirty = True
         while not commands.empty():
             command = commands.get_nowait()
-            if command.get('type') == 'quit':
+            if command.get('type') == 'suspend':
+                if suspended_at is None:
+                    suspended_at = time.monotonic()
+                    audio.enable(False)
+                    window.hide()
+            elif command.get('type') == 'resume':
+                if suspended_at is not None:
+                    elapsed = time.monotonic() - suspended_at
+                    motion.start += elapsed
+                    next_page += elapsed
+                    opened_at += elapsed
+                    suspended_at = None
+                    audio.enable(command.get('sound', False))
+                    window.show()
+                    dirty = True
+            elif command.get('type') == 'quit':
+                if suspended_at is not None:
+                    running = False
+                    suspended_at = None
                 if closing_at is None:
                     closing_at = time.monotonic()
             elif command.get('type') == 'show':
@@ -191,6 +210,9 @@ def main():
                     page_index = 0
                     set_page(pages[0], command.get("instant", False))
                     next_page = time.monotonic() + page_seconds + max((len(p[1]) for p in motion.plans.values()), default=0) * motion.cadence
+        if suspended_at is not None:
+            time.sleep(.05)
+            continue
         if len(page_list) > 1 and tick >= next_page:
             page_index = (page_index + 1) % len(page_list)
             set_page(page_list[page_index])

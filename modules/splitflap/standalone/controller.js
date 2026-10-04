@@ -12,7 +12,22 @@ class Controller {
     this.tail = job.catch(() => {});
     return job;
   }
+  armExpiry(duration) {
+    const generation = this.generation;
+    this.powerOffAt = new Date(Date.now() + duration).toISOString();
+    this.timer = setTimeout(() => { void this.dispatch({ type: "expire", generation }).catch(error => this.io.report?.(error)); }, duration);
+  }
+  async suspend() {
+    if (this.state !== 'active') return this.status();
+    this.remaining = this.powerOffAt ? Math.max(1, Date.parse(this.powerOffAt) - Date.now()) : null;
+    this.cancelExpiry();
+    await this.io.suspendRenderer?.();
+    this.state = 'suspended';
+    await this.io.writeState('suspended');
+    return this.status();
+  }
   async stop() {
+    this.remaining = null;
     this.cancelExpiry();
     if (this.state === "idle") return;
     this.state = "stopping";
@@ -27,6 +42,16 @@ class Controller {
   }
   async handle(message) {
     if (!message || typeof message !== "object" || Array.isArray(message)) throw new Error("Expected JSON object");
+    if (message.type === 'airplay') return this.suspend();
+    if (message.type === 'airplay-ended') {
+      if (this.state !== 'suspended' || await this.io.airplayActive()) return this.status();
+      await this.io.resumeRenderer?.();
+      this.state = 'active';
+      await this.io.writeState('active');
+      if (this.remaining !== null && this.remaining !== undefined) this.armExpiry(this.remaining);
+      this.remaining = null;
+      return this.status();
+    }
     if (message.type === "power-off") {
       if (await this.io.airplayActive()) throw new Error("AirPlay owns the display; stop streaming before switching it off");
       await this.stop();
@@ -35,7 +60,7 @@ class Controller {
       return { ...this.status(), screenOff: true };
     }
     if (message.type === "expire" && message.generation !== this.generation) return this.status();
-    if (["deactivate", "clear", "renderer-exit", "airplay", "expire"].includes(message.type)) {
+    if (["deactivate", "clear", "renderer-exit", "expire"].includes(message.type)) {
       await this.stop(); return this.status();
     }
     if (!["activate", "message"].includes(message.type)) throw new Error("type must be activate, message, deactivate or status");
@@ -82,14 +107,13 @@ class Controller {
       let text = mode === "auto" ? this.io.automaticText() : (message.text || "WELCOME HOME.");
       if (message.align === "center") text = text.split("\n").map(line => line.trim()).join("\n");
       await this.io.show(text, false, message.align, message.beautify === true, message.sound === true);
-      if (await this.io.airplayActive()) throw new Error("AirPlay took the display during animation");
+
       this.state = "active";
       await this.io.writeState("active");
       if (duration !== undefined) {
-        const generation = this.generation;
-        this.powerOffAt = new Date(Date.now() + duration).toISOString();
-        this.timer = setTimeout(() => { void this.dispatch({ type: "expire", generation }).catch(error => this.io.report?.(error)); }, duration);
+        this.armExpiry(duration);
       }
+      if (await this.io.airplayActive()) return this.suspend();
       return this.status();
     } catch (error) {
       await this.stop();

@@ -30,6 +30,12 @@ test('timed SplitFlap suspends the existing browser and restores it after expiry
  await d.checkOwner();assert.equal(d.phase,'suspended');assert.equal(d.child,browser);
  owner=null;await d.checkOwner();assert.equal(d.phase,'active');assert.equal(d.child,browser);
 });
-test('AirPlay and an untimed replacement cancel suspended PhotoFrame',async()=>{
- for(const owner of ['AirPlay','SplitFlap']){const d=sample();d.child={};d.phase='suspended';d.owner=()=>owner;d.read=()=>({temporary:false});let stopped=false;d.stop=async()=>{stopped=true;d.child=null};await d.checkOwner();assert.equal(stopped,true)}
+test('an untimed replacement cancels suspended PhotoFrame',async()=>{
+ for(const owner of ['SplitFlap']){const d=sample();d.child={};d.phase='suspended';d.owner=()=>owner;d.read=()=>({temporary:false});let stopped=false;d.stop=async()=>{stopped=true;d.child=null};await d.checkOwner();assert.equal(stopped,true)}
+});
+
+test('AirPlay preserves the browser and resumes it after mirroring',async()=>{
+ const d=sample();const child={};d.child=child;d.phase='active';let owner='AirPlay';d.owner=()=>owner;
+ await d.checkOwner();assert.equal(d.phase,'suspended');assert.equal(d.child,child);
+ owner=null;await d.checkOwner();assert.equal(d.phase,'active');assert.equal(d.child,child);
 });

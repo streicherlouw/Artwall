@@ -20,7 +20,7 @@ const airplayFile = config.airplayStatusFile || path.join(runtime, "airplay-rece
 const log = message => console.log(`[SplitFlap] ${message}`);
 function readState() { try { return JSON.parse(fs.readFileSync(stateFile, "utf8")); } catch { return {}; } }
 function airplayActive() {
-  try { return ["STREAMING", "PIN"].includes(JSON.parse(fs.readFileSync(airplayFile, "utf8")).state); }
+  try { return ["STREAMING", "PIN", "STARTING"].includes(JSON.parse(fs.readFileSync(airplayFile, "utf8")).state); }
   catch (error) { if (error.code === "ENOENT") return false; throw error; }
 }
 
@@ -124,6 +124,12 @@ const io = {
       });
     });
   },
+  async suspendRenderer() {
+    if (child && childReady) child.stdin.write(JSON.stringify({type:'suspend'})+'\n');
+  },
+  async resumeRenderer() {
+    if (child && childReady) child.stdin.write(JSON.stringify({type:'resume',sound:sessionSound})+'\n');
+  },
   async closeRenderer() {
     const proc = child;
     child = null; childReady = false;
@@ -207,9 +213,12 @@ async function start() {
   let preempting = false;
   airplayPoll = setInterval(() => {
     try {
-      if (controller.state !== "idle" && airplayActive() && !preempting) {
+      const active = airplayActive();
+      const event = active && controller.state !== 'idle' && controller.state !== 'suspended'
+        ? 'airplay' : !active && controller.state === 'suspended' ? 'airplay-ended' : null;
+      if (event && !preempting) {
         preempting = true;
-        void controller.dispatch({ type: "airplay" }).catch(error => log(error.message)).finally(() => { preempting = false; });
+        void controller.dispatch({ type: event }).catch(error => log(error.message)).finally(() => { preempting = false; });
       }
     } catch (error) { log(`AirPlay status: ${error.message}`); }
   }, 250);

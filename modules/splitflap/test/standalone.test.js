@@ -50,7 +50,7 @@ test("AirPlay priority prevents stealing or restarting display handoff over a st
   assert.deepEqual(events, []);
   streaming = false; await control.dispatch({ type: "activate" });
   streaming = true; await control.dispatch({ type: "airplay" });
-  assert.equal(control.state, "idle"); assert.ok(!events.includes("start-mm"));
+  assert.equal(control.state, "suspended"); assert.ok(!events.includes("start-mm"));
 });
 test("rapid start-stop commands are serialized and auto mode uses providers", async () => {
   const { control, events } = setup();
@@ -106,13 +106,18 @@ test("active display switched off is blanked before wake delay", async () => {
   assert.ok(events.indexOf("blank")<events.indexOf("wait"));
   assert.ok(events.indexOf("wait")<events.indexOf("NEW"));
 });
-test("AirPlay takeover cancels expiry and relinquishes screen power", async t => {
-  t.mock.timers.enable({apis:["setTimeout","Date"]});
-  let streaming=false;let release;
-  const {control}=setup({airplayActive:async()=>streaming,ownsDisplay:()=>true,restoreDisplay:async value=>{release=value;}});
-  await control.dispatch({type:"message",text:"ALERT",powerOffAfterMs:1000});
-  streaming=true; await control.dispatch({type:"airplay"});
-  assert.equal(release,true); assert.equal(control.powerOffAt,null);
+test("AirPlay pauses timeout and restores the existing renderer; explicit stop cancels return", async t => {
+ t.mock.timers.enable({apis:['setTimeout','Date']});let streaming=false;const events=[];
+ const {control}=setup({airplayActive:async()=>streaming,suspendRenderer:async()=>events.push('hide'),resumeRenderer:async()=>events.push('show')});
+ await control.dispatch({type:'message',text:'ALERT',powerOffAfterMs:1000});
+ t.mock.timers.tick(400);streaming=true;await control.dispatch({type:'airplay'});
+ assert.equal(control.state,'suspended');assert.equal(control.powerOffAt,null);
+ t.mock.timers.tick(10000);await control.tail;assert.equal(control.state,'suspended');
+ streaming=false;await control.dispatch({type:'airplay-ended'});assert.equal(control.state,'active');assert.deepEqual(events,['hide','show']);
+ t.mock.timers.tick(599);await control.tail;assert.equal(control.state,'active');
+ t.mock.timers.tick(1);await control.tail;assert.equal(control.state,'idle');
+ await control.dispatch({type:'message',text:'STAY'});streaming=true;await control.dispatch({type:'airplay'});
+ await control.dispatch({type:'deactivate'});streaming=false;await control.dispatch({type:'airplay-ended'});assert.equal(control.state,'idle');
 });
 test("invalid power timeouts are rejected before taking the display", async () => {
   const {control,events}=setup();

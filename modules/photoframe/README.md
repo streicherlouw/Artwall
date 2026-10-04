@@ -12,7 +12,7 @@ API:
 - `GET/POST /api/slideshow/config`: settings (`intervalMs`, `fadeMs`, `showMap`, `mapSize`, `shuffle`, `album`, `wakeDisplay`).
 - `POST /api/slideshow/command`: JSON `{"action":"start"}`; also stop, next, previous, pause, resume.
 
-Starting without imported images is rejected. Starting while AirPlay owns the screen is rejected. Starting PhotoFrame while SplitFlap is active automatically ends SplitFlap first. Timed SplitFlap announcements keep the kiosk open underneath and pause playback. On expiry, PhotoFrame returns to the same album and photo, retaining its previous paused/playing state. Untimed SplitFlap sessions and AirPlay close the kiosk and cancel this return. Screen power is restored after all active display owners release it. The advanced `displayOutput` setting defaults to HDMI-A-1; use `wlr-randr` in the graphical session to find your connector.
+Starting without imported images is rejected. Starting while AirPlay owns the screen is rejected. Starting PhotoFrame while SplitFlap is active automatically ends SplitFlap first. Timed SplitFlap announcements keep the kiosk open underneath and pause playback. On expiry, PhotoFrame returns to the same album and photo, retaining its previous paused/playing state. Untimed SplitFlap sessions close the kiosk and cancel this return. AirPlay pauses it and resumes the same photo and pause state after streaming ends. Screen power is restored after all active display owners release it. The advanced `displayOutput` setting defaults to HDMI-A-1; use `wlr-randr` in the graphical session to find your connector.
 
 ## HomeKit album switches
 
