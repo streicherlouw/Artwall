@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "american-impressionism",
+    "impressionism",
+    "realism"
+  ],
+  "artist": {
+    "id": "edward-potthast",
+    "name": "Edward Potthast",
+    "prominence": 0.48
+  }
+}

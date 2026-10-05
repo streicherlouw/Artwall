@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "pre-raphaelite",
+    "romanticism"
+  ],
+  "artist": {
+    "id": "john-ruskin",
+    "name": "John Ruskin",
+    "prominence": 0.48
+  }
+}

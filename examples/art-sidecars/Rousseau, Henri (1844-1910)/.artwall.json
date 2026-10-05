@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "naive-art",
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "henri-rousseau",
+    "name": "Henri Rousseau",
+    "prominence": 0.77
+  }
+}

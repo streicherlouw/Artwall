@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "abel-grimmer",
+    "name": "Abel Grimmer",
+    "prominence": 0.4
+  }
+}

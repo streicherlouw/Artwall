@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "george-marks",
+    "name": "George Marks",
+    "prominence": 0.4
+  }
+}

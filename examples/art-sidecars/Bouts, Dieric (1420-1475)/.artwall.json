@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "dieric-bouts",
+    "name": "Dieric Bouts",
+    "prominence": 0.64
+  }
+}

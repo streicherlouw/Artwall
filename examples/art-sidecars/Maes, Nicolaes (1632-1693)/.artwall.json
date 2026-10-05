@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "nicolaes-maes",
+    "name": "Nicolaes Maes",
+    "prominence": 0.56
+  }
+}

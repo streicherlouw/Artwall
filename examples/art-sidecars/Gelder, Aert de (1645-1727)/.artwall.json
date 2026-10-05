@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "aert-de-gelder",
+    "name": "Aert de Gelder",
+    "prominence": 0.64
+  }
+}

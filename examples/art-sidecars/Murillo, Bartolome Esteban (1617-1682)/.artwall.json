@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "bartolome-esteban-murillo",
+    "name": "Bartolome Esteban Murillo",
+    "prominence": 0.74
+  }
+}

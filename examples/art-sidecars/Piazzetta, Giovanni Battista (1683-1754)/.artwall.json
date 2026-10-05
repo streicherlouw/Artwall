@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "rococo",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "giovanni-battista-piazzetta",
+    "name": "Giovanni Battista Piazzetta",
+    "prominence": 0.56
+  }
+}

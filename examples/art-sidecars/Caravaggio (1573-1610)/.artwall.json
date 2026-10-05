@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "caravaggism"
+  ],
+  "artist": {
+    "id": "caravaggio",
+    "name": "Caravaggio",
+    "prominence": 0.89
+  }
+}

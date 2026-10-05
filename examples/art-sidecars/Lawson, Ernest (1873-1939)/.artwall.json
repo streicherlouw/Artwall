@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "american-impressionism",
+    "ashcan-school",
+    "impressionism"
+  ],
+  "artist": {
+    "id": "ernest-lawson",
+    "name": "Ernest Lawson",
+    "prominence": 0.56
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "neo-impressionism",
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "maximilien-luce",
+    "name": "Maximilien Luce",
+    "prominence": 0.64
+  }
+}

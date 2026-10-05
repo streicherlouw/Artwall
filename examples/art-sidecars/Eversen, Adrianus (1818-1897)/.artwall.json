@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "adrianus-eversen",
+    "name": "Adrianus Eversen",
+    "prominence": 0.4
+  }
+}

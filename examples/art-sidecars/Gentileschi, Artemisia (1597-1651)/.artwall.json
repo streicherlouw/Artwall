@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "caravaggism"
+  ],
+  "artist": {
+    "id": "artemisia-gentileschi",
+    "name": "Artemisia Gentileschi",
+    "prominence": 0.77
+  }
+}

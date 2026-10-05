@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "realism",
+    "tonalism"
+  ],
+  "artist": {
+    "id": "james-abbott-mcneill-whistler",
+    "name": "James Abbott McNeill Whistler",
+    "prominence": 0.74
+  }
+}

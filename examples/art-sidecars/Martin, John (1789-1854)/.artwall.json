@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "john-martin",
+    "name": "John Martin",
+    "prominence": 0.48
+  }
+}

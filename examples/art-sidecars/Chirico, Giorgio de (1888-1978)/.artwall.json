@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "surrealism"
+  ],
+  "artist": {
+    "id": "giorgio-de-chirico",
+    "name": "Giorgio de Chirico",
+    "prominence": 0.7
+  }
+}

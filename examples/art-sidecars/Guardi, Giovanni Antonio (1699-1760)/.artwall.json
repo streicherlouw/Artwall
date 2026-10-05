@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "rococo",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "giovanni-antonio-guardi",
+    "name": "Giovanni Antonio Guardi",
+    "prominence": 0.48
+  }
+}

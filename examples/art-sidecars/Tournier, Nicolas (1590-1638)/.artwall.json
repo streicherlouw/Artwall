@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "caravaggism"
+  ],
+  "artist": {
+    "id": "nicolas-tournier",
+    "name": "Nicolas Tournier",
+    "prominence": 0.48
+  }
+}

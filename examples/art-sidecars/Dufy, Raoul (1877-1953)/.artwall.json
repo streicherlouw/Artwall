@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "fauvism"
+  ],
+  "artist": {
+    "id": "raoul-dufy",
+    "name": "Raoul Dufy",
+    "prominence": 0.7
+  }
+}

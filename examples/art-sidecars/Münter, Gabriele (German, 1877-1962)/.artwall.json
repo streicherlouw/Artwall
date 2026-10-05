@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "expressionism"
+  ],
+  "artist": {
+    "id": "gabriele-munter",
+    "name": "Gabriele Münter",
+    "prominence": 0.7
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "surrealism"
+  ],
+  "artist": {
+    "id": "frida-kahlo",
+    "name": "Frida Kahlo",
+    "prominence": 0.91
+  }
+}

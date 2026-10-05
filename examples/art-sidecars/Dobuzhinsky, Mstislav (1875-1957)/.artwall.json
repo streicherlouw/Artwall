@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "symbolism"
+  ],
+  "artist": {
+    "id": "mstislav-dobuzhinsky",
+    "name": "Mstislav Dobuzhinsky",
+    "prominence": 0.48
+  }
+}

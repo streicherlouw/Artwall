@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "frank-duveneck",
+    "name": "Frank Duveneck",
+    "prominence": 0.56
+  }
+}

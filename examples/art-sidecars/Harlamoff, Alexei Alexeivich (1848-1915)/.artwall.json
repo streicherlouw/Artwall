@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "realism"
+  ],
+  "artist": {
+    "id": "alexei-alexeivich-harlamoff",
+    "name": "Alexei Alexeivich Harlamoff",
+    "prominence": 0.48
+  }
+}

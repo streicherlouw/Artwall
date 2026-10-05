@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "jan-provost",
+    "name": "Jan Provost",
+    "prominence": 0.48
+  }
+}

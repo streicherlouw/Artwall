@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "realism"
+  ],
+  "artist": {
+    "id": "francisco-miralles",
+    "name": "Francisco Miralles",
+    "prominence": 0.4
+  }
+}

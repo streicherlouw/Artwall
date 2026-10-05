@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "domenico-piola",
+    "name": "Domenico Piola",
+    "prominence": 0.48
+  }
+}

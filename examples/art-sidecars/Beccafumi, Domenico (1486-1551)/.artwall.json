@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "domenico-beccafumi",
+    "name": "Domenico Beccafumi",
+    "prominence": 0.48
+  }
+}

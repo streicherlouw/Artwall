@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "giovanni-antonio-boltraffio",
+    "name": "Giovanni Antonio Boltraffio",
+    "prominence": 0.48
+  }
+}

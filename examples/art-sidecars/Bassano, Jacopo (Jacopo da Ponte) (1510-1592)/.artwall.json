@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "mannerism",
+    "renaissance",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "jacopo-bassano",
+    "name": "Jacopo Bassano",
+    "prominence": 0.64
+  }
+}

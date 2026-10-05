@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic",
+    "sienese-school"
+  ],
+  "artist": {
+    "id": "pietro-lorenzetti",
+    "name": "Pietro Lorenzetti",
+    "prominence": 0.64
+  }
+}

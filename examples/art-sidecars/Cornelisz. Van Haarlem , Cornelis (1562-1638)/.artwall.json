@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "cornelis-cornelisz-van-haarlem",
+    "name": "Cornelis Cornelisz. Van Haarlem",
+    "prominence": 0.48
+  }
+}

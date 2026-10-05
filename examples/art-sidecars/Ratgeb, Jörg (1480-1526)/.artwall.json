@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "jorg-ratgeb",
+    "name": "Jörg Ratgeb",
+    "prominence": 0.48
+  }
+}

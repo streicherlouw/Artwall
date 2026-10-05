@@ -10,8 +10,13 @@ function createPortal(configFile,{display:injected,indexer:injectedIndexer}={}){
  const indexer=injectedIndexer||new LibraryIndexer(configFile,{onChange:libraryChanged});
  const jsonFile=file=>JSON.parse(fs.readFileSync(file,'utf8'));
  const library=()=>{const file=path.join(root,'playlist.json');return fs.existsSync(file)?jsonFile(file):[]};
+ const allCollections=()=>{const file=path.join(root,'collections.json');return fs.existsSync(file)?jsonFile(file):[]};
+ const collections=()=>allCollections().filter(c=>(c.prominence??1)>=(config.prominenceCutoff??0.8));
+ const contains=(slide,album)=>slide.album===album||(slide.collections||[]).includes(album);
+ const choices=()=>[...albums(),...collections().map(c=>c.id)];
  const albums=()=>[...new Set([...(fs.existsSync(path.join(root,'albums.json'))?jsonFile(path.join(root,'albums.json')):[]),...library().map(s=>s.album)])];
- const status=()=>({ok:true,...display.status(),settings:publicSettings(config),revision,sequence,lastFrame,albums:albums()});
+ const collectionSummary=()=>{const total=allCollections(),visible=collections();return {cutoff:config.prominenceCutoff??0.8,total:total.length,visible:visible.length,artists:visible.filter(c=>c.kind==='artist').length,movements:visible.filter(c=>c.kind==='movement').length}};
+ const status=()=>({ok:true,...display.status(),settings:publicSettings(config),revision,sequence,lastFrame,albums:choices(),collections:collections(),collectionSummary:collectionSummary()});
  const record=(action,value)=>{commands.push({sequence:++sequence,action,value});commands=commands.slice(-200)};
  const server=http.createServer(async(req,res)=>{
   const json=(code,data)=>{res.writeHead(code,{'Content-Type':'application/json'});res.end(JSON.stringify(data))};
@@ -25,19 +30,19 @@ function createPortal(configFile,{display:injected,indexer:injectedIndexer}={}){
     if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))return json(415,{error:'Use application/json'});
    }
    const body=async()=>{let bytes=0,chunks=[];for await(const chunk of req){bytes+=chunk.length;if(bytes>16384)throw Error('Request too large');chunks.push(chunk)}const value=JSON.parse(Buffer.concat(chunks).toString()||'{}');if(!value||typeof value!=='object'||Array.isArray(value))throw Error('Expected object');return value};
-   if(route==='/api/homekit/rebuild'&&req.method==='POST'){await body();const scan=await indexer.rebuild();return json(200,{ok:true,scan,albums:albums()})}
+   if(route==='/api/homekit/rebuild'&&req.method==='POST'){await body();const scan=await indexer.rebuild();return json(200,{ok:true,scan,albums:choices(),collections:collections(),collectionSummary:collectionSummary()})}
    if(route==='/api/status')return json(200,status());
    if(route==='/api/portal')return json(200,{port:jsonFile(configFile).portalPort??null});
    if(route==='/api/slideshow/config'){
-    if(req.method==='POST'){config=validateSettings(await body(),config,albums());writeJSON(configFile,config);display.config=config;revision++;}
-    return json(200,{settings:publicSettings(config),albums:albums()});
+    if(req.method==='POST'){const input=await body();await display.enqueue(async()=>{const next=validateSettings(input,config,[...albums(),...allCollections().map(c=>c.id)]);const visible=[...albums(),...allCollections().filter(c=>(c.prominence??1)>=next.prominenceCutoff).map(c=>c.id)];if(next.album!=='all'&&!visible.includes(next.album)){await display.stop();next.album='all';lastFrame=null}writeJSON(configFile,next);config=next;display.config=config;revision++;});}
+    return json(200,{settings:publicSettings(config),albums:choices(),collections:collections(),collectionSummary:collectionSummary()});
    }
    if(route==='/api/slideshow/album'&&req.method==='POST'){
-    const b=await body();if(typeof b.album!=='string'||!albums().includes(b.album)||typeof b.on!=='boolean')throw Error('Provide a known album and boolean on');
+    const b=await body();if(typeof b.album!=='string'||!choices().includes(b.album)||typeof b.on!=='boolean')throw Error('Provide a known album and boolean on');
     await display.enqueue(async()=>{
      if(!b.on){if(config.album===b.album)await display.stop();return}
-     if(!library().some(s=>s.album===b.album))throw Error('This album contains no supported images');
-     const next=validateSettings({album:b.album},config,albums());
+     if(!library().some(s=>contains(s,b.album)))throw Error('This album contains no supported images');
+     const next=validateSettings({album:b.album},config,choices());
      await display.start();
      writeJSON(configFile,next);const changed=config.album!==next.album;config=next;display.config=config;
      if(changed){lastFrame=null;revision++}else record('resume');
@@ -52,7 +57,7 @@ function createPortal(configFile,{display:injected,indexer:injectedIndexer}={}){
     return json(200,status());
    }
    if(route==='/player'){
-    let slides=library().filter(s=>config.album==='all'||s.album===config.album);
+    let slides=library().filter(s=>config.album==='all'||contains(s,config.album));
     if(config.shuffle){slides=[...slides];for(let i=slides.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[slides[i],slides[j]]=[slides[j],slides[i]]}}
     let html=fs.readFileSync(path.join(web,'player.html'),'utf8').replaceAll('__TITLE__','Art Wall collages').replace('__SLIDES__',JSON.stringify(slides).replaceAll('<','\\u003c'));
     html=html.replace('},5000)',`},${config.intervalMs})`).replace('navigate(1),5000)',`navigate(1),${config.intervalMs})`).replace('850ms',`${config.fadeMs}ms`).replace('},900)',`},${config.fadeMs+50})`).replace('card.hidden=!map;',`card.hidden=!map||${!config.showMap};`).replace('width:clamp(120px,11vw,290px)',`width:${config.mapSize}vw`);
@@ -73,7 +78,7 @@ function createPortal(configFile,{display:injected,indexer:injectedIndexer}={}){
  server.requestTimeout=15000;server.headersTimeout=10000;
  async function libraryChanged(){
   await display.enqueue(async()=>{
-   if(!library().length||(config.album!=='all'&&!library().some(s=>s.album===config.album))){await display.stop();config={...config,album:'all'};writeJSON(configFile,config);display.config=config}
+   if(!library().length||(config.album!=='all'&&(!choices().includes(config.album)||!library().some(s=>contains(s,config.album))))){await display.stop();config={...config,album:'all'};writeJSON(configFile,config);display.config=config}
    revision++;
   });
  }

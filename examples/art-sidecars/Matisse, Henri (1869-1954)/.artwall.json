@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "fauvism"
+  ],
+  "artist": {
+    "id": "henri-matisse",
+    "name": "Matisse",
+    "prominence": 0.94
+  }
+}

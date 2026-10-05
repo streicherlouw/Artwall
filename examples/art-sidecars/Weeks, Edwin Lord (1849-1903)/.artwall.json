@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "orientalism"
+  ],
+  "artist": {
+    "id": "edwin-lord-weeks",
+    "name": "Edwin Lord Weeks",
+    "prominence": 0.48
+  }
+}

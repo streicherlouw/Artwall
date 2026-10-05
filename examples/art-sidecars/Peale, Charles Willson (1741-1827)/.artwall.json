@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "neoclassicism"
+  ],
+  "artist": {
+    "id": "charles-willson-peale",
+    "name": "Charles Willson Peale",
+    "prominence": 0.56
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "giuseppe-arcimboldo",
+    "name": "Giuseppe Arcimboldo",
+    "prominence": 0.7
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "rococo"
+  ],
+  "artist": {
+    "id": "giovanni-paolo-pannini",
+    "name": "Giovanni Paolo Pannini",
+    "prominence": 0.56
+  }
+}

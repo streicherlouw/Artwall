@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "art-nouveau"
+  ],
+  "artist": {
+    "id": "aubrey-beardsley",
+    "name": "Aubrey Beardsley",
+    "prominence": 0.7
+  }
+}

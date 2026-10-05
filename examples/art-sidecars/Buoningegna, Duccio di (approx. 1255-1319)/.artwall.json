@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic",
+    "sienese-school"
+  ],
+  "artist": {
+    "id": "duccio-di-buoninsegna",
+    "name": "Duccio",
+    "prominence": 0.64
+  }
+}

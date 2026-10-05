@@ -1,0 +1,505 @@
+{
+  "version": 1,
+  "collections": [
+    {
+      "id": "renaissance",
+      "name": "Renaissance",
+      "prominence": 1.0,
+      "match": {
+        "movements": [
+          "renaissance"
+        ]
+      }
+    },
+    {
+      "id": "baroque",
+      "name": "Baroque",
+      "prominence": 0.98,
+      "match": {
+        "movements": [
+          "baroque"
+        ]
+      }
+    },
+    {
+      "id": "impressionism",
+      "name": "Impressionists",
+      "prominence": 0.98,
+      "match": {
+        "movements": [
+          "impressionism"
+        ]
+      }
+    },
+    {
+      "id": "post-impressionism",
+      "name": "Post-Impressionists",
+      "prominence": 0.96,
+      "match": {
+        "movements": [
+          "post-impressionism"
+        ]
+      }
+    },
+    {
+      "id": "cubism",
+      "name": "Cubists",
+      "prominence": 0.95,
+      "match": {
+        "movements": [
+          "cubism"
+        ]
+      }
+    },
+    {
+      "id": "surrealism",
+      "name": "Surrealists",
+      "prominence": 0.94,
+      "match": {
+        "movements": [
+          "surrealism"
+        ]
+      }
+    },
+    {
+      "id": "expressionism",
+      "name": "Expressionists",
+      "prominence": 0.93,
+      "match": {
+        "movements": [
+          "expressionism"
+        ]
+      }
+    },
+    {
+      "id": "romanticism",
+      "name": "Romanticism",
+      "prominence": 0.92,
+      "match": {
+        "movements": [
+          "romanticism"
+        ]
+      }
+    },
+    {
+      "id": "realism",
+      "name": "Realism",
+      "prominence": 0.91,
+      "match": {
+        "movements": [
+          "realism"
+        ]
+      }
+    },
+    {
+      "id": "abstract-expressionism",
+      "name": "Abstract Expressionists",
+      "prominence": 0.9,
+      "match": {
+        "movements": [
+          "abstract-expressionism"
+        ]
+      }
+    },
+    {
+      "id": "northern-renaissance",
+      "name": "Northern Renaissance",
+      "prominence": 0.89,
+      "match": {
+        "movements": [
+          "northern-renaissance"
+        ]
+      }
+    },
+    {
+      "id": "rococo",
+      "name": "Rococo",
+      "prominence": 0.88,
+      "match": {
+        "movements": [
+          "rococo"
+        ]
+      }
+    },
+    {
+      "id": "neoclassicism",
+      "name": "Neoclassicism",
+      "prominence": 0.87,
+      "match": {
+        "movements": [
+          "neoclassicism"
+        ]
+      }
+    },
+    {
+      "id": "fauvism",
+      "name": "Fauvists",
+      "prominence": 0.86,
+      "match": {
+        "movements": [
+          "fauvism"
+        ]
+      }
+    },
+    {
+      "id": "symbolism",
+      "name": "Symbolists",
+      "prominence": 0.85,
+      "match": {
+        "movements": [
+          "symbolism"
+        ]
+      }
+    },
+    {
+      "id": "art-nouveau",
+      "name": "Art Nouveau",
+      "prominence": 0.84,
+      "match": {
+        "movements": [
+          "art-nouveau"
+        ]
+      }
+    },
+    {
+      "id": "mannerism",
+      "name": "Mannerists",
+      "prominence": 0.83,
+      "match": {
+        "movements": [
+          "mannerism"
+        ]
+      }
+    },
+    {
+      "id": "neo-impressionism",
+      "name": "Neo-Impressionists",
+      "prominence": 0.82,
+      "match": {
+        "movements": [
+          "neo-impressionism"
+        ]
+      }
+    },
+    {
+      "id": "dutch-golden-age",
+      "name": "Dutch Golden Age",
+      "prominence": 0.81,
+      "match": {
+        "movements": [
+          "dutch-golden-age"
+        ]
+      }
+    },
+    {
+      "id": "early-renaissance",
+      "name": "Early Renaissance",
+      "prominence": 0.8,
+      "match": {
+        "movements": [
+          "early-renaissance"
+        ]
+      }
+    },
+    {
+      "id": "high-renaissance",
+      "name": "High Renaissance",
+      "prominence": 0.79,
+      "match": {
+        "movements": [
+          "high-renaissance"
+        ]
+      }
+    },
+    {
+      "id": "suprematism",
+      "name": "Suprematists",
+      "prominence": 0.78,
+      "match": {
+        "movements": [
+          "suprematism"
+        ]
+      }
+    },
+    {
+      "id": "dada",
+      "name": "Dada",
+      "prominence": 0.77,
+      "match": {
+        "movements": [
+          "dada"
+        ]
+      }
+    },
+    {
+      "id": "futurism",
+      "name": "Futurists",
+      "prominence": 0.76,
+      "match": {
+        "movements": [
+          "futurism"
+        ]
+      }
+    },
+    {
+      "id": "pre-raphaelite",
+      "name": "Pre-Raphaelites",
+      "prominence": 0.75,
+      "match": {
+        "movements": [
+          "pre-raphaelite"
+        ]
+      }
+    },
+    {
+      "id": "art-deco",
+      "name": "Art Deco",
+      "prominence": 0.74,
+      "match": {
+        "movements": [
+          "art-deco"
+        ]
+      }
+    },
+    {
+      "id": "international-gothic",
+      "name": "International Gothic",
+      "prominence": 0.73,
+      "match": {
+        "movements": [
+          "international-gothic"
+        ]
+      }
+    },
+    {
+      "id": "gothic",
+      "name": "Gothic",
+      "prominence": 0.72,
+      "match": {
+        "movements": [
+          "gothic"
+        ]
+      }
+    },
+    {
+      "id": "academic-art",
+      "name": "Academic Art",
+      "prominence": 0.71,
+      "match": {
+        "movements": [
+          "academic-art"
+        ]
+      }
+    },
+    {
+      "id": "barbizon-school",
+      "name": "Barbizon School",
+      "prominence": 0.7,
+      "match": {
+        "movements": [
+          "barbizon-school"
+        ]
+      }
+    },
+    {
+      "id": "hudson-river-school",
+      "name": "Hudson River School",
+      "prominence": 0.69,
+      "match": {
+        "movements": [
+          "hudson-river-school"
+        ]
+      }
+    },
+    {
+      "id": "american-impressionism",
+      "name": "American Impressionists",
+      "prominence": 0.68,
+      "match": {
+        "movements": [
+          "american-impressionism"
+        ]
+      }
+    },
+    {
+      "id": "ashcan-school",
+      "name": "Ashcan School",
+      "prominence": 0.67,
+      "match": {
+        "movements": [
+          "ashcan-school"
+        ]
+      }
+    },
+    {
+      "id": "les-nabis",
+      "name": "Les Nabis",
+      "prominence": 0.66,
+      "match": {
+        "movements": [
+          "les-nabis"
+        ]
+      }
+    },
+    {
+      "id": "hague-school",
+      "name": "Hague School",
+      "prominence": 0.65,
+      "match": {
+        "movements": [
+          "hague-school"
+        ]
+      }
+    },
+    {
+      "id": "skagen-painters",
+      "name": "Skagen Painters",
+      "prominence": 0.64,
+      "match": {
+        "movements": [
+          "skagen-painters"
+        ]
+      }
+    },
+    {
+      "id": "venetian-school",
+      "name": "Venetian School",
+      "prominence": 0.63,
+      "match": {
+        "movements": [
+          "venetian-school"
+        ]
+      }
+    },
+    {
+      "id": "caravaggism",
+      "name": "Caravaggists",
+      "prominence": 0.62,
+      "match": {
+        "movements": [
+          "caravaggism"
+        ]
+      }
+    },
+    {
+      "id": "orientalism",
+      "name": "Orientalists",
+      "prominence": 0.61,
+      "match": {
+        "movements": [
+          "orientalism"
+        ]
+      }
+    },
+    {
+      "id": "naive-art",
+      "name": "Naïve Art",
+      "prominence": 0.6,
+      "match": {
+        "movements": [
+          "naive-art"
+        ]
+      }
+    },
+    {
+      "id": "modern-figurative",
+      "name": "Modern Figurative Art",
+      "prominence": 0.59,
+      "match": {
+        "movements": [
+          "modern-figurative"
+        ]
+      }
+    },
+    {
+      "id": "nazarene-movement",
+      "name": "Nazarenes",
+      "prominence": 0.58,
+      "match": {
+        "movements": [
+          "nazarene-movement"
+        ]
+      }
+    },
+    {
+      "id": "danube-school",
+      "name": "Danube School",
+      "prominence": 0.57,
+      "match": {
+        "movements": [
+          "danube-school"
+        ]
+      }
+    },
+    {
+      "id": "photorealism",
+      "name": "Photorealism",
+      "prominence": 0.56,
+      "match": {
+        "movements": [
+          "photorealism"
+        ]
+      }
+    },
+    {
+      "id": "mexican-muralism",
+      "name": "Mexican Muralists",
+      "prominence": 0.55,
+      "match": {
+        "movements": [
+          "mexican-muralism"
+        ]
+      }
+    },
+    {
+      "id": "tonalism",
+      "name": "Tonalists",
+      "prominence": 0.54,
+      "match": {
+        "movements": [
+          "tonalism"
+        ]
+      }
+    },
+    {
+      "id": "russian-realism",
+      "name": "Russian Realism",
+      "prominence": 0.53,
+      "match": {
+        "movements": [
+          "russian-realism"
+        ]
+      }
+    },
+    {
+      "id": "sienese-school",
+      "name": "Sienese School",
+      "prominence": 0.52,
+      "match": {
+        "movements": [
+          "sienese-school"
+        ]
+      }
+    },
+    {
+      "id": "mathematical-art",
+      "name": "Mathematical Art",
+      "prominence": 0.51,
+      "match": {
+        "movements": [
+          "mathematical-art"
+        ]
+      }
+    },
+    {
+      "id": "modern-classicism",
+      "name": "Modern Classicism",
+      "prominence": 0.5,
+      "match": {
+        "movements": [
+          "modern-classicism"
+        ]
+      }
+    }
+  ]
+}

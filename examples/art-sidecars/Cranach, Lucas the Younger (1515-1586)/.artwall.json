@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism",
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "lucas-the-younger-cranach",
+    "name": "Lucas the Younger Cranach",
+    "prominence": 0.48
+  }
+}

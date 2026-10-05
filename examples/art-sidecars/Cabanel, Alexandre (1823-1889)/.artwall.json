@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art"
+  ],
+  "artist": {
+    "id": "alexandre-cabanel",
+    "name": "Alexandre Cabanel",
+    "prominence": 0.64
+  }
+}

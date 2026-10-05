@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "carel-fabritius",
+    "name": "Carel Fabritius",
+    "prominence": 0.7
+  }
+}

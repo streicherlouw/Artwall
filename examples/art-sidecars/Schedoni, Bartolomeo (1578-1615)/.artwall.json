@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "bartolomeo-schedoni",
+    "name": "Bartolomeo Schedoni",
+    "prominence": 0.48
+  }
+}

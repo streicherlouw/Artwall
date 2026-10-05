@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "american-impressionism",
+    "impressionism"
+  ],
+  "artist": {
+    "id": "willard-leroy-metcalf",
+    "name": "Willard Leroy Metcalf",
+    "prominence": 0.56
+  }
+}

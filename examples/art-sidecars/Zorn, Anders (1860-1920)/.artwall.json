@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "impressionism",
+    "realism"
+  ],
+  "artist": {
+    "id": "anders-zorn",
+    "name": "Anders Zorn",
+    "prominence": 0.74
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "cubism",
+    "suprematism"
+  ],
+  "artist": {
+    "id": "kazimir-malevich",
+    "name": "Kazimir Malevich",
+    "prominence": 0.79
+  }
+}

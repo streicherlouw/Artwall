@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "high-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "cima-da-conegliano",
+    "name": "Cima Da Conegliano",
+    "prominence": 0.48
+  }
+}

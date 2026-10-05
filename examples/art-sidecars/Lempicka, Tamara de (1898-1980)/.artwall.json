@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "art-deco"
+  ],
+  "artist": {
+    "id": "tamara-de-lempicka",
+    "name": "Tamara de Lempicka",
+    "prominence": 0.74
+  }
+}

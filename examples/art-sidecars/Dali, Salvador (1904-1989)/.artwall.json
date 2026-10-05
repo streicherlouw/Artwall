@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "surrealism"
+  ],
+  "artist": {
+    "id": "salvador-dali",
+    "name": "Dalí",
+    "prominence": 0.95
+  }
+}

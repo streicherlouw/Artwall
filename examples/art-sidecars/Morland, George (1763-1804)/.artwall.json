@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "george-morland",
+    "name": "George Morland",
+    "prominence": 0.4
+  }
+}

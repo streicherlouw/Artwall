@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "winslow-homer",
+    "name": "Winslow Homer",
+    "prominence": 0.74
+  }
+}

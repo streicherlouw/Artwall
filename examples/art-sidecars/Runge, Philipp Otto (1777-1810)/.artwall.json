@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "philipp-otto-runge",
+    "name": "Philipp Otto Runge",
+    "prominence": 0.56
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "philippe-de-champaigne",
+    "name": "Philippe de Champaigne",
+    "prominence": 0.56
+  }
+}

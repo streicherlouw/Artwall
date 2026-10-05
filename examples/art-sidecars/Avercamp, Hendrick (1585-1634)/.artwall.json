@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "hendrick-avercamp",
+    "name": "Hendrick Avercamp",
+    "prominence": 0.64
+  }
+}

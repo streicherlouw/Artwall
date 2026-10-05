@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "neo-impressionism",
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "georges-seurat",
+    "name": "Seurat",
+    "prominence": 0.82
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "sandro-botticelli",
+    "name": "Botticelli",
+    "prominence": 0.89
+  }
+}

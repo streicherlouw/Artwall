@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "el-greco",
+    "name": "El Greco",
+    "prominence": 0.79
+  }
+}

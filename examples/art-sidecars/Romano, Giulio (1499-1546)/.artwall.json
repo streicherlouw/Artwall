@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "giulio-romano",
+    "name": "Giulio Romano",
+    "prominence": 0.64
+  }
+}

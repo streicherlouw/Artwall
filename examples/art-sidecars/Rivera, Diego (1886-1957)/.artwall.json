@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mexican-muralism"
+  ],
+  "artist": {
+    "id": "diego-rivera",
+    "name": "Diego Rivera",
+    "prominence": 0.77
+  }
+}

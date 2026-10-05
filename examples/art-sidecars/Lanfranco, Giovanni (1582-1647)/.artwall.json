@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "giovanni-lanfranco",
+    "name": "Giovanni Lanfranco",
+    "prominence": 0.64
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "orientalism",
+    "realism",
+    "romanticism"
+  ],
+  "artist": {
+    "id": "alexandre-gabriel-decamps",
+    "name": "Alexandre-Gabriel Decamps",
+    "prominence": 0.48
+  }
+}

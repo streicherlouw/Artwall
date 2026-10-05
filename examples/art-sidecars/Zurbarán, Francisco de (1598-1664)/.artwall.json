@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "francisco-de-zurbaran",
+    "name": "Francisco de Zurbarán",
+    "prominence": 0.74
+  }
+}

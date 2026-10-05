@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "caravaggism"
+  ],
+  "artist": {
+    "id": "carlo-saraceni",
+    "name": "Carlo Saraceni",
+    "prominence": 0.56
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "neoclassicism"
+  ],
+  "artist": {
+    "id": "francois-joseph-kinsoen",
+    "name": "François-Joseph Kinsoen",
+    "prominence": 0.4
+  }
+}

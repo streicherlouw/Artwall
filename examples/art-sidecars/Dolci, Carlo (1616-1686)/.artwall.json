@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "carlo-dolci",
+    "name": "Carlo Dolci",
+    "prominence": 0.56
+  }
+}

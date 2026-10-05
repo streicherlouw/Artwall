@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic",
+    "international-gothic"
+  ],
+  "artist": {
+    "id": "melchoir-broederlam",
+    "name": "Melchoir Broederlam",
+    "prominence": 0.48
+  }
+}

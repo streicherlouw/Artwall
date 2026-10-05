@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "henri-de-toulouse-lautrec",
+    "name": "Henri de Toulouse-Lautrec",
+    "prominence": 0.77
+  }
+}

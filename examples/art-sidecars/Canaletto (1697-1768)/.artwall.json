@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "canaletto",
+    "name": "Canaletto",
+    "prominence": 0.4
+  }
+}

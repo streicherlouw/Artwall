@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "gustave-courbet",
+    "name": "Gustave Courbet",
+    "prominence": 0.77
+  }
+}

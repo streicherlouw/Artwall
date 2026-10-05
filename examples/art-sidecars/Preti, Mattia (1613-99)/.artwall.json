@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "mattia-preti",
+    "name": "Mattia Preti",
+    "prominence": 0.48
+  }
+}

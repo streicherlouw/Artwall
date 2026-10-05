@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic"
+  ],
+  "artist": {
+    "id": "enguerrand-charonton",
+    "name": "Enguerrand Charonton",
+    "prominence": 0.48
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "hague-school",
+    "realism"
+  ],
+  "artist": {
+    "id": "anton-mauve",
+    "name": "Anton Mauve",
+    "prominence": 0.56
+  }
+}

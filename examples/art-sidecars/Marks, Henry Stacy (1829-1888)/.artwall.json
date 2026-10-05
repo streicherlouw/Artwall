@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "realism"
+  ],
+  "artist": {
+    "id": "henry-stacy-marks",
+    "name": "Henry Stacy Marks",
+    "prominence": 0.4
+  }
+}

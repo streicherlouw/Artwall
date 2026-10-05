@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "hendrick-goltzius",
+    "name": "Hendrick Goltzius",
+    "prominence": 0.56
+  }
+}

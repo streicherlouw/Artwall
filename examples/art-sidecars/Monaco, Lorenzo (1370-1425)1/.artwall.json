@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic",
+    "international-gothic",
+    "sienese-school"
+  ],
+  "artist": {
+    "id": "lorenzo-monaco",
+    "name": "Lorenzo Monaco",
+    "prominence": 0.56
+  }
+}

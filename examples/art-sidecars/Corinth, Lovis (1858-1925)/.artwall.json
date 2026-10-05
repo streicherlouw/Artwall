@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "expressionism",
+    "impressionism"
+  ],
+  "artist": {
+    "id": "lovis-corinth",
+    "name": "Lovis Corinth",
+    "prominence": 0.64
+  }
+}

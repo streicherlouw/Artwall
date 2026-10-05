@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "barbizon-school",
+    "realism"
+  ],
+  "artist": {
+    "id": "jean-baptiste-camille-corot",
+    "name": "Jean-Baptiste-Camille Corot",
+    "prominence": 0.74
+  }
+}

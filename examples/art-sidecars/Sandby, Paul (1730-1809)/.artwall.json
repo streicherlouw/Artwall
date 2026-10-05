@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "paul-sandby",
+    "name": "Paul Sandby",
+    "prominence": 0.48
+  }
+}

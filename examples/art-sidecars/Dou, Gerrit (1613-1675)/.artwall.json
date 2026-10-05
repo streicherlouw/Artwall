@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "gerrit-dou",
+    "name": "Gerrit Dou",
+    "prominence": 0.56
+  }
+}

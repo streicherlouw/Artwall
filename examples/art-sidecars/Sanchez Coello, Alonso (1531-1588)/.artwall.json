@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "alonso-sanchez-coello",
+    "name": "Alonso Sanchez Coello",
+    "prominence": 0.48
+  }
+}

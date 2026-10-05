@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "expressionism"
+  ],
+  "artist": {
+    "id": "evert-lundqvist",
+    "name": "Evert Lundqvist",
+    "prominence": 0.56
+  }
+}

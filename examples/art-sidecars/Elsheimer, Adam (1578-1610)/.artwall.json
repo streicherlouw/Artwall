@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "adam-elsheimer",
+    "name": "Adam Elsheimer",
+    "prominence": 0.64
+  }
+}

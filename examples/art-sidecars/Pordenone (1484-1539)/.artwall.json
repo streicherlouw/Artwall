@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "renaissance",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "pordenone",
+    "name": "Pordenone",
+    "prominence": 0.56
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "abstract-expressionism"
+  ],
+  "artist": {
+    "id": "philip-guston",
+    "name": "Philip Guston",
+    "prominence": 0.7
+  }
+}

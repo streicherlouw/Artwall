@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "abstract-expressionism"
+  ],
+  "artist": {
+    "id": "jackson-pollock",
+    "name": "Pollock",
+    "prominence": 0.84
+  }
+}

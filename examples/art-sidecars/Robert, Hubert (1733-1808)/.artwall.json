@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo"
+  ],
+  "artist": {
+    "id": "hubert-robert",
+    "name": "Hubert Robert",
+    "prominence": 0.56
+  }
+}

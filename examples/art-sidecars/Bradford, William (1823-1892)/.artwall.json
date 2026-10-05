@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "hudson-river-school",
+    "romanticism"
+  ],
+  "artist": {
+    "id": "william-bradford",
+    "name": "William Bradford",
+    "prominence": 0.4
+  }
+}

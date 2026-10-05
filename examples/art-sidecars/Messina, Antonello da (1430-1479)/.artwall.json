@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "antonello-da-messina",
+    "name": "Antonello da Messina",
+    "prominence": 0.64
+  }
+}

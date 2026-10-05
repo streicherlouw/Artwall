@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "frans-hals",
+    "name": "Frans Hals",
+    "prominence": 0.77
+  }
+}

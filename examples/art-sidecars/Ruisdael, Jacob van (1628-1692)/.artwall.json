@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "jacob-van-ruisdael",
+    "name": "Jacob van Ruisdael",
+    "prominence": 0.74
+  }
+}

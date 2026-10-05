@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "renaissance",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "titian",
+    "name": "Titian",
+    "prominence": 0.79
+  }
+}

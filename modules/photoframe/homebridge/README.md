@@ -70,3 +70,9 @@ The settings panel uses Homebridge’s [custom plugin UI and cached-accessory AP
 - Temporary PhotoFrame outages retain cached accessories; only a successful album discovery can remove them.
 
 The plugin uses the local PhotoFrame HTTP API and does not require access to photo files, an Apple account or any cloud service. Keep Homebridge and PhotoFrame on a trusted network.
+
+## Artist and movement switches
+
+Version 0.2.0 also exposes curated collections defined by `.artwall.json` sidecars in PhotoFrame's media library. See [the sidecar format and examples](../README.md#curated-collections-artists-and-movements). Update PhotoFrame as well as this plugin, then rebuild the switches from PhotoFrame. Root album switches and their identities remain unchanged. Collections use stable IDs separately from their display names, so relabeling a collection preserves its accessory and automations. Only the selected collection switch is on; the Art switch is on only when Art itself is selected. Empty collections cannot be activated.
+
+Artists with prominence ratings are discovered automatically. Set `prominenceCutoff` in PhotoFrame (default 0.8), or use its web settings page. Saving changes the discovered switch list without rebuilding images. Unrated existing explicit collections remain visible. The cutoff applies to artist and movement collections; root albums are always exposed.

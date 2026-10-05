@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "jean-bellegambe",
+    "name": "Jean Bellegambe",
+    "prominence": 0.4
+  }
+}

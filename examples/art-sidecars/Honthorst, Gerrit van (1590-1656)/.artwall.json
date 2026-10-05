@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "caravaggism",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "gerrit-van-honthorst",
+    "name": "Gerrit van Honthorst",
+    "prominence": 0.64
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "international-gothic",
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "gerard-horenbout",
+    "name": "Gerard Horenbout",
+    "prominence": 0.56
+  }
+}

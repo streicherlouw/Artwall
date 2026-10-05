@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "realism",
+    "romanticism"
+  ],
+  "artist": {
+    "id": "carl-spitzweg",
+    "name": "Carl Spitzweg",
+    "prominence": 0.64
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "high-renaissance",
+    "renaissance",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "giovanni-bellini",
+    "name": "Giovanni Bellini",
+    "prominence": 0.7
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "andrea-mantegna",
+    "name": "Andrea Mantegna",
+    "prominence": 0.74
+  }
+}

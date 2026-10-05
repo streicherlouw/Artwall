@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo"
+  ],
+  "artist": {
+    "id": "jean-baptiste-simeon-chardin",
+    "name": "Jean-Baptiste-Siméon Chardin",
+    "prominence": 0.7
+  }
+}

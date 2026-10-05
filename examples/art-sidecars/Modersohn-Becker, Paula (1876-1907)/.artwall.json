@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "expressionism"
+  ],
+  "artist": {
+    "id": "paula-modersohn-becker",
+    "name": "Paula Modersohn-Becker",
+    "prominence": 0.7
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "dada",
+    "surrealism"
+  ],
+  "artist": {
+    "id": "max-ernst",
+    "name": "Max Ernst",
+    "prominence": 0.77
+  }
+}

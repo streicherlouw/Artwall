@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "fauvism"
+  ],
+  "artist": {
+    "id": "andre-derain",
+    "name": "André Derain",
+    "prominence": 0.7
+  }
+}

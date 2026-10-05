@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "adolphe-monticelli",
+    "name": "Adolphe Monticelli",
+    "prominence": 0.64
+  }
+}

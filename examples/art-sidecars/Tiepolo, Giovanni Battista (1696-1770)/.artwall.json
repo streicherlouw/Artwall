@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "rococo",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "giovanni-battista-tiepolo",
+    "name": "Giovanni Battista Tiepolo",
+    "prominence": 0.74
+  }
+}

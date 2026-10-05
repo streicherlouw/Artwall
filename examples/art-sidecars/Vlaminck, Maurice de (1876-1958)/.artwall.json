@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "fauvism"
+  ],
+  "artist": {
+    "id": "maurice-de-vlaminck",
+    "name": "Maurice de Vlaminck",
+    "prominence": 0.4
+  }
+}

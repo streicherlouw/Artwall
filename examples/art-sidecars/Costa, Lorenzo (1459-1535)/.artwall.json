@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "lorenzo-costa",
+    "name": "Lorenzo Costa",
+    "prominence": 0.56
+  }
+}

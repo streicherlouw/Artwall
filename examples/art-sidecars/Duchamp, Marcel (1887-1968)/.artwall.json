@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "dada"
+  ],
+  "artist": {
+    "id": "marcel-duchamp",
+    "name": "Marcel Duchamp",
+    "prominence": 0.79
+  }
+}

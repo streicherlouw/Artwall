@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "luca-giordano",
+    "name": "Luca Giordano",
+    "prominence": 0.56
+  }
+}

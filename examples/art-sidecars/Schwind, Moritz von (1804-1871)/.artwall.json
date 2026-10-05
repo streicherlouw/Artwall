@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "moritz-von-schwind",
+    "name": "Moritz von Schwind",
+    "prominence": 0.48
+  }
+}

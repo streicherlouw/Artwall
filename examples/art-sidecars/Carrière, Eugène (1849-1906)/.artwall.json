@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "symbolism"
+  ],
+  "artist": {
+    "id": "eugene-carriere",
+    "name": "Eugène Carrière",
+    "prominence": 0.48
+  }
+}

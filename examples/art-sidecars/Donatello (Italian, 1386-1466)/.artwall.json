@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "donatello",
+    "name": "Donatello",
+    "prominence": 0.74
+  }
+}

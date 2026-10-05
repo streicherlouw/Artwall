@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic",
+    "sienese-school"
+  ],
+  "artist": {
+    "id": "nicolo-di-pietro",
+    "name": "Nicolò di Pietro",
+    "prominence": 0.48
+  }
+}

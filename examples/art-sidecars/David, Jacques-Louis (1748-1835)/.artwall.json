@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "neoclassicism"
+  ],
+  "artist": {
+    "id": "jacques-louis-david",
+    "name": "Jacques-Louis David",
+    "prominence": 0.77
+  }
+}

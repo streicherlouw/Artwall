@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "caspar-david-friedrich",
+    "name": "Caspar David Friedrich",
+    "prominence": 0.79
+  }
+}

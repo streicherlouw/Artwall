@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "realism"
+  ],
+  "artist": {
+    "id": "isidor-kaufmann",
+    "name": "Isidor Kaufmann",
+    "prominence": 0.48
+  }
+}

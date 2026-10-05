@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "george-snr-cole",
+    "name": "George Snr. Cole",
+    "prominence": 0.48
+  }
+}

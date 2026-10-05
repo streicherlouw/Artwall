@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "giorgio-vasari",
+    "name": "Giorgio Vasari",
+    "prominence": 0.56
+  }
+}

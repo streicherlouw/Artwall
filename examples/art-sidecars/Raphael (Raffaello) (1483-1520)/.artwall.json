@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "raphael",
+    "name": "Raphael",
+    "prominence": 0.96
+  }
+}

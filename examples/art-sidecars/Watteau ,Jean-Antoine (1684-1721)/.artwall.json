@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo"
+  ],
+  "artist": {
+    "id": "jean-antoine-watteau",
+    "name": "Jean-Antoine Watteau",
+    "prominence": 0.77
+  }
+}

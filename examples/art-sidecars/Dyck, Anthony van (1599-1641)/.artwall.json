@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "anthony-van-dyck",
+    "name": "Anthony van Dyck",
+    "prominence": 0.7
+  }
+}

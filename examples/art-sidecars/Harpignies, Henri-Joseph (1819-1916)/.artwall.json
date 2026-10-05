@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "barbizon-school",
+    "realism"
+  ],
+  "artist": {
+    "id": "henri-joseph-harpignies",
+    "name": "Henri-Joseph Harpignies",
+    "prominence": 0.56
+  }
+}

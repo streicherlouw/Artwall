@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "naive-art",
+    "symbolism"
+  ],
+  "artist": {
+    "id": "louis-m-eilshemius",
+    "name": "Louis M Eilshemius",
+    "prominence": 0.48
+  }
+}

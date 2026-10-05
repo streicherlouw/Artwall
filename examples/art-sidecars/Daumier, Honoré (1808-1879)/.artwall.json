@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "honore-daumier",
+    "name": "Honoré Daumier",
+    "prominence": 0.74
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "renaissance",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "giorgione",
+    "name": "Giorgione",
+    "prominence": 0.74
+  }
+}

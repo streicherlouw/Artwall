@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "andrea-sacchi",
+    "name": "Andrea Sacchi",
+    "prominence": 0.48
+  }
+}

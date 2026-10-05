@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "dada"
+  ],
+  "artist": {
+    "id": "francis-picabia",
+    "name": "Francis Picabia",
+    "prominence": 0.64
+  }
+}

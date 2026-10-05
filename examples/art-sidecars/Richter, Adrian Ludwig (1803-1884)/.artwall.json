@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "adrian-ludwig-richter",
+    "name": "Adrian Ludwig Richter",
+    "prominence": 0.48
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "giulio-cesare-procaccini",
+    "name": "Giulio Cesare Procaccini",
+    "prominence": 0.48
+  }
+}

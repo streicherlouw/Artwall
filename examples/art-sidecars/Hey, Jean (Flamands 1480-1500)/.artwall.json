@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "jean-hey",
+    "name": "Jean Hey",
+    "prominence": 0.56
+  }
+}

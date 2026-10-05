@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic",
+    "international-gothic"
+  ],
+  "artist": {
+    "id": "antonio-pisanello",
+    "name": "Antonio Pisanello",
+    "prominence": 0.64
+  }
+}

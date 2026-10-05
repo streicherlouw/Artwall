@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "domenico-ghirlandaio",
+    "name": "Domenico Ghirlandaio",
+    "prominence": 0.7
+  }
+}

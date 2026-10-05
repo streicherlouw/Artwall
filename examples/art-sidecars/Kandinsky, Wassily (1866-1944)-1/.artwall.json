@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "expressionism"
+  ],
+  "artist": {
+    "id": "wassily-kandinsky",
+    "name": "Kandinsky",
+    "prominence": 0.93
+  }
+}

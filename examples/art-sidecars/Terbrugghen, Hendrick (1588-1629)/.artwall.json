@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "caravaggism",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "hendrick-terbrugghen",
+    "name": "Hendrick Terbrugghen",
+    "prominence": 0.56
+  }
+}

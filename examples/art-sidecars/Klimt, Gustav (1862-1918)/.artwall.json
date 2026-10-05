@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "art-nouveau",
+    "symbolism"
+  ],
+  "artist": {
+    "id": "gustav-klimt",
+    "name": "Klimt",
+    "prominence": 0.92
+  }
+}

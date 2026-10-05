@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism",
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "michiel-van-coxcie",
+    "name": "Michiel van Coxcie",
+    "prominence": 0.48
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "les-nabis",
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "felix-vallotton",
+    "name": "Félix Vallotton",
+    "prominence": 0.7
+  }
+}

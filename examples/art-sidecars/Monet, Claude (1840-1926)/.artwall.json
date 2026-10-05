@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "impressionism"
+  ],
+  "artist": {
+    "id": "claude-monet",
+    "name": "Monet",
+    "prominence": 0.98
+  }
+}

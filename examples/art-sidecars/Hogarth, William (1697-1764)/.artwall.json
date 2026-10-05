@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo"
+  ],
+  "artist": {
+    "id": "william-hogarth",
+    "name": "William Hogarth",
+    "prominence": 0.74
+  }
+}

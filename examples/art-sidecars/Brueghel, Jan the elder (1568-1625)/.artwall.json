@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "jan-the-elder-brueghel",
+    "name": "Jan the elder Brueghel",
+    "prominence": 0.56
+  }
+}

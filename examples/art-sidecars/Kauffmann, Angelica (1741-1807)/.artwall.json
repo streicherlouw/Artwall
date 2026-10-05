@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "neoclassicism"
+  ],
+  "artist": {
+    "id": "angelica-kauffmann",
+    "name": "Angelica Kauffmann",
+    "prominence": 0.7
+  }
+}

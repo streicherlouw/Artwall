@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "realism",
+    "russian-realism"
+  ],
+  "artist": {
+    "id": "ilya-repin",
+    "name": "Ilya Repin",
+    "prominence": 0.74
+  }
+}

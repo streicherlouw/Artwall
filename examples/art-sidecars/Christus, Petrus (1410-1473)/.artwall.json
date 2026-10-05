@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "petrus-christus",
+    "name": "Petrus Christus",
+    "prominence": 0.56
+  }
+}

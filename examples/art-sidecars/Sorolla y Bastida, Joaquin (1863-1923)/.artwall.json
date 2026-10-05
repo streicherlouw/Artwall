@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "impressionism",
+    "realism"
+  ],
+  "artist": {
+    "id": "joaquin-sorolla-y-bastida",
+    "name": "Joaquin Sorolla y Bastida",
+    "prominence": 0.74
+  }
+}

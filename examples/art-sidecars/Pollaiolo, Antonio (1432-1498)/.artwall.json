@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "antonio-pollaiolo",
+    "name": "Antonio Pollaiolo",
+    "prominence": 0.56
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism",
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "bernaert-van-orley",
+    "name": "Bernaert van Orley",
+    "prominence": 0.48
+  }
+}

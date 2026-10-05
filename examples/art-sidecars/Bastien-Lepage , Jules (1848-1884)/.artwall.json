@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "realism"
+  ],
+  "artist": {
+    "id": "jules-bastien-lepage",
+    "name": "Jules Bastien-Lepage",
+    "prominence": 0.64
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "expressionism"
+  ],
+  "artist": {
+    "id": "paul-klee",
+    "name": "Klee",
+    "prominence": 0.85
+  }
+}

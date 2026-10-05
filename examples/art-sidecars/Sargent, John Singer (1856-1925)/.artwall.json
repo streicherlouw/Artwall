@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "american-impressionism",
+    "impressionism",
+    "realism"
+  ],
+  "artist": {
+    "id": "john-singer-sargent",
+    "name": "John Singer Sargent",
+    "prominence": 0.77
+  }
+}

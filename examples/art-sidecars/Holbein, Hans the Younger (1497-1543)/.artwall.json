@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "hans-the-younger-holbein",
+    "name": "Hans the Younger Holbein",
+    "prominence": 0.77
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "francisco-goya",
+    "name": "Goya",
+    "prominence": 0.9
+  }
+}

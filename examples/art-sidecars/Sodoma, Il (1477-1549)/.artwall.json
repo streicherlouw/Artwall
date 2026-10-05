@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "il-sodoma",
+    "name": "Il Sodoma",
+    "prominence": 0.56
+  }
+}

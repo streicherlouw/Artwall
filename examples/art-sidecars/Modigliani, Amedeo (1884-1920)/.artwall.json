@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "modern-figurative"
+  ],
+  "artist": {
+    "id": "amedeo-modigliani",
+    "name": "Amedeo Modigliani",
+    "prominence": 0.77
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "jacob-van-the-elder-oost",
+    "name": "Jacob van - the Elder Oost",
+    "prominence": 0.48
+  }
+}

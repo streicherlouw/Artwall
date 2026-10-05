@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "ashcan-school",
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "maurice-brazil-prendergast",
+    "name": "Maurice Brazil Prendergast",
+    "prominence": 0.64
+  }
+}

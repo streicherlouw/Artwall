@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "eugene-delacroix",
+    "name": "Eugène Delacroix",
+    "prominence": 0.79
+  }
+}

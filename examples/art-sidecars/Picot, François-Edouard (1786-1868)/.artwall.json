@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "neoclassicism"
+  ],
+  "artist": {
+    "id": "francois-edouard-picot",
+    "name": "François-Edouard Picot",
+    "prominence": 0.4
+  }
+}

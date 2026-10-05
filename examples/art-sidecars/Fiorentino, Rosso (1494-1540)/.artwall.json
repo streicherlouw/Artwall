@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "rosso-fiorentino",
+    "name": "Rosso Fiorentino",
+    "prominence": 0.64
+  }
+}

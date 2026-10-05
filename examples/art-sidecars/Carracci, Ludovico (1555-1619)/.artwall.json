@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "mannerism"
+  ],
+  "artist": {
+    "id": "ludovico-carracci",
+    "name": "Ludovico Carracci",
+    "prominence": 0.64
+  }
+}

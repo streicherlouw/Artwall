@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "cubism"
+  ],
+  "artist": {
+    "id": "georges-braque",
+    "name": "Georges Braque",
+    "prominence": 0.79
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic"
+  ],
+  "artist": {
+    "id": "bernardo-daddi",
+    "name": "Bernardo Daddi",
+    "prominence": 0.48
+  }
+}

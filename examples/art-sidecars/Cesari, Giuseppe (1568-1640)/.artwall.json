@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "giuseppe-cesari",
+    "name": "Giuseppe Cesari",
+    "prominence": 0.48
+  }
+}

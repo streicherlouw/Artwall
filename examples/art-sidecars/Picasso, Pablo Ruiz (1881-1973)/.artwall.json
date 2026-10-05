@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "cubism"
+  ],
+  "artist": {
+    "id": "pablo-picasso",
+    "name": "Picasso",
+    "prominence": 0.99
+  }
+}

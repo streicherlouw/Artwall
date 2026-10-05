@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic",
+    "international-gothic"
+  ],
+  "artist": {
+    "id": "gentile-da-fabriano",
+    "name": "Gentile da Fabriano",
+    "prominence": 0.64
+  }
+}

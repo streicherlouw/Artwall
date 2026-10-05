@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "jan-van-kessel",
+    "name": "Jan van Kessel",
+    "prominence": 0.56
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "jacopo-robusti-tintoretto",
+    "name": "Jacopo Robusti Tintoretto",
+    "prominence": 0.77
+  }
+}

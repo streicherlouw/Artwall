@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "barbizon-school",
+    "realism"
+  ],
+  "artist": {
+    "id": "jean-francois-millet",
+    "name": "Jean-François Millet",
+    "prominence": 0.74
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "surrealism"
+  ],
+  "artist": {
+    "id": "joan-miro",
+    "name": "Joan Miró",
+    "prominence": 0.79
+  }
+}

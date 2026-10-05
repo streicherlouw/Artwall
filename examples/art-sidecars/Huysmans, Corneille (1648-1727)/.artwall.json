@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "corneille-huysmans",
+    "name": "Corneille Huysmans",
+    "prominence": 0.4
+  }
+}

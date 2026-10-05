@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "jacopo-della-quercia",
+    "name": "Jacopo della Quercia",
+    "prominence": 0.56
+  }
+}

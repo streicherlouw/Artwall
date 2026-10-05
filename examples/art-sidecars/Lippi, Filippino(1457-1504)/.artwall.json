@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "filippino-lippi",
+    "name": "Filippino Lippi",
+    "prominence": 0.7
+  }
+}

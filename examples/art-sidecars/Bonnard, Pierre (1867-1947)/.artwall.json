@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "les-nabis",
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "pierre-bonnard",
+    "name": "Pierre Bonnard",
+    "prominence": 0.74
+  }
+}

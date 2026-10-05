@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism",
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "francois-clouet",
+    "name": "François Clouet",
+    "prominence": 0.56
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "hans-baldung-grien",
+    "name": "Hans Baldung Grien",
+    "prominence": 0.7
+  }
+}

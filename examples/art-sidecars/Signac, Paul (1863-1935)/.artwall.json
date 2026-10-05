@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "neo-impressionism",
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "paul-signac",
+    "name": "Paul Signac",
+    "prominence": 0.7
+  }
+}

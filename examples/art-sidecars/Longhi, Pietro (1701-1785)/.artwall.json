@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo"
+  ],
+  "artist": {
+    "id": "pietro-longhi",
+    "name": "Pietro Longhi",
+    "prominence": 0.56
+  }
+}

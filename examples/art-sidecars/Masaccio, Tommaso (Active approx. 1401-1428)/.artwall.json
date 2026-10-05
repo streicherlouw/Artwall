@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "tommaso-masaccio",
+    "name": "Tommaso Masaccio",
+    "prominence": 0.74
+  }
+}

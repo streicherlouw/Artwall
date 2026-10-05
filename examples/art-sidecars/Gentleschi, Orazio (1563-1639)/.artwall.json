@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "caravaggism"
+  ],
+  "artist": {
+    "id": "orazio-gentileschi",
+    "name": "Orazio Gentileschi",
+    "prominence": 0.56
+  }
+}

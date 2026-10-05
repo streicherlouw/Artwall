@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "high-renaissance",
+    "renaissance",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "jacopo-il-vecchio-palma",
+    "name": "Jacopo, il vecchio Palma",
+    "prominence": 0.56
+  }
+}

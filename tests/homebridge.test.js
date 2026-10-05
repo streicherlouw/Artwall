@@ -23,3 +23,8 @@ test('HomeKit switch setters call the album API and update all album states',asy
  await japan.set(false);assert.equal(vietnam.value,true);await vietnam.set(false);assert.equal(vietnam.value,false);
  assert.deepEqual(calls[0],{album:'Japan',on:true});
 });
+test('collection labels can change without replacing accessories or selection IDs',async()=>{
+ const {platform:p,added,removed}=fixture();const id='collection:Art:monet';let state={phase:'active',settings:{album:id},albums:['Art',id],collections:[{id,name:'Monet'}]};const calls=[];
+ p.request=async(route,body)=>{if(body)calls.push(body);return state};await p.refresh();const a=added[1];assert.equal(a.displayName,'Monet');assert.equal(a.getService('switch').value,true);
+ state.collections[0].name='Claude Monet';await p.refresh();assert.equal(a.displayName,'Claude Monet');assert.equal(added.length,2);assert.equal(removed.length,0);await a.getService('switch').set(true);assert.deepEqual(calls,[{album:id,on:true}]);
+});

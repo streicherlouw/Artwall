@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo"
+  ],
+  "artist": {
+    "id": "franz-xaver-messerschmidt",
+    "name": "Franz Xaver Messerschmidt",
+    "prominence": 0.56
+  }
+}

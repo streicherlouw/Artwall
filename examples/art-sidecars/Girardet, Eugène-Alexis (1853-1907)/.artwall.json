@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "orientalism"
+  ],
+  "artist": {
+    "id": "eugene-alexis-girardet",
+    "name": "Eugène-Alexis Girardet",
+    "prominence": 0.4
+  }
+}

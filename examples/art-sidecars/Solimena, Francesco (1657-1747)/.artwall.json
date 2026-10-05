@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "francesco-solimena",
+    "name": "Francesco Solimena",
+    "prominence": 0.56
+  }
+}

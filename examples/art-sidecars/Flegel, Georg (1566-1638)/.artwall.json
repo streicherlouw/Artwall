@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "georg-flegel",
+    "name": "Georg Flegel",
+    "prominence": 0.48
+  }
+}

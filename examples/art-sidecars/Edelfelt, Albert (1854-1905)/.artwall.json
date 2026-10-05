@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "albert-edelfelt",
+    "name": "Albert Edelfelt",
+    "prominence": 0.64
+  }
+}

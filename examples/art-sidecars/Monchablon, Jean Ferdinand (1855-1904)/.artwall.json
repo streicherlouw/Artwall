@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art"
+  ],
+  "artist": {
+    "id": "jean-ferdinand-monchablon",
+    "name": "Jean Ferdinand Monchablon",
+    "prominence": 0.4
+  }
+}

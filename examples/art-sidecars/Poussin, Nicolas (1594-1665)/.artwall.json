@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "nicolas-poussin",
+    "name": "Nicolas Poussin",
+    "prominence": 0.74
+  }
+}

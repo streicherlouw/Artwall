@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "john-constable",
+    "name": "John Constable",
+    "prominence": 0.77
+  }
+}

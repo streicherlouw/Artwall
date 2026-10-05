@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "art-nouveau"
+  ],
+  "artist": {
+    "id": "alphonse-maria-mucha",
+    "name": "Alphonse Maria Mucha",
+    "prominence": 0.74
+  }
+}

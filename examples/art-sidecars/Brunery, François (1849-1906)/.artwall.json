@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art"
+  ],
+  "artist": {
+    "id": "francois-brunery",
+    "name": "François Brunery",
+    "prominence": 0.48
+  }
+}

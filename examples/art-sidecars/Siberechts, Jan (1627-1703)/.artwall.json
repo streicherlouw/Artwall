@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "jan-siberechts",
+    "name": "Jan Siberechts",
+    "prominence": 0.48
+  }
+}

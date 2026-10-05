@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism",
+    "symbolism"
+  ],
+  "artist": {
+    "id": "william-blake",
+    "name": "William Blake",
+    "prominence": 0.77
+  }
+}

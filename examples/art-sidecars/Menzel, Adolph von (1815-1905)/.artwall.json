@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "adolph-von-menzel",
+    "name": "Adolph von Menzel",
+    "prominence": 0.64
+  }
+}

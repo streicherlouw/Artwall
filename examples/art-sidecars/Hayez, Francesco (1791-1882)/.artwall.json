@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "francesco-hayez",
+    "name": "Francesco Hayez",
+    "prominence": 0.64
+  }
+}

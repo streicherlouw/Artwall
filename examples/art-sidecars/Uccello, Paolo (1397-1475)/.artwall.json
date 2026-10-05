@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "paolo-uccello",
+    "name": "Paolo Uccello",
+    "prominence": 0.74
+  }
+}

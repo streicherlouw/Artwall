@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "andrea-del-sarto",
+    "name": "Andrea del Sarto",
+    "prominence": 0.64
+  }
+}

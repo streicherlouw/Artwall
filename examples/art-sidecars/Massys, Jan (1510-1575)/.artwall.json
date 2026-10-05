@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism",
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "jan-massys",
+    "name": "Jan Massys",
+    "prominence": 0.56
+  }
+}

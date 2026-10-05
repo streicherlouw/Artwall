@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "piero-di-cosimo",
+    "name": "Piero di Cosimo",
+    "prominence": 0.48
+  }
+}

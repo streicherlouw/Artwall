@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "impressionism"
+  ],
+  "artist": {
+    "id": "alfred-sisley",
+    "name": "Alfred Sisley",
+    "prominence": 0.74
+  }
+}

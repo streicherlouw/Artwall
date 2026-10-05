@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "realism"
+  ],
+  "artist": {
+    "id": "carolus-duran",
+    "name": "Carolus Duran",
+    "prominence": 0.56
+  }
+}

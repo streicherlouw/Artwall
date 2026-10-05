@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "realism",
+    "romanticism"
+  ],
+  "artist": {
+    "id": "george-turner",
+    "name": "George Turner",
+    "prominence": 0.4
+  }
+}

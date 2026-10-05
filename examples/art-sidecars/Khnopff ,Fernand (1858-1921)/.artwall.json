@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "symbolism"
+  ],
+  "artist": {
+    "id": "fernand-khnopff",
+    "name": "Fernand Khnopff",
+    "prominence": 0.7
+  }
+}

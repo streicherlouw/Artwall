@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "giuseppe-maria-crespi",
+    "name": "Giuseppe Maria Crespi",
+    "prominence": 0.56
+  }
+}

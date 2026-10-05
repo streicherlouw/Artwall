@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "ashcan-school",
+    "realism"
+  ],
+  "artist": {
+    "id": "george-wesley-bellows",
+    "name": "George Wesley Bellows",
+    "prominence": 0.4
+  }
+}

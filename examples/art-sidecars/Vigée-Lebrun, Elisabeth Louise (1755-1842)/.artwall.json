@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo"
+  ],
+  "artist": {
+    "id": "elisabeth-louise-vigee-lebrun",
+    "name": "Elisabeth Louise Vigée-Lebrun",
+    "prominence": 0.7
+  }
+}

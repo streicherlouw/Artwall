@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "danube-school",
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "wolfgang-huber",
+    "name": "Wolfgang Huber",
+    "prominence": 0.48
+  }
+}

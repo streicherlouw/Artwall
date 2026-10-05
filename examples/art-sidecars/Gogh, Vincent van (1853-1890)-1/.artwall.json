@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "vincent-van-gogh",
+    "name": "Van Gogh",
+    "prominence": 0.98
+  }
+}

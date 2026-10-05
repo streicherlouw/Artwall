@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "neoclassicism"
+  ],
+  "artist": {
+    "id": "francois-xavier-fabre",
+    "name": "François-Xavier Fabré",
+    "prominence": 0.4
+  }
+}

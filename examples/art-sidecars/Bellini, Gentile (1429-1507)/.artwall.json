@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "gentile-bellini",
+    "name": "Gentile Bellini",
+    "prominence": 0.64
+  }
+}

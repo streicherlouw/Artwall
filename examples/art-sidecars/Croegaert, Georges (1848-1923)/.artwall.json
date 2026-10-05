@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art"
+  ],
+  "artist": {
+    "id": "georges-croegaert",
+    "name": "Georges Croegaert",
+    "prominence": 0.4
+  }
+}

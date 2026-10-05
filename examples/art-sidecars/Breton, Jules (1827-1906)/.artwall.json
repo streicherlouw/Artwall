@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "realism"
+  ],
+  "artist": {
+    "id": "jules-breton",
+    "name": "Jules Breton",
+    "prominence": 0.56
+  }
+}

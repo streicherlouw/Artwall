@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "realism",
+    "russian-realism"
+  ],
+  "artist": {
+    "id": "ivan-nikolaevich-kramskoi",
+    "name": "Ivan Nikolaevich Kramskoi",
+    "prominence": 0.64
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "mannerism"
+  ],
+  "artist": {
+    "id": "annibale-carracci",
+    "name": "Annibale Carracci",
+    "prominence": 0.64
+  }
+}

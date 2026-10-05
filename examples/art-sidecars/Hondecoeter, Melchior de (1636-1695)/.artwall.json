@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "melchior-de-hondecoeter",
+    "name": "Melchior de Hondecoeter",
+    "prominence": 0.56
+  }
+}

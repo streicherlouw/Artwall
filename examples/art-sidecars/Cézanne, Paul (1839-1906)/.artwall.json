@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "paul-cezanne",
+    "name": "Cézanne",
+    "prominence": 0.93
+  }
+}

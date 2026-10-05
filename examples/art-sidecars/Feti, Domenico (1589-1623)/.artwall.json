@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "domenico-feti",
+    "name": "Domenico Feti",
+    "prominence": 0.56
+  }
+}

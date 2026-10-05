@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "maurice-utrillo",
+    "name": "Maurice Utrillo",
+    "prominence": 0.64
+  }
+}

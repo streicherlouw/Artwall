@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance",
+    "sienese-school"
+  ],
+  "artist": {
+    "id": "neroccio-de-landi",
+    "name": "Neroccio De' Landi",
+    "prominence": 0.48
+  }
+}

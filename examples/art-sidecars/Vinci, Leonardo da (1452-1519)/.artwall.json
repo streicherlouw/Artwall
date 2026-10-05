@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "leonardo-da-vinci",
+    "name": "Leonardo da Vinci",
+    "prominence": 1.0
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "simon-marmion",
+    "name": "Simon Marmion",
+    "prominence": 0.56
+  }
+}

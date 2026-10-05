@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "renaissance",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "lorenzo-lotto",
+    "name": "Lorenzo Lotto",
+    "prominence": 0.7
+  }
+}

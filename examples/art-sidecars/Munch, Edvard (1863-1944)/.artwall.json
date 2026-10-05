@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "expressionism",
+    "symbolism"
+  ],
+  "artist": {
+    "id": "edvard-munch",
+    "name": "Munch",
+    "prominence": 0.91
+  }
+}

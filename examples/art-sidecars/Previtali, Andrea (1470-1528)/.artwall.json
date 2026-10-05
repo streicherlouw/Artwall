@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "andrea-previtali",
+    "name": "Andrea Previtali",
+    "prominence": 0.4
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "modern-classicism"
+  ],
+  "artist": {
+    "id": "aristide-maillol",
+    "name": "Aristide Maillol",
+    "prominence": 0.7
+  }
+}

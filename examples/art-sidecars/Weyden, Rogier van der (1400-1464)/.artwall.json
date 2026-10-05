@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "rogier-van-der-weyden",
+    "name": "Rogier van der Weyden",
+    "prominence": 0.4
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "charles-le-brun",
+    "name": "Charles Le Brun",
+    "prominence": 0.56
+  }
+}

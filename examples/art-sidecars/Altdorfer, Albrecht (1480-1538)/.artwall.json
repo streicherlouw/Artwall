@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "danube-school",
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "albrecht-altdorfer",
+    "name": "Albrecht Altdorfer",
+    "prominence": 0.7
+  }
+}

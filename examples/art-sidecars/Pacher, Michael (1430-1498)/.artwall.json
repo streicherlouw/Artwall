@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "michael-pacher",
+    "name": "Michael Pacher",
+    "prominence": 0.64
+  }
+}

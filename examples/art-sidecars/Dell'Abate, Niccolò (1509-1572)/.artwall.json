@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "niccolo-dell-abate",
+    "name": "Niccolò Dell'Abate",
+    "prominence": 0.48
+  }
+}

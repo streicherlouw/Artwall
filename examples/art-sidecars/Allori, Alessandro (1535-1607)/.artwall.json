@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "alessandro-allori",
+    "name": "Alessandro Allori",
+    "prominence": 0.48
+  }
+}

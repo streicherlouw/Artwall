@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "high-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "bernardino-luini",
+    "name": "Bernardino Luini",
+    "prominence": 0.56
+  }
+}

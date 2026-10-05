@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "futurism"
+  ],
+  "artist": {
+    "id": "giacomo-balla",
+    "name": "Giacomo Balla",
+    "prominence": 0.7
+  }
+}

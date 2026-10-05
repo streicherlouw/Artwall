@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "high-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "francesco-francia",
+    "name": "Francesco Francia",
+    "prominence": 0.56
+  }
+}

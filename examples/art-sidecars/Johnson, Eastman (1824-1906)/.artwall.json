@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "eastman-johnson",
+    "name": "Eastman Johnson",
+    "prominence": 0.56
+  }
+}

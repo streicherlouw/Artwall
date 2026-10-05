@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism",
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "jan-gossaert",
+    "name": "Jan Gossaert",
+    "prominence": 0.64
+  }
+}

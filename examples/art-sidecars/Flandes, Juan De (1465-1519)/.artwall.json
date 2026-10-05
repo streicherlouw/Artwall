@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "juan-de-flandes",
+    "name": "Juan De Flandes",
+    "prominence": 0.56
+  }
+}

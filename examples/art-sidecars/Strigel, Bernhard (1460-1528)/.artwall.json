@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "bernhard-strigel",
+    "name": "Bernhard Strigel",
+    "prominence": 0.48
+  }
+}

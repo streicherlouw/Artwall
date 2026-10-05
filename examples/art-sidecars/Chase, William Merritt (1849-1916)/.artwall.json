@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "american-impressionism",
+    "impressionism",
+    "realism"
+  ],
+  "artist": {
+    "id": "william-merritt-chase",
+    "name": "William Merritt Chase",
+    "prominence": 0.64
+  }
+}

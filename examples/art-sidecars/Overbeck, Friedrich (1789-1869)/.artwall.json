@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "nazarene-movement"
+  ],
+  "artist": {
+    "id": "friedrich-overbeck",
+    "name": "Friedrich Overbeck",
+    "prominence": 0.64
+  }
+}

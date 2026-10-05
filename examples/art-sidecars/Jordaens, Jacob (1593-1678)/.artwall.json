@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "jacob-jordaens",
+    "name": "Jacob Jordaens",
+    "prominence": 0.64
+  }
+}

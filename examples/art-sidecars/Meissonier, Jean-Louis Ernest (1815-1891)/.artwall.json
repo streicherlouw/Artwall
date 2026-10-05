@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "realism"
+  ],
+  "artist": {
+    "id": "jean-louis-ernest-meissonier",
+    "name": "Jean-Louis Ernest Meissonier",
+    "prominence": 0.64
+  }
+}

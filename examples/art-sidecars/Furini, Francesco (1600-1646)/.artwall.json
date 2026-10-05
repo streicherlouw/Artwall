@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "francesco-furini",
+    "name": "Francesco Furini",
+    "prominence": 0.48
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo"
+  ],
+  "artist": {
+    "id": "jean-marc-nattier",
+    "name": "Jean Marc Nattier",
+    "prominence": 0.56
+  }
+}

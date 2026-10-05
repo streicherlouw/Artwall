@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "theodore-gericault",
+    "name": "Théodore Géricault",
+    "prominence": 0.64
+  }
+}

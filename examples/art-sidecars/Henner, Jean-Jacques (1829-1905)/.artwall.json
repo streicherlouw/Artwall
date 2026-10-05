@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art"
+  ],
+  "artist": {
+    "id": "jean-jacques-henner",
+    "name": "Jean-Jacques Henner",
+    "prominence": 0.48
+  }
+}

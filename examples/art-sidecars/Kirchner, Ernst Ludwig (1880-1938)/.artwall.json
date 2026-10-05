@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "expressionism"
+  ],
+  "artist": {
+    "id": "ernst-ludwig-kirchner",
+    "name": "Ernst Ludwig Kirchner",
+    "prominence": 0.77
+  }
+}

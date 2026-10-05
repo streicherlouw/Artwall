@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "frans-snyders",
+    "name": "Frans Snyders",
+    "prominence": 0.64
+  }
+}

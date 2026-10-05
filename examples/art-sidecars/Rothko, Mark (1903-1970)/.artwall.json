@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "abstract-expressionism"
+  ],
+  "artist": {
+    "id": "mark-rothko",
+    "name": "Rothko",
+    "prominence": 0.83
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "jacob-cornelisz-van-oostsanen",
+    "name": "Jacob Cornelisz Van Oostsanen",
+    "prominence": 0.48
+  }
+}

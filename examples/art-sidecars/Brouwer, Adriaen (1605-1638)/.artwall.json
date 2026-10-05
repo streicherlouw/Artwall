@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "adriaen-brouwer",
+    "name": "Adriaen Brouwer",
+    "prominence": 0.56
+  }
+}

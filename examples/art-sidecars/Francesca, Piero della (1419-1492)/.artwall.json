@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "piero-della-francesca",
+    "name": "Piero della Francesca",
+    "prominence": 0.74
+  }
+}

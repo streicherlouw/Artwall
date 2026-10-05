@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "surrealism"
+  ],
+  "artist": {
+    "id": "rene-magritte",
+    "name": "Magritte",
+    "prominence": 0.86
+  }
+}

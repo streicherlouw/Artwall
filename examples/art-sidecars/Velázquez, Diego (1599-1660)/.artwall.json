@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "diego-velazquez",
+    "name": "Velázquez",
+    "prominence": 0.9
+  }
+}

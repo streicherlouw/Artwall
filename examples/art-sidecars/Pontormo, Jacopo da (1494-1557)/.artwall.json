@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism"
+  ],
+  "artist": {
+    "id": "jacopo-da-pontormo",
+    "name": "Jacopo da Pontormo",
+    "prominence": 0.7
+  }
+}

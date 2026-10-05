@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "andrea-solario",
+    "name": "Andrea Solario",
+    "prominence": 0.48
+  }
+}

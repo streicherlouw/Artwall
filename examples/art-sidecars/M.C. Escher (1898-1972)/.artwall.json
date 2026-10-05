@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "mathematical-art"
+  ],
+  "artist": {
+    "id": "mc-escher",
+    "name": "M. C. Escher",
+    "prominence": 0.79
+  }
+}

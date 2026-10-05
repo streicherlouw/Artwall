@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "photorealism"
+  ],
+  "artist": {
+    "id": "audrey-flack",
+    "name": "Audrey Flack",
+    "prominence": 0.64
+  }
+}

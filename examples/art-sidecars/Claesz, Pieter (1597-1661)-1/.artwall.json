@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "pieter-claesz",
+    "name": "Pieter Claesz",
+    "prominence": 0.4
+  }
+}

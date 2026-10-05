@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "neoclassicism"
+  ],
+  "artist": {
+    "id": "jean-auguste-dominique-ingres",
+    "name": "Jean Auguste Dominique Ingres",
+    "prominence": 0.77
+  }
+}

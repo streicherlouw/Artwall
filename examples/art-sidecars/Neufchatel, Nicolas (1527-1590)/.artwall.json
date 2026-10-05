@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism",
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "nicolas-neufchatel",
+    "name": "Nicolas Neufchatel",
+    "prominence": 0.4
+  }
+}

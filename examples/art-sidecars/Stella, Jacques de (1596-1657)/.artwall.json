@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "jacques-de-stella",
+    "name": "Jacques de Stella",
+    "prominence": 0.48
+  }
+}

@@ -2,7 +2,7 @@
   "pluginAlias": "ArtwallPhotoFrame",
   "pluginType": "platform",
   "singular": true,
-  "headerDisplay": "Creates one HomeKit switch per PhotoFrame root album folder. Turning an album on starts its slideshow; only the playing album is on.",
+  "headerDisplay": "Creates HomeKit switches for root albums and artist/movement collections above the prominence cutoff configured in PhotoFrame. Turning an album on starts its slideshow; only the playing album is on.",
   "schema": {
     "type": "object",
     "properties": {

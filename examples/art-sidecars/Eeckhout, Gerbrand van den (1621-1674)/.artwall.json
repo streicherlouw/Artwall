@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "gerbrand-van-den-eeckhout",
+    "name": "Gerbrand van den Eeckhout",
+    "prominence": 0.56
+  }
+}

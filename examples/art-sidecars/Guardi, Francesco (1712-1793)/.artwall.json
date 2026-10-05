@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "francesco-guardi",
+    "name": "Francesco Guardi",
+    "prominence": 0.7
+  }
+}

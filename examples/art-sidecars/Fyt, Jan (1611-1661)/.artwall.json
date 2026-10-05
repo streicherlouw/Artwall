@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "jan-fyt",
+    "name": "Jan Fyt",
+    "prominence": 0.56
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic",
+    "international-gothic"
+  ],
+  "artist": {
+    "id": "konrad-von-soest",
+    "name": "Konrad von Soest",
+    "prominence": 0.48
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "dutch-golden-age"
+  ],
+  "artist": {
+    "id": "gerard-ter-borch",
+    "name": "Gerard ter Borch",
+    "prominence": 0.56
+  }
+}

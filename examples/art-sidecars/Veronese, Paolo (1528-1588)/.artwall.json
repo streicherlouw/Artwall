@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "mannerism",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "paolo-veronese",
+    "name": "Paolo Veronese",
+    "prominence": 0.74
+  }
+}

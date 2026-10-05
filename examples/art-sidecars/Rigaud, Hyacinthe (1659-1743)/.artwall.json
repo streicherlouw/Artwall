@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "hyacinthe-rigaud",
+    "name": "Hyacinthe Rigaud",
+    "prominence": 0.56
+  }
+}

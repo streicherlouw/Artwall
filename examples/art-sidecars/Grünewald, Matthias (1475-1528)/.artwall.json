@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "matthias-grunewald",
+    "name": "Matthias Grünewald",
+    "prominence": 0.7
+  }
+}

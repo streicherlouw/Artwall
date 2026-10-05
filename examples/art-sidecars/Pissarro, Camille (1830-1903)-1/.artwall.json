@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "impressionism",
+    "neo-impressionism"
+  ],
+  "artist": {
+    "id": "camille-pissarro",
+    "name": "Camille Pissarro",
+    "prominence": 0.77
+  }
+}

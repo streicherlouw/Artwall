@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "northern-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "hieronymus-bosch",
+    "name": "Hieronymus Bosch",
+    "prominence": 0.77
+  }
+}

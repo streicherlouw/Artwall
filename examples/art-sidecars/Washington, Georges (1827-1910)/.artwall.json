@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "orientalism"
+  ],
+  "artist": {
+    "id": "georges-washington",
+    "name": "Georges Washington",
+    "prominence": 0.48
+  }
+}

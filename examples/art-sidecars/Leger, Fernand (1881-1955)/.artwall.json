@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "cubism"
+  ],
+  "artist": {
+    "id": "fernand-leger",
+    "name": "Fernand Leger",
+    "prominence": 0.74
+  }
+}

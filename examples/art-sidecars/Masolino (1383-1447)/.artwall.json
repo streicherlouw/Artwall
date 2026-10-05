@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "early-renaissance",
+    "renaissance"
+  ],
+  "artist": {
+    "id": "masolino",
+    "name": "Masolino",
+    "prominence": 0.48
+  }
+}

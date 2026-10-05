@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "realism"
+  ],
+  "artist": {
+    "id": "henri-fantin-latour",
+    "name": "Henri Fantin-Latour",
+    "prominence": 0.64
+  }
+}

@@ -24,7 +24,7 @@
       rows.replaceChildren();
       for (const accessory of albums) {
         const row = document.createElement('tr');
-        for (const value of [accessory.context.album, accessory.displayName || accessory.context.album]) {
+        for (const value of [accessory.context.name || accessory.context.album, accessory.displayName || accessory.context.album]) {
           const cell = document.createElement('td');
           cell.textContent = value;
           row.appendChild(cell);

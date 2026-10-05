@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "hudson-river-school",
+    "romanticism"
+  ],
+  "artist": {
+    "id": "herman-herzog",
+    "name": "Herman Herzog",
+    "prominence": 0.4
+  }
+}

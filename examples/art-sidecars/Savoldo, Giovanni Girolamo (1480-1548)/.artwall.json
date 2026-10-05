@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "movements": [
+    "high-renaissance",
+    "renaissance",
+    "venetian-school"
+  ],
+  "artist": {
+    "id": "giovanni-girolamo-savoldo",
+    "name": "Giovanni Girolamo Savoldo",
+    "prominence": 0.56
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art"
+  ],
+  "artist": {
+    "id": "william-bouguereau",
+    "name": "William Bouguereau",
+    "prominence": 0.74
+  }
+}

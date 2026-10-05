@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "les-nabis",
+    "post-impressionism"
+  ],
+  "artist": {
+    "id": "jozsef-rippl-ronai",
+    "name": "József Rippl-Rónai",
+    "prominence": 0.56
+  }
+}

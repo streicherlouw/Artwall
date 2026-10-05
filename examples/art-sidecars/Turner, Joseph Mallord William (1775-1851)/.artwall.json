@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "romanticism"
+  ],
+  "artist": {
+    "id": "jmw-turner",
+    "name": "J. M. W. Turner",
+    "prominence": 0.87
+  }
+}

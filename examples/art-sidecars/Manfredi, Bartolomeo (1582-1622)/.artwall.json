@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque",
+    "caravaggism"
+  ],
+  "artist": {
+    "id": "bartolomeo-manfredi",
+    "name": "Bartolomeo Manfredi",
+    "prominence": 0.48
+  }
+}

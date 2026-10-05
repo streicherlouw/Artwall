@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "francesco-albani",
+    "name": "Francesco Albani",
+    "prominence": 0.56
+  }
+}

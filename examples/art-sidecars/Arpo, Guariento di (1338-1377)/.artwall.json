@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "gothic"
+  ],
+  "artist": {
+    "id": "guariento-di-arpo",
+    "name": "Guariento di Arpo",
+    "prominence": 0.48
+  }
+}

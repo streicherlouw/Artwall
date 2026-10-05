@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "neoclassicism"
+  ],
+  "artist": {
+    "id": "jean-hippolyte-flandrin",
+    "name": "Jean Hippolyte Flandrin",
+    "prominence": 0.64
+  }
+}

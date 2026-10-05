@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "baroque"
+  ],
+  "artist": {
+    "id": "joos-de-momper",
+    "name": "Joos De Momper",
+    "prominence": 0.48
+  }
+}

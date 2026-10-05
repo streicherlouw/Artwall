@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "barbizon-school",
+    "realism"
+  ],
+  "artist": {
+    "id": "charles-francois-daubigny",
+    "name": "Charles-Francois Daubigny",
+    "prominence": 0.56
+  }
+}

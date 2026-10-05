@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "movements": [
+    "academic-art",
+    "realism"
+  ],
+  "artist": {
+    "id": "felix-schlesinger",
+    "name": "Felix Schlesinger",
+    "prominence": 0.4
+  }
+}

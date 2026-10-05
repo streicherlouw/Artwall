@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "movements": [
+    "rococo"
+  ],
+  "artist": {
+    "id": "jean-honore-fragonard",
+    "name": "Jean Honoré Fragonard",
+    "prominence": 0.77
+  }
+}
