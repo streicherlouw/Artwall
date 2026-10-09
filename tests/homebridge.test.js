@@ -28,3 +28,16 @@ test('collection labels can change without replacing accessories or selection ID
  p.request=async(route,body)=>{if(body)calls.push(body);return state};await p.refresh();const a=added[1];assert.equal(a.displayName,'Monet');assert.equal(a.getService('switch').value,true);
  state.collections[0].name='Claude Monet';await p.refresh();assert.equal(a.displayName,'Claude Monet');assert.equal(added.length,2);assert.equal(removed.length,0);await a.getService('switch').set(true);assert.deepEqual(calls,[{album:id,on:true}]);
 });
+test('reads immediately return cached state even when the command queue is blocked',async()=>{
+ const {platform:p,added}=fixture();p.request=async()=>({phase:'active',settings:{album:'Japan'},albums:['Japan','Vietnam']});await p.refresh();
+ let release;p.enqueue(()=>new Promise(resolve=>{release=resolve}));await Promise.resolve();
+ p.request=()=>{throw Error('Reads must not issue HTTP requests')};
+ for(let i=0;i<40;i++){assert.equal(added[0].getService('switch').get(),true);assert.equal(added[1].getService('switch').get(),false)}
+ release();await p.tail;
+});
+test('reads promptly reject unknown, stale and failed state and recover after an update',async()=>{
+ const {platform:p,added}=fixture();assert.throws(()=>p.read('Japan'));
+ const state={phase:'active',settings:{album:'Japan'},albums:['Japan']};p.request=async()=>state;await p.refresh();const s=added[0].getService('switch');
+ p.statusAt=Date.now()-60000;assert.throws(()=>s.get());p.update(state);assert.equal(s.get(),true);
+ p.failed=true;assert.throws(()=>s.get());p.update({...state,phase:'idle'});assert.equal(s.get(),false);
+});

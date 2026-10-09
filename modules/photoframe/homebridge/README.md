@@ -76,3 +76,7 @@ The plugin uses the local PhotoFrame HTTP API and does not require access to pho
 Version 0.2.0 also exposes curated collections defined by `.artwall.json` sidecars in PhotoFrame's media library. See [the sidecar format and examples](../README.md#curated-collections-artists-and-movements). Update PhotoFrame as well as this plugin, then rebuild the switches from PhotoFrame. Root album switches and their identities remain unchanged. Collections use stable IDs separately from their display names, so relabeling a collection preserves its accessory and automations. Only the selected collection switch is on; the Art switch is on only when Art itself is selected. Empty collections cannot be activated.
 
 Artists with prominence ratings are discovered automatically. Set `prominenceCutoff` in PhotoFrame (default 0.8), or use its web settings page. Saving changes the discovered switch list without rebuilding images. Unrated existing explicit collections remain visible. The cutoff applies to artist and movement collections; root albums are always exposed.
+
+## Switch responsiveness
+
+HomeKit reads return the latest successfully polled state immediately and never wait behind slideshow commands or other switch reads. Before the first successful poll, after a failed poll, or when cached status expires, reads report a communication error promptly. Normal state freshness follows `pollInterval` (five seconds by default). Version 0.2.1 fixes read-handler timeouts caused by the shared command queue.

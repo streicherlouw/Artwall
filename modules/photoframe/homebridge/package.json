@@ -1,6 +1,6 @@
 {
   "name": "homebridge-artwall-photoframe",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "HomeKit album and curated collection switches for Artwall PhotoFrame",
   "main": "index.js",
   "license": "MIT",
