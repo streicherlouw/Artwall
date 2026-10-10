@@ -80,3 +80,5 @@ Artists with prominence ratings are discovered automatically. Set `prominenceCut
 ## Switch responsiveness
 
 HomeKit reads return the latest successfully polled state immediately and never wait behind slideshow commands or other switch reads. Before the first successful poll, after a failed poll, or when cached status expires, reads report a communication error promptly. Normal state freshness follows `pollInterval` (five seconds by default). Version 0.2.1 fixes read-handler timeouts caused by the shared command queue.
+
+Artist switch labels use the surname before the comma in the folder-derived artist name, with lifespan removed. Names without a comma use the final word. Artists sharing a surname receive numbers (for example, Kahlo 1 and Kahlo 2) sorted by stable collection ID, independent of scan order. A single artist keeps the unnumbered surname. Accessory IDs and slideshow artist overlays remain unchanged. Movement and root album labels retain their full names.

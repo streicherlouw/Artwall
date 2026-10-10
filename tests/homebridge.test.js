@@ -41,3 +41,25 @@ test('reads promptly reject unknown, stale and failed state and recover after an
  p.statusAt=Date.now()-60000;assert.throws(()=>s.get());p.update(state);assert.equal(s.get(),true);
  p.failed=true;assert.throws(()=>s.get());p.update({...state,phase:'idle'});assert.equal(s.get(),false);
 });
+
+test('artist switches use surnames and deterministically number collisions without changing identity',async()=>{
+ const {platform:p,added,removed}=fixture();
+ const collections=[{id:'collection:Art:artist:frida',name:'Kahlo, Frida (1907-1954)',kind:'artist'},
+ {id:'collection:Art:artist:other',name:'Kahlo, Other (1900-1980)',kind:'artist'},
+ {id:'collection:Art:artist:monet',name:'Monet, Claude (1840-1926)',kind:'artist'},
+ {id:'collection:Art:impressionism',name:'Impressionists',kind:'movement'}];
+ let state={phase:'active',settings:{album:collections[0].id},albums:['Art',...collections.map(c=>c.id)],collections};
+ p.request=async()=>state;await p.refresh();
+ assert.deepEqual(added.map(a=>a.displayName),['Art','Kahlo 1','Kahlo 2','Monet','Impressionists']);
+ const ids=added.map(a=>a.UUID);state.collections=[...collections].reverse();await p.refresh();
+ assert.deepEqual(added.map(a=>a.UUID),ids);assert.equal(added[1].displayName,'Kahlo 1');assert.equal(added[1].getService('switch').value,true);
+ assert.equal(removed.length,0);assert.equal(added.length,5);
+ assert.equal(collections[0].name,'Kahlo, Frida (1907-1954)');
+ state.collections=collections.filter(c=>c.id!==collections[1].id);state.albums=['Art',...state.collections.map(c=>c.id)];await p.refresh();assert.equal(added[1].displayName,'Kahlo');
+});
+
+test('artist aliases and lifespans in parentheses do not become button labels',async()=>{
+ const {platform:p,added}=fixture();const id='collection:Art:artist:raphael';
+ p.request=async()=>({phase:'idle',settings:{album:'all'},albums:[id],collections:[{id,name:'Raphael (Raffaello) (1483-1520)',kind:'artist'}]});
+ await p.refresh();assert.equal(added[0].displayName,'Raphael');
+});
