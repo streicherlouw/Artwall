@@ -1,0 +1,196 @@
+{
+  "photos": [
+    {
+      "analysis": {
+        "classifications": [
+          {
+            "confidence": 0.9677738547325134,
+            "identifier": "art"
+          },
+          {
+            "confidence": 0.9677734375,
+            "identifier": "painting"
+          },
+          {
+            "confidence": 0.43633317947387695,
+            "identifier": "people"
+          },
+          {
+            "confidence": 0.407470703125,
+            "identifier": "adult"
+          },
+          {
+            "confidence": 0.307373046875,
+            "identifier": "crowd"
+          },
+          {
+            "confidence": 0.11380453407764435,
+            "identifier": "outdoor"
+          },
+          {
+            "confidence": 0.11380121111869812,
+            "identifier": "sky"
+          },
+          {
+            "confidence": 0.11376953125,
+            "identifier": "cloudy"
+          },
+          {
+            "confidence": 0.05908203125,
+            "identifier": "illustrations"
+          },
+          {
+            "confidence": 0.03442391753196716,
+            "identifier": "fire"
+          },
+          {
+            "confidence": 0.034423828125,
+            "identifier": "flame"
+          },
+          {
+            "confidence": 0.022469621151685715,
+            "identifier": "animal"
+          },
+          {
+            "confidence": 0.02246871031820774,
+            "identifier": "mammal"
+          },
+          {
+            "confidence": 0.022468702867627144,
+            "identifier": "ungulates"
+          },
+          {
+            "confidence": 0.0224609375,
+            "identifier": "horse"
+          },
+          {
+            "confidence": 0.022216796875,
+            "identifier": "child"
+          },
+          {
+            "confidence": 0.020751953125,
+            "identifier": "blue_sky"
+          },
+          {
+            "confidence": 0.015766017138957977,
+            "identifier": "clothing"
+          },
+          {
+            "confidence": 0.011828930117189884,
+            "identifier": "land"
+          },
+          {
+            "confidence": 0.01171875,
+            "identifier": "gown"
+          },
+          {
+            "confidence": 0.01171875,
+            "identifier": "hill"
+          },
+          {
+            "confidence": 0.01171875,
+            "identifier": "teen"
+          },
+          {
+            "confidence": 0.010009765625,
+            "identifier": "cloak"
+          },
+          {
+            "confidence": 0.010009765625,
+            "identifier": "jacket"
+          }
+        ]
+      }
+    },
+    {
+      "analysis": {
+        "classifications": [
+          {
+            "confidence": 0.7353566884994507,
+            "identifier": "clothing"
+          },
+          {
+            "confidence": 0.732421875,
+            "identifier": "suit"
+          },
+          {
+            "confidence": 0.7075214982032776,
+            "identifier": "people"
+          },
+          {
+            "confidence": 0.70751953125,
+            "identifier": "adult"
+          },
+          {
+            "confidence": 0.28271484375,
+            "identifier": "tuxedo"
+          },
+          {
+            "confidence": 0.1025390625,
+            "identifier": "necktie"
+          },
+          {
+            "confidence": 0.06396484375,
+            "identifier": "bowtie"
+          },
+          {
+            "confidence": 0.042362190783023834,
+            "identifier": "art"
+          },
+          {
+            "confidence": 0.042236328125,
+            "identifier": "painting"
+          },
+          {
+            "confidence": 0.028076395392417908,
+            "identifier": "material"
+          },
+          {
+            "confidence": 0.028076171875,
+            "identifier": "textile"
+          },
+          {
+            "confidence": 0.01708984375,
+            "identifier": "cloak"
+          },
+          {
+            "confidence": 0.014892578125,
+            "identifier": "jacket"
+          },
+          {
+            "confidence": 0.013920335099101067,
+            "identifier": "decoration"
+          },
+          {
+            "confidence": 0.013916015625,
+            "identifier": "jewelry"
+          },
+          {
+            "confidence": 0.01109563373029232,
+            "identifier": "tool"
+          },
+          {
+            "confidence": 0.011062542907893658,
+            "identifier": "smoking_item"
+          },
+          {
+            "confidence": 0.010986328125,
+            "identifier": "cigar"
+          },
+          {
+            "confidence": 0.010986328125,
+            "identifier": "military_uniform"
+          },
+          {
+            "confidence": 0.010009766556322575,
+            "identifier": "optical_equipment"
+          },
+          {
+            "confidence": 0.010009765625,
+            "identifier": "eyeglasses"
+          }
+        ]
+      }
+    }
+  ]
+}

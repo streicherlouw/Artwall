@@ -72,7 +72,7 @@ For `Art/Krøyer, Peder Severin (1851-1909)/.artwall.json`:
 
 Both artists contribute to **Impressionists**. At the default cutoff of 0.8, Monet gets an individual switch and Krøyer does not; lowering the cutoff to 0.7 exposes both artist switches. **Art** still includes every supported image in every descendant folder, including folders without metadata. No artwork is copied or duplicated. Collections are scoped to their root album.
 
-Metadata applies to all images in a folder and its descendants. A deeper sidecar can replace `artist` or `movements`, for example to classify an artist's periods separately; `"movements": []` clears inherited movements. Missing fields inherit. Movement and artist IDs are case-sensitive; use consistent IDs. Multiple values in one match field mean OR; specifying both artists and movements means AND. An artist with `prominence` automatically gets an indexed artist collection, with `artist.name` as its switch label. An artist without `prominence` contributes metadata without creating an automatic switch (backward compatibility). Explicit collection `name` is its switch label. Define `collections` only in root album sidecars. A root sidecar can also supply inherited artist/movement metadata.
+Metadata applies to all images in a folder and its descendants. A deeper sidecar can replace `artist` or `movements`, for example to classify an artist's periods separately; `"movements": []` clears inherited movements. Missing fields inherit. Movement and artist IDs are case-sensitive; use consistent IDs. Multiple values in one match field mean OR; specifying both artists and movements means AND. An artist with an `id` automatically gets an indexed artist collection, using `artist.name` as its label. The Artists checklist controls whether it has a HomeKit button. Explicit collection `name` is its switch label. Define `collections` only in root album sidecars. A root sidecar can also supply inherited artist/movement metadata.
 
 Collection IDs must be unique within their root album. Keep IDs unchanged when relabeling a switch: Homebridge preserves its accessory identity and automations. Artist folder renames do not change collection identity. Renaming the root album or a collection ID creates a new identity. Root album names `all` and those starting with `collection:` are reserved.
 
@@ -83,16 +83,60 @@ The scanner writes `collections.json` (IDs, labels, root albums, prominence, kin
 Copy or synchronize the complete album tree, including hidden `.artwall.json` files, into the configured `contentRoot`. The single-folder import command does not recursively import an artist tree or copy sidecars.
 
 
-### Prominence cutoff
+### HomeKit selection and legacy ratings
 
-Set **Artist and movement prominence cutoff** on the PhotoFrame settings page, or set `"prominenceCutoff": 0.8` in the module configuration. The accepted range is 0–1, inclusive; missing settings default to 0.8. A collection appears when its prominence is **greater than or equal to** the cutoff. All root albums remain visible, and Art always includes all artworks. Unrated explicit collections have prominence 1 for backward compatibility.
+Use the scrollable **Artists** and **Movements** checklists and press **Save HomeKit buttons** to choose which collections receive switches. Every root album always receives a switch. Selection changes reach Homebridge on its next poll, require no rescan, and do not stop an already playing collection. All collections remain available for playback in the web selector.
 
-Saving a cutoff immediately refreshes the web selector and Homebridge discovery on its next poll; no rescan is needed. All collection memberships remain indexed, including hidden ones. If a higher cutoff hides the selected collection, playback stops and selection resets to all. Changing sidecar ratings or movement membership still requires **Rebuild HomeKit Switches**. The settings page reports the visible artist and movement counts.
+Legacy prominence ratings remain valid metadata but no longer control button visibility. Duplicate artist folders can share an ID and contribute to one artist collection. Rebuild the library after changing sidecar membership. Folder-level movement tags classify the whole artist folder rather than individual artworks.
 
-Artist scores live in their folder sidecars. Movement scores live in their root album's collection definitions. Duplicate artist folders can share an ID; their name and score must agree, and their images contribute to one artist switch. Conflicting artist metadata fails the rebuild. Scores must be finite numbers from 0 to 1; booleans and numeric strings are rejected.
+HomeKit bridges support 149 bridged accessories, so select a set that fits the bridge alongside other accessories. A child bridge separates this plugin from other plugins but does not increase its own accessory limit.
 
-Automatic artist selection IDs have the form `collection:Art:artist:claude-monet`. Root collection IDs retain their previous form. Lowering the cutoff re-exposes the same IDs, but HomeKit may require restoring automations for accessories removed by an earlier higher cutoff.
 
-The supplied Art library has an editable, subjective prominence scale calibrated to 30 artists and 20 movement/period/school groups at 0.8. See [the library rating inventory](../../docs/art-prominence.md). Folder-level movement tags classify the whole artist folder; they are broad navigation groups rather than artwork-by-artwork attribution.
+## Temporary collections by collage content
 
-HomeKit bridges support 149 bridged accessories. Very low cutoffs can exceed that, particularly alongside other plugins. Use a cutoff that fits the available bridge capacity; exposing the entire library requires splitting accessories across bridges. A child bridge separates this plugin from other plugins, but does not increase its own accessory limit. See [Homebridge child bridges](https://github.com/homebridge/homebridge/wiki/Child-Bridges).
+In the slideshow admin page, use **Temporary collection by content**:
+
+1. Choose a **Base folder**, such as Art or Holiday Japan. Root folders include their descendants; artist and movement collections are not base-folder choices.
+2. Enter identifier words, such as `horse child`, separated by spaces or commas.
+3. Click **Find collages** to preview the matching count and up to ten collage names.
+4. Click **Play matching collages** to start the temporary slideshow. **Clear temporary collection** restores the saved album selection.
+
+Every search word must match an identifier word somewhere in the collage's combined photo classifications. Matching is case-insensitive and uses whole words: `horse` does not match `seahorse`, and `child` does not automatically match `children`. Underscores and punctuation separate words, so `blue_sky` contributes `blue` and `sky`. Unicode text is normalized. No confidence cutoff is applied; low-confidence identifiers are included, as in the supplied Krøyer collage containing both horse and child. Search results use the existing shuffle setting.
+
+Put the JSON sidecar next to the image with the same basename: `Collage 12.jpg` and `Collage 12.json`. The scanner reads only string identifiers at `photos[].analysis.classifications[].identifier`, combines them across all photos and stores them in the image's indexed `identifiers` field. Artist IDs, filenames and unrelated JSON fields are not searched. Images without identifiers do not match. Symbolic-link sidecars are ignored. Malformed collage JSON fails the rebuild with its file path, preserving the previous index.
+
+Rebuild the library after adding or editing collage JSON. Identifier metadata is refreshed even when image bytes have not changed. It is separate from folder `.artwall.json` metadata and HomeKit button selection.
+
+The selected search is held in memory; no collection file, saved configuration entry or HomeKit switch is created. It lasts until cleared, replaced by another search or a normal album selection, or PhotoFrame restarts. Saving settings with an explicit album selection also clears it. Stop/Play retains the temporary filter, as do ordinary timing-setting changes without an album selection. If a rebuild removes its last match, playback stops and the temporary selection clears. AirPlay priority and display handoff rules still apply; failed and empty searches leave the previous selection intact. During temporary playback, root/artist/movement HomeKit switches stay off. Clearing it restores the previously saved album; if playback is already running it continues with that album.
+
+API: `POST /api/slideshow/search` with `{"action":"preview","album":"Art","terms":"horse child"}` returns `count`, normalized `terms` and a `sample` of names. Use action `play` to activate the search, or `{"action":"clear"}` to clear it. Empty matches can be previewed but cannot be played. `GET /api/status` includes `searchCollection` with the base album, terms and current count (or null); `rootAlbums` lists the available base folders. Temporary playback uses the runtime selection ID `search:temporary`; root folder names beginning with `search:` are reserved.
+
+## Folder slideshow timing
+
+Version 1 `.artwall.json` files accept optional timing alongside existing artist, movement, category and collection metadata:
+
+```json
+{
+  "version": 1,
+  "slideshow": { "intervalSeconds": 20, "crossfadeSeconds": 5 }
+}
+```
+
+The scanner walks ancestors through the containing image folder, merging the two fields independently; the nearest specified field wins. Rebuild the library after edits. Each indexed slide carries resolved timing, including in mixed albums, movement collections and temporary content searches. Artwork folders (Art, art/artwork categories or artist metadata) default to 20/5 seconds; photos default to 5/0.85. Embedded PNG Artwall artist metadata also supplies artist labels and artwork defaults. Folder category metadata accepts `"category":"Art"` or `"categories":["Art"]`.
+
+The interval measures fade-start to fade-start and includes the fade. Loading can extend it: the player always waits for decoding. The current slide controls the next advance time, and the incoming slide controls its opacity transition. The previous image stays opaque underneath until the transition finishes. Artist labels sit within image layers and fade with them. Reduced motion disables visual fades without changing the progression interval; zero crossfade cuts immediately. Manual navigation and pause/resume reset the timer; hidden tabs pause progression and one-image playlists never auto-advance.
+
+Timing values must be finite JSON numbers, not booleans or strings: `0 < intervalSeconds <= 86400` and `0 <= crossfadeSeconds < intervalSeconds`. Invalid values fail indexing with the sidecar path and preserve the published playlist. The two fields can appear separately, but their resolved combination must be valid.
+
+**Use folder slideshow timing** is on by default in the admin page. Turn it off to apply the page's manual interval and fade controls to all slides. Legacy playlists without timing also use those controls. Configuration: `"useFolderTiming": true`.
+
+
+## Manual HomeKit choices and Pictures playback
+
+The slideshow configuration page has scrollable **Artists** and **Movements** checklists. Tick the entries you want, then **Save HomeKit buttons**. All indexed artists are offered, including those without importance ratings. Root folders always receive switches. Button selections persist as `selectedArtistIds` and `selectedMovementIds` in PhotoFrame settings; importance no longer controls publication. The API rejects unknown, duplicate or wrong-kind IDs. Removing a button does not stop a currently playing album or remove it from the configuration page's playback choices. New indexed artists and movements are unchecked by default. On the deployed Pi, the previous 30 artist and 20 movement switches were migrated to checked entries. Fresh installs start with empty lists. Existing selection IDs remain stable; artist button labels continue using surnames and collision numbering.
+
+When the selected root album is **Pictures** (case insensitive), its immediate child folders are shuffled as groups. Every image from one child plays in natural relative filename order before moving to the next child. Deeper descendants stay with their immediate child; root-level images form their own group. Pictures overrides the image-shuffle checkbox. Other albums keep their existing shuffle behavior. Folder ordering is randomized each time the player playlist loads; it repeats that folder sequence until the next load. No files are copied to make these groups.
+
+### Playback album navigation
+
+The Album selector has Folders, Art Movements and Artists sections. Movements and artists are alphabetical. Pictures folders appear as an indented tree, including nested descendants with supported images; the selected folder’s full path appears below the selector. Selecting a Pictures subfolder plays only its subtree in natural filename order. Selecting Pictures retains shuffled child-folder playback. Subfolder choices do not create additional HomeKit switches.

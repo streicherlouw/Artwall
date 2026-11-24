@@ -5,22 +5,22 @@ const assert=require('node:assert/strict');
 const vm=require('node:vm');
 const fs=require('node:fs');
 const template=fs.readFileSync(require('node:path').join(__dirname,'../web/player.html'),'utf8');
-const script=template.match(/<script>\s*([\s\S]*?)<\/script>/)[1];
+const script=template.match(/<script>\s*([\s\S]*?)<\/script>/)[1].replace('__PLAYER_TIMING__',JSON.stringify({intervalSeconds:5,crossfadeSeconds:.85,useFolderTiming:true}));
 function element(){
  const classes=new Set(),children=new Map();
  return {textContent:'',style:{},hidden:false,attributes:{},offsetWidth:100,
   classList:{add:x=>classes.add(x),remove:x=>classes.delete(x),contains:x=>classes.has(x)},
   setAttribute(k,v){this.attributes[k]=v},querySelector(k){if(!children.has(k))children.set(k,element());return children.get(k)}};
 }
-function player({missing=[],deferred=[]}={}){
- const slides=Array.from({length:3},(_,i)=>({src:`${i}.png`,name:`Slide ${i+1}`,location:i===2?null:{latitude:35,longitude:139},map:i===2?null:{country:i===0?'Japan':'Vietnam',path:'M10,10L20,10L20,20Z',pinX:20,pinY:20,nearby:false}}));
+function player({missing=[],deferred=[],timings=[],reducedMotion=false,count=3,folderTiming=true}={}){
+ const slides=Array.from({length:count},(_,i)=>({timing:timings[i],src:`${i}.png`,name:`Slide ${i+1}`,location:i===2?null:{latitude:35,longitude:139},map:i===2?null:{country:i===0?'Japan':'Vietnam',path:'M10,10L20,10L20,20Z',pinX:20,pinY:20,nearby:false}}));
  const elements=new Map(),layers=[element(),element()],events={},timers=new Map(),pending=new Map();let nextID=1;
  const document={title:'Player',hidden:false,body:element(),documentElement:element(),querySelectorAll:()=>layers,querySelector:()=>document.getElementById('controls'),
   getElementById(id){if(!elements.has(id))elements.set(id,element());return elements.get(id)},addEventListener(k,f){events[k]=f}};
  document.getElementById('slides').textContent=JSON.stringify(slides);
  class Image {set src(src){this._src=src;const finish=()=>queueMicrotask(()=>missing.includes(src)?this.onerror():this.onload());if(deferred.includes(src))pending.set(src,finish);else finish()}get src(){return this._src}decode(){return Promise.resolve()}}
- const context=vm.createContext({document,Image,URLSearchParams,location:{hash:''},history:{replaceState(){}},setTimeout:(f,ms)=>{const id=nextID++;timers.set(id,{f,ms});return id},clearTimeout:id=>timers.delete(id),console});
- vm.runInContext(script,context);
+ const context=vm.createContext({document,Image,matchMedia:()=>({matches:reducedMotion}),URLSearchParams,location:{hash:''},history:{replaceState(){}},setTimeout:(f,ms)=>{const id=nextID++;timers.set(id,{f,ms});return id},clearTimeout:id=>timers.delete(id),console});
+ vm.runInContext(script.replace('"useFolderTiming":true',`"useFolderTiming":${folderTiming}`),context);
  const flush=async()=>{for(let i=0;i<12;i++)await Promise.resolve()};
  const tick=async ms=>{const jobs=[...timers.entries()].filter(([,v])=>v.ms===ms);for(const[id,job]of jobs){timers.delete(id);job.f()}await flush()};
  const key=async(key,code=key)=>{events.keydown({key,code,preventDefault(){}});await flush()};
@@ -68,13 +68,33 @@ test('controls start hidden, ignore automatic pauses, and follow mouse activity 
  p.events.pointerdown({pointerType:'mouse'});assert.equal(p.document.body.classList.contains('idle'),false);
 });
 
-test('manual navigation cuts immediately during a fade; automatic playback still fades',async()=>{
+test('manual navigation resets timing and stale fade cleanup cannot hide the new image',async()=>{
  const p=player();await p.flush();await p.tick(5000);
- assert.equal(p.layers[p.read('active')].style.transition,'');
+ assert.equal(p.layers[p.read('active')].style.transition,'opacity 850ms ease');
  p.elements.get('next').onclick();await p.flush();
- assert.equal(p.read('current'),2);assert.equal(p.layers[p.read('active')].style.transition,'none');
- assert.equal(p.layers[1-p.read('active')].classList.contains('visible'),false);
- await p.tick(900);assert.equal(p.layers[p.read('active')].classList.contains('visible'),true);
+ assert.equal(p.read('current'),2);assert.equal(p.layers[p.read('active')].style.transition,'opacity 850ms ease');
+ assert.equal(p.layers[1-p.read('active')].classList.contains('visible'),true);
+ await p.tick(850);assert.equal(p.layers[p.read('active')].classList.contains('visible'),true);
  p.elements.get('previous').onclick();await p.flush();assert.equal(p.read('current'),1);
- await p.tick(5000);assert.equal(p.layers[p.read('active')].style.transition,'');
+ await p.tick(5000);assert.equal(p.layers[p.read('active')].style.transition,'opacity 850ms ease');
+});
+test('mixed timing uses current interval and incoming fade while outgoing stays opaque',async()=>{
+ const p=player({timings:[{intervalSeconds:20,crossfadeSeconds:5},{intervalSeconds:8,crossfadeSeconds:2},{intervalSeconds:5,crossfadeSeconds:0}]});await p.flush();
+ assert.ok([...p.timers.values()].some(t=>t.ms===20000));await p.tick(20000);
+ assert.equal(p.read('current'),1);assert.equal(p.layers[p.read('active')].style.transition,'opacity 2000ms ease');assert.ok(p.layers[1-p.read('active')].classList.contains('visible'));assert.ok([...p.timers.values()].some(t=>t.ms===8000));
+ await p.tick(2000);assert.equal(p.layers[1-p.read('active')].classList.contains('visible'),false);await p.tick(8000);assert.equal(p.layers[p.read('active')].style.transition,'none');assert.equal(p.layers[1-p.read('active')].classList.contains('visible'),false);
+});
+test('reduced motion disables fades but keeps per-slide progression and one image never advances',async()=>{
+ const p=player({reducedMotion:true,timings:[{intervalSeconds:20,crossfadeSeconds:5}]});await p.flush();assert.equal(p.layers[p.read('active')].style.transition,'none');assert.ok([...p.timers.values()].some(t=>t.ms===20000));
+ const q=player({count:1});await q.flush();assert.equal(q.timers.size,0);
+});
+test('delayed decoding holds the current image and resets interval after manual/pause/visibility actions',async()=>{
+ const p=player({deferred:['1.png'],timings:[{intervalSeconds:20,crossfadeSeconds:5},{intervalSeconds:9,crossfadeSeconds:1}]});await p.flush();await p.tick(20000);assert.equal(p.read('current'),0);assert.ok(p.layers[p.read('active')].classList.contains('visible'));
+ p.pending.get('1.png')();await p.flush();assert.equal(p.read('current'),1);assert.ok([...p.timers.values()].some(t=>t.ms===9000));
+ await p.key(' ','Space');assert.ok(![...p.timers.values()].some(t=>t.ms===9000));await p.key(' ','Space');assert.ok([...p.timers.values()].some(t=>t.ms===9000));
+ p.document.hidden=true;p.events.visibilitychange();assert.ok(![...p.timers.values()].some(t=>t.ms===9000));p.document.hidden=false;p.events.visibilitychange();assert.ok([...p.timers.values()].some(t=>t.ms===9000));
+});
+
+test('manual timing override applies global settings even to artwork slides',async()=>{
+ const p=player({folderTiming:false,timings:[{intervalSeconds:20,crossfadeSeconds:5}]});await p.flush();assert.ok([...p.timers.values()].some(t=>t.ms===5000));assert.equal(p.layers[p.read('active')].style.transition,'opacity 850ms ease');
 });

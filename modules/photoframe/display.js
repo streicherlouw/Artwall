@@ -39,10 +39,13 @@ class Display {
    this.phase='active';this.save();return this.status();
   }catch(e){this.error=e.message;await this.stop();throw e}
  }
- async stop(){
+ async stop({powerOff=false}={}){
   this.phase='stopping';this.save();const child=this.child;this.child=null;
   if(child&&child.exitCode===null){try{process.kill(-child.pid,'SIGTERM')}catch(e){if(e.code!=='ESRCH')throw e}await new Promise(resolve=>{const t=setTimeout(()=>{try{process.kill(-child.pid,'SIGKILL')}catch{}resolve()},3000);child.once('exit',()=>{clearTimeout(t);resolve()})})}
-  this.phase='idle';await this.checkOwner();this.save();return this.status();
+  this.phase='idle';
+  if(powerOff&&!this.owner()){await this.power(false);this.restoreOff=false}
+  else await this.checkOwner();
+  this.save();return this.status();
  }
  async checkOwner(){const owner=this.owner();if(owner&&this.child){if(owner==='AirPlay'||(owner==='SplitFlap'&&this.read('splitflap-state.json').temporary===true)){if(this.phase!=='suspended'){this.phase='suspended';this.save()}return}await this.stop();return}if(!owner&&this.child&&this.phase==='suspended'){this.phase='active';this.save()}if(!owner&&!this.child&&this.restoreOff){await this.power(false);this.restoreOff=false;this.save()}}
  async close(){clearInterval(this.poll);await this.enqueue(()=>this.stop())}
