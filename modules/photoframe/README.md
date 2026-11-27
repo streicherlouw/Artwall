@@ -140,3 +140,5 @@ When the selected root album is **Pictures** (case insensitive), its immediate c
 ### Playback album navigation
 
 The Album selector has Folders, Art Movements and Artists sections. Movements and artists are alphabetical. Pictures folders appear as an indented tree, including nested descendants with supported images; the selected folder’s full path appears below the selector. Selecting a Pictures subfolder plays only its subtree in natural filename order. Selecting Pictures retains shuffled child-folder playback. Subfolder choices do not create additional HomeKit switches.
+
+Photo collages show their containing folder at the lower left of the image. For images inside an album subfolder, the label shows the path below the album root (for example, `2026-11 Event > Dinner`); images directly in a root album show that album name. Artwork slides continue to show the artist label in the same position.

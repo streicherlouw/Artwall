@@ -90,6 +90,11 @@ def scan(root,defaults=None):
     label=embedded_label or info.get('artist',{}).get('name','')
     slide.pop('artistLabel',None)
     if label:slide['artistLabel']=label
+    slide.pop('folderLabel',None)
+    if not (artwork or bool(label)):
+     folders=p.parent.relative_to(root).parts
+     visible_folders=folders[1:] if len(folders)>1 else folders
+     if visible_folders:slide['folderLabel']=' > '.join(visible_folders)
     slide["timing"]=collection_metadata.resolved_timing(timing_fields,artwork or bool(label),p,defaults)
     slide.pop("identifiers",None)
     identifiers=identifier_metadata.identifiers(p)
